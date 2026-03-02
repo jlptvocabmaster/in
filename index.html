@@ -501,6 +501,98 @@ body::after { content: ''; position: fixed; top: 30%; left: 50%; transform: tran
 .related-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .related-chip { background: var(--crimson-lt); border-radius: 8px; padding: 5px 10px; font-size: 0.82rem; color: var(--crimson-dk); font-family: 'Noto Serif JP', serif; }
 
+/* ── SCENE CARD (Strategy 3) ── */
+.scene-card {
+  background: linear-gradient(135deg, var(--ink) 0%, #2c3e50 100%);
+  border-radius: 14px; padding: 16px 18px; position: relative; overflow: hidden;
+  margin-top: 4px;
+}
+.scene-card::before {
+  content: '🎬'; position: absolute; right: 14px; top: 12px;
+  font-size: 1.4rem; opacity: 0.25;
+}
+.scene-card-label {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.scene-card-text {
+  font-size: 0.86rem; color: #e8e4dc; line-height: 1.75;
+  font-style: italic;
+}
+
+/* ── PITCH PATTERN (Strategy 4) ── */
+.pitch-row {
+  display: flex; align-items: center; gap: 10px; margin-top: 4px; flex-wrap: wrap;
+}
+.pitch-label {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--stone);
+}
+.pitch-morae {
+  display: flex; align-items: flex-end; gap: 3px;
+}
+.pitch-mora {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.pitch-dot {
+  width: 28px; height: 28px; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
+  font-family: 'Noto Serif JP', serif; font-size: 0.75rem; font-weight: 700;
+  transition: transform .2s;
+}
+.pitch-dot:hover { transform: scale(1.15); }
+.pitch-dot.H {
+  background: var(--crimson); color: white;
+  box-shadow: 0 3px 10px rgba(192,57,43,0.35);
+}
+.pitch-dot.L {
+  background: var(--white); color: var(--ink);
+  border: 2px solid var(--border);
+}
+.pitch-connector {
+  width: 3px; height: 14px; border-radius: 2px; margin: 0 1px;
+  align-self: center;
+}
+.pitch-connector.HH, .pitch-connector.LL { background: var(--border); }
+.pitch-connector.HL { background: linear-gradient(to bottom, var(--crimson), var(--border)); }
+.pitch-connector.LH { background: linear-gradient(to bottom, var(--border), var(--crimson)); }
+.pitch-legend { font-size: 0.6rem; color: var(--stone); margin-top: 6px; }
+.pitch-legend span { display: inline-flex; align-items: center; gap: 4px; margin-right: 10px; }
+
+/* ── STORY CHAIN NAVIGATOR (Strategy 1) ── */
+.story-chain-banner {
+  background: linear-gradient(135deg, var(--gold-lt), #fdf0c0);
+  border: 1.5px solid var(--gold); border-radius: 14px;
+  padding: 14px 16px; margin-top: 4px;
+}
+body.dark .story-chain-banner {
+  background: linear-gradient(135deg, #2a2000, #1a1500);
+  border-color: var(--gold);
+}
+.sc-theme {
+  font-size: 0.72rem; font-weight: 700; color: var(--gold);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.sc-story {
+  font-size: 0.8rem; color: var(--ink); line-height: 1.6;
+  margin-bottom: 12px; font-style: italic;
+}
+.sc-nav {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.sc-btn {
+  flex: 1; min-width: 120px; padding: 9px 14px; border-radius: 10px;
+  border: 1.5px solid var(--gold); background: var(--white);
+  font-family: 'DM Serif Display', serif; font-size: 0.82rem;
+  color: var(--ink); cursor: pointer; transition: all .18s;
+  display: flex; align-items: center; gap: 6px;
+}
+.sc-btn:hover { background: var(--gold); color: var(--ink); transform: translateY(-2px); }
+.sc-btn.sc-next { background: var(--gold); color: var(--ink); }
+.sc-btn.sc-next:hover { background: var(--gold-lt); }
+.sc-btn-kanji { font-family: 'Noto Serif JP', serif; font-size: 1rem; }
+
 /* ── MODALS ── */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,46,0.72); backdrop-filter: blur(4px); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.show { display: flex; animation: fadeUp .3s ease; }
@@ -1599,6 +1691,100 @@ body.dark .shadow-card { background:#1a1a2e; }
 .kaiwa-score-emoji { font-size:3rem; margin-bottom:8px; }
 .kaiwa-score-title { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--ink); margin-bottom:4px; }
 .kaiwa-score-num { font-size:2.5rem; font-weight:900; color:#e91e8c; }
+/* ── KAIWA: FILL-IN-THE-BLANK ── */
+.kaiwa-blank-card {
+  margin: 0 16px 10px;
+  background: linear-gradient(135deg, #1a0a1e, #2d1b33);
+  border: 2px solid rgba(233,30,140,0.35);
+  border-radius: 16px; padding: 16px 18px;
+  animation: fadeUp .35s ease;
+}
+.kaiwa-blank-label {
+  font-size: 0.58rem; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: #e91e8c; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.kaiwa-blank-prompt {
+  font-family: 'Noto Serif JP', serif; font-size: 1rem;
+  color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 12px;
+}
+.kaiwa-blank-slot {
+  display: inline-block; min-width: 100px; border-bottom: 2px solid #e91e8c;
+  color: #e91e8c; font-weight: 700; padding: 0 4px;
+  transition: all .2s;
+}
+.kaiwa-blank-slot.filled { color: #4ade80; border-color: #4ade80; }
+.kaiwa-blank-opts {
+  display: flex; flex-direction: column; gap: 7px;
+}
+.kaiwa-blank-opt {
+  background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 10px; padding: 10px 14px; cursor: pointer;
+  font-family: 'Noto Serif JP', serif; font-size: 0.86rem; color: white;
+  text-align: left; transition: all .16s;
+}
+.kaiwa-blank-opt:hover:not(:disabled) {
+  background: rgba(233,30,140,0.2); border-color: #e91e8c;
+}
+.kaiwa-blank-opt.correct { background: rgba(39,174,96,0.25) !important; border-color: #4ade80 !important; }
+.kaiwa-blank-opt.wrong   { background: rgba(192,57,43,0.25) !important; border-color: #e74c3c !important; }
+
+/* ── KAIWA: GRAMMAR SPOTLIGHT ── */
+.kaiwa-grammar-card {
+  margin: 0 16px 10px;
+  background: linear-gradient(135deg, #0a1520, #0d1e30);
+  border: 1.5px solid rgba(52,152,219,0.4);
+  border-radius: 14px; padding: 14px 16px;
+  animation: fadeUp .35s ease;
+}
+.kaiwa-grammar-label {
+  font-size: 0.58rem; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: #3498db; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.kaiwa-grammar-point {
+  font-family: 'Noto Serif JP', serif; font-size: 1.05rem;
+  color: white; font-weight: 700; margin-bottom: 6px;
+}
+.kaiwa-grammar-explain {
+  font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.65;
+  margin-bottom: 8px;
+}
+.kaiwa-grammar-example {
+  background: rgba(52,152,219,0.12); border-left: 3px solid #3498db;
+  border-radius: 0 8px 8px 0; padding: 8px 12px;
+  font-family: 'Noto Serif JP', serif; font-size: 0.82rem;
+  color: rgba(255,255,255,0.8); line-height: 1.6;
+}
+
+/* ── KAIWA: STAR RATING ── */
+.kaiwa-star-row {
+  margin: 4px 16px 12px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 4px; animation: fadeUp .3s ease .1s both;
+}
+.kaiwa-star-label {
+  font-size: 0.68rem; color: rgba(255,255,255,0.5);
+  margin-right: 6px; font-weight: 600;
+}
+.kaiwa-star {
+  font-size: 1.8rem; cursor: pointer; transition: transform .15s, filter .15s;
+  filter: grayscale(1) opacity(0.4); line-height: 1;
+}
+.kaiwa-star:hover, .kaiwa-star.active {
+  filter: grayscale(0) opacity(1); transform: scale(1.2);
+}
+.kaiwa-star.active { animation: starPop .25s ease; }
+@keyframes starPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1.2); }
+}
+.kaiwa-star-hint {
+  font-size: 0.7rem; color: rgba(255,255,255,0.45); text-align: center;
+  margin-bottom: 12px; min-height: 18px;
+}
+
 
 /* theme picker */
 .kaiwa-theme-section { display:none; margin-bottom:14px; }
@@ -1695,6 +1881,110 @@ body.dark .kaiwa-typing-dots span { background:#555; }
 .shadow-mode-tile { background:linear-gradient(135deg,#f5f0ff,var(--white)) !important; border-color:#8e44ad !important; }
 .kana-mode-tile.active { background:linear-gradient(135deg,#dbeeff,#f0f8ff) !important; }
 .shadow-mode-tile.active { background:linear-gradient(135deg,#ede5ff,#f5f0ff) !important; }
+
+/* ── WORD READING DRILL (N4+) ── */
+.wrd-header { padding-top: 18px; margin-bottom: 16px; }
+.wrd-title { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); margin-bottom: 4px; }
+.wrd-sub { font-size: 0.78rem; color: var(--stone); line-height: 1.5; }
+.wrd-level-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 99px;
+  margin-bottom: 12px; border: 2px solid currentColor;
+}
+.wrd-score-row { display: flex; gap: 10px; margin-bottom: 18px; }
+.wrd-score-item {
+  flex: 1; background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 10px 8px; text-align: center;
+}
+.wrd-score-num { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); line-height: 1; }
+.wrd-score-lbl { font-size: 0.6rem; color: var(--stone); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.wrd-card {
+  background: linear-gradient(135deg, var(--ink) 0%, #1e2a3a 100%);
+  border-radius: 20px; padding: 32px 24px; text-align: center;
+  margin-bottom: 14px; position: relative; overflow: hidden;
+  min-height: 160px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+}
+.wrd-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(212,172,13,0.12), transparent 70%);
+  border-radius: 50%;
+}
+.wrd-kanji {
+  font-family: 'Noto Serif JP', serif; font-size: 3.2rem; color: white;
+  line-height: 1; text-shadow: 0 2px 20px rgba(255,255,255,0.2);
+  transition: opacity .3s;
+}
+.wrd-meaning { font-size: 0.82rem; color: rgba(255,255,255,0.55); letter-spacing: 0.5px; }
+.wrd-pos-badge {
+  background: rgba(212,172,13,0.15); border: 1px solid rgba(212,172,13,0.35);
+  border-radius: 99px; padding: 3px 10px; font-size: 0.6rem;
+  color: var(--gold); font-weight: 700; letter-spacing: 1px;
+}
+.wrd-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.wrd-opt {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 14px; padding: 14px 10px; text-align: center;
+  cursor: pointer; transition: all .18s;
+  font-family: 'Noto Sans JP', sans-serif; font-size: 0.95rem;
+  color: var(--ink); font-weight: 500;
+}
+.wrd-opt:hover:not(:disabled) { border-color: var(--crimson); background: var(--crimson-lt); transform: translateY(-2px); }
+.wrd-opt.correct { border-color: #27ae60 !important; background: #e8f8f0 !important; color: #1a5e2a !important; font-weight: 700; }
+.wrd-opt.wrong { border-color: var(--crimson) !important; background: var(--crimson-lt) !important; color: var(--crimson-dk) !important; }
+.wrd-opt:disabled { cursor: default; transform: none; }
+.wrd-reveal {
+  background: var(--white); border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 10px 14px; font-size: 0.8rem; color: var(--ink); margin-bottom: 10px;
+  display: none; line-height: 1.6; text-align: center;
+}
+.wrd-reveal.show { display: block; animation: fadeUp .3s ease; }
+.wrd-reveal-furigana { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--crimson); font-weight: 700; }
+.wrd-reveal-romaji { font-size: 0.75rem; color: var(--stone); margin-top: 2px; }
+.wrd-streak-msg { text-align: center; font-size: 0.78rem; color: var(--gold); font-weight: 700; min-height: 22px; }
+.wrd-timer-row {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+}
+.wrd-timer-wrap {
+  position: relative; flex-shrink: 0; width: 72px; height: 72px;
+}
+.wrd-timer-svg {
+  width: 72px; height: 72px; transform: rotate(-90deg);
+}
+.wrd-timer-track {
+  fill: none; stroke: var(--border); stroke-width: 5;
+}
+.wrd-timer-ring {
+  fill: none; stroke: var(--crimson); stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .9s linear, stroke .5s;
+}
+.wrd-timer-ring.urgent { stroke: #e74c3c; }
+.wrd-timer-ring.critical { stroke: #c0392b; animation: timerPulse .5s ease-in-out infinite alternate; }
+@keyframes timerPulse { from { opacity: 1; } to { opacity: 0.5; } }
+.wrd-timer-num {
+  position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; font-family: "DM Serif Display", serif;
+  font-size: 1.3rem; font-weight: 700; color: var(--ink);
+}
+.wrd-live-scores { display: flex; flex: 1; gap: 8px; }
+.wrd-live-scores .wrd-score-item { flex: 1; }
+.wrd-correct-num { color: #27ae60 !important; }
+.wrd-wrong-num { color: var(--crimson) !important; }
+.wrd-streak-num { color: var(--gold) !important; }
+/* Result card */
+.wrd-result-card {
+  background: linear-gradient(135deg, var(--ink), #1e2a3a);
+  border-radius: 22px; padding: 32px 24px; text-align: center;
+  margin-top: 8px; animation: fadeUp .4s ease;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+}
+body.dark .wrd-card { background: linear-gradient(135deg, #0d0d1a 0%, #0a1520 100%); }
+body.dark .wrd-opt { background: #1a1a2e; border-color: #2a2a3e; color: var(--ink); }
+body.dark .wrd-score-item { background: #1a1a2e; }
 
 /* ── JLPT INDIA CENTERS ── */
 .jlpt-center-card {
@@ -2702,8 +2992,8 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
       <div class="ms-mode-card pp-card kana-mode-tile" data-mode="kana" onclick="pickMode(this)" id="kanaModeTile">
         <div class="ms-mode-icon">🗾</div>
         <div>
-          <div class="ms-mode-name">かな Kana Drill</div>
-          <div class="ms-mode-hint">Hiragana &amp; Katakana speed recognition</div>
+          <div class="ms-mode-name" id="kanaModeName">かな Kana Drill</div>
+          <div class="ms-mode-hint" id="kanaModeHint">Hiragana &amp; Katakana speed recognition</div>
         </div>
       </div>
       <div class="ms-mode-card pp-card shadow-mode-tile" data-mode="shadow" onclick="pickMode(this)" id="shadowModeTile">
@@ -2960,7 +3250,7 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
 
 <!-- ── KANA DRILL SCREEN ── -->
 <div class="screen" id="kanaScreen">
-  <div class="kana-screen">
+  <div class="kana-screen" id="kanaSubScreen">
     <div style="display:flex;align-items:center;justify-content:space-between;padding-top:18px;margin-bottom:4px">
       <button class="gt-back" onclick="confirmKanaBack()">← Back</button>
       <div style="font-size:0.72rem;color:var(--stone);font-weight:700" id="kanaLevelBadge">Hiragana + Katakana</div>
@@ -2986,6 +3276,65 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     </div>
     <div class="kana-opts" id="kanaOpts"></div>
     <div class="kana-streak" id="kanaStreakMsg"></div>
+  </div>
+
+  <!-- ── WORD READING DRILL — TIMED BLITZ (N4 and above) ── -->
+  <div class="kana-screen" id="wrdSubScreen" style="display:none">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-top:18px;margin-bottom:4px">
+      <button class="gt-back" onclick="confirmWrdBack()">&#8592; Back</button>
+      <div id="wrdLevelBadge" class="wrd-level-badge" style="color:var(--n4)">N4</div>
+      <div style="width:60px"></div>
+    </div>
+
+    <!-- Active drill panel -->
+    <div id="wrdDrillPanel">
+      <div class="wrd-header">
+        <div class="wrd-title">&#9889; Reading Blitz</div>
+        <div class="wrd-sub">60 seconds &#8212; how many can you read?</div>
+      </div>
+
+      <div class="wrd-timer-row">
+        <div class="wrd-timer-wrap">
+          <svg class="wrd-timer-svg" viewBox="0 0 64 64">
+            <circle class="wrd-timer-track" cx="32" cy="32" r="28"/>
+            <circle class="wrd-timer-ring" id="wrdTimerRing" cx="32" cy="32" r="28"
+              stroke-dasharray="175.9" stroke-dashoffset="0"/>
+          </svg>
+          <div class="wrd-timer-num" id="wrdTimerNum">60</div>
+        </div>
+        <div class="wrd-live-scores">
+          <div class="wrd-score-item">
+            <div class="wrd-score-num wrd-correct-num" id="wrdCorrect">0</div>
+            <div class="wrd-score-lbl">&#10003; Correct</div>
+          </div>
+          <div class="wrd-score-item">
+            <div class="wrd-score-num wrd-wrong-num" id="wrdWrong">0</div>
+            <div class="wrd-score-lbl">&#10007; Wrong</div>
+          </div>
+          <div class="wrd-score-item">
+            <div class="wrd-score-num wrd-streak-num" id="wrdBest">0</div>
+            <div class="wrd-score-lbl">&#128293; Best</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrd-card" id="wrdCard">
+        <div class="wrd-pos-badge" id="wrdPos">noun</div>
+        <div class="wrd-kanji" id="wrdKanji">&#38651;&#35441;</div>
+        <div class="wrd-meaning" id="wrdMeaning">telephone</div>
+      </div>
+      <div class="wrd-opts" id="wrdOpts"></div>
+      <div class="wrd-reveal" id="wrdReveal">
+        <div class="wrd-reveal-furigana" id="wrdRevealFurigana"></div>
+        <div class="wrd-reveal-romaji" id="wrdRevealRomaji"></div>
+      </div>
+      <div class="wrd-streak-msg" id="wrdStreakMsg"></div>
+    </div>
+
+    <!-- Results screen (shown after 60s) -->
+    <div id="wrdResultPanel" style="display:none">
+      <div class="wrd-result-card" id="wrdResultCard"></div>
+    </div>
   </div>
 </div>
 
@@ -3026,10 +3375,26 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <div class="panel-word" id="opWord"></div>
     <div class="panel-reading" id="opReading"></div>
 
+    <!-- Story Chain Navigator (Strategy 1) -->
+    <div class="origin-section" id="opChainSection" style="display:none">
+      <div class="origin-section-title">🔗 Story Chain</div>
+      <div id="opChain"></div>
+    </div>
+
     <div class="origin-section">
       <div class="origin-section-title">🏛️ Kanji Pictograph Origin</div>
       <div class="origin-section-body" id="opPictograph"></div>
     </div>
+
+    <!-- Scene Card (Strategy 3) -->
+    <div class="origin-section" id="opSceneSection" style="display:none">
+      <div class="origin-section-title">🎬 Picture This Scene</div>
+      <div class="scene-card" id="opSceneCard">
+        <div class="scene-card-label">🎥 Close your eyes and imagine…</div>
+        <div class="scene-card-text" id="opScene"></div>
+      </div>
+    </div>
+
     <div class="origin-section">
       <div class="origin-section-title">🧩 Radical Breakdown</div>
       <div class="radical-pills" id="opRadicals"></div>
@@ -3042,6 +3407,19 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
       <div class="origin-section-title">📖 Memory Hook Story</div>
       <div class="origin-section-body" id="opHook"></div>
     </div>
+
+    <!-- Pitch Pattern (Strategy 4) -->
+    <div class="origin-section" id="opPitchSection" style="display:none">
+      <div class="origin-section-title">🎵 Pitch Pattern</div>
+      <div class="pitch-row">
+        <div class="pitch-morae" id="opPitchMorae"></div>
+      </div>
+      <div class="pitch-legend">
+        <span><span class="pitch-dot H" style="width:16px;height:16px;font-size:0"></span> High pitch</span>
+        <span><span class="pitch-dot L" style="width:16px;height:16px;font-size:0"></span> Low pitch</span>
+      </div>
+    </div>
+
     <div class="origin-section">
       <div class="origin-section-title">🔗 Related Kanji</div>
       <div class="related-row" id="opRelated"></div>
@@ -3117,17 +3495,17 @@ const lvlColor = { N5:'#27ae60', N4:'#2980b9', N3:'#8e44ad', N2:'#e67e22', N1:'#
 // ─────────────────────────────────────────────
 const vocab = {
   N5: [
-    { k:'水', f:'みず', r:'mizu', m:'water', pos:'noun',
+    { k:'水', f:'みず', storyChain:{next:'川',theme:'🌊 River Journey',story:'Water flows into rivers, rivers hold fish, fish get eaten, and eating makes you thirsty to drink!'}, scene:'You kneel by a mountain stream — cupping your hands (みず) to lift cold WATER to your lips. The kanji literally shows water flowing between your fingers.', pitch:'LH', r:'mizu', m:'water', pos:'noun',
       origin:{ pictograph:'水 originally depicted flowing water — the three wavy lines in the centre represent streams flowing downward. Ancient oracle bone script shows it as a winding river.', radicals:[{k:'水',m:'water'}], literal:'Looks like water dripping between your fingers 💧', hook:'Imagine pouring WATER (みず) — the kanji flows like a river!', related:['海','川','泳'] }},
-    { k:'火', f:'ひ', r:'hi', m:'fire', pos:'noun',
+    { k:'火', f:'ひ', storyChain:{prev:'山',next:'水',theme:'⛰️ Volcano Adventure',story:'On the mountain a fire burns, the fire boils water, steam rises to the sky!'}, scene:'A campfire crackles on the mountainside (ひ). Two strokes glow at the base; two sparks leap skyward. The fire says HI to the darkness — and now you will never forget ひ.', pitch:'H', r:'hi', m:'fire', pos:'noun',
       origin:{ pictograph:'火 was drawn as dancing flames rising upward. The two strokes at the bottom are the base of the fire, the top strokes are the flames.', radicals:[{k:'火',m:'fire'}], literal:'Looks like a flame with sparks flying up 🔥', hook:'HI! A FIRE says "hi" when it crackles — ひ (hi)!', related:['炎','燃','焼'] }},
-    { k:'山', f:'やま', r:'yama', m:'mountain', pos:'noun',
+    { k:'山', f:'やま', storyChain:{next:'火',theme:'⛰️ Volcano Adventure',story:'On the mountain a fire burns, the fire boils water, steam rises to the sky!'}, scene:'You tilt your head back and look up at three jagged peaks (やま) — Fuji-san tallest in the centre. The kanji IS the mountain. You are staring at it right now.', pitch:'LH', r:'yama', m:'mountain', pos:'noun',
       origin:{ pictograph:'山 is one of the most iconic pictographs — three peaks of a mountain range. The tallest peak is in the middle, just like Fuji-san! Used since 3,000 BCE in Chinese script.', radicals:[{k:'山',m:'mountain'}], literal:'Three mountain peaks side by side — you can literally see the mountains! 🏔️', hook:'YAMA-ha motorcycles climb mountains — やま (yama)!', related:['岩','岳','峰'] }},
-    { k:'川', f:'かわ', r:'kawa', m:'river', pos:'noun',
+    { k:'川', f:'かわ', storyChain:{prev:'水',next:'食べる',theme:'🌊 River Journey',story:'Water flows into rivers, rivers hold fish, fish get eaten, and eating makes you thirsty to drink!'}, scene:'Standing on the riverbank (かわ) you watch three silver streams merge — the outer strokes ARE the banks, the centre is the rush of current carrying everything downstream.', pitch:'HLL', r:'kawa', m:'river', pos:'noun',
       origin:{ pictograph:'川 shows three streams flowing downward — the outer two are the riverbanks, the middle is the main current. You can almost see the river flowing!', radicals:[{k:'川',m:'river'}], literal:'Three vertical lines = three streams of water flowing down 🌊', hook:'A RIVER (かわ) has banks on each side — just like the outer strokes!', related:['水','海','流'] }},
-    { k:'食べる', f:'たべる', r:'taberu', m:'to eat', pos:'verb (ru)',
+    { k:'食べる', f:'たべる', storyChain:{prev:'川',next:'飲む',theme:'🌊 River Journey',story:'Water flows into rivers, rivers hold fish, fish get eaten, and eating makes you thirsty to drink!'}, scene:'You sit at a low table (たべる), fresh river fish in front of you. You hunch forward — exactly like the kanji 食, a person bowing over their bowl — and eat every last bite.', pitch:'LHHL', r:'taberu', m:'to eat', pos:'verb (ru)',
       origin:{ pictograph:'食 shows a person (人) bending over a bowl (皿) of food. The top part (𠆢) represents a lid or roof over the food.', radicals:[{k:'食',m:'eat/food'},{k:'人',m:'person'}], literal:'A person hunching over their dinner plate 🍱', hook:'TABle + ERU = you eat at the TABLE (たべる)!', related:['飲','味','料'] }},
-    { k:'飲む', f:'のむ', r:'nomu', m:'to drink', pos:'verb (u)',
+    { k:'飲む', f:'のむ', storyChain:{prev:'食べる',next:null,theme:'🌊 River Journey',story:'Water flows into rivers, rivers hold fish, fish get eaten, and eating makes you thirsty to drink!'}, scene:'After the meal your throat is parched. You tilt a cup back and open wide — just like the 欠 radical, a person yawning their mouth open — and drink it all down (のむ).', pitch:'LH', r:'nomu', m:'to drink', pos:'verb (u)',
       origin:{ pictograph:'飲 combines 食 (food/eat) with a mouth opening wide (欠 — a person yawning/opening mouth). Together: opening your mouth to drink.', radicals:[{k:'食',m:'food'},{k:'欠',m:'open mouth/lack'}], literal:'Food radical + open mouth = consuming liquid 🥤', hook:'NO MU-g — you say NO to an empty MUG, you want to drink! のむ!', related:['食','酒','水'] }},
     { k:'行く', f:'いく', r:'iku', m:'to go', pos:'verb (u)',
       origin:{ pictograph:'行 originally showed a crossroads (彳 left + 亍 right) — a person standing at an intersection, ready to GO somewhere.', radicals:[{k:'彳',m:'step/road'},{k:'亍',m:'road right'}], literal:'Standing at a crossroads — which way will you GO? 🚶', hook:'IKU sounds like "I go" — I go (いく)!', related:['来','歩','帰'] }},
@@ -3136,13 +3514,13 @@ const vocab = {
     { k:'新しい', f:'あたらしい', r:'atarashii', m:'new', pos:'adj (i)',
       origin:{ pictograph:'新 combines 木 (tree) + 斤 (axe) + 立 (stand) — the image of freshly CUT timber, brand new wood just chopped from a standing tree.', radicals:[{k:'木',m:'tree'},{k:'斤',m:'axe'}], literal:'Freshly cut wood = brand new! 🪵', hook:'A-TA-RASHI — "Ah, that\'s the new one!" (あたらしい)!', related:['古','初','若'] }},
     { k:'今日', f:'きょう', r:'kyou', m:'today', pos:'noun',
-      origin:{ pictograph:'今 (now) + 日 (sun/day) = TODAY. 今 shows something being held now — the present moment. 日 is the sun. Put them together: the sun of right now = today!', radicals:[{k:'今',m:'now'},{k:'日',m:'sun/day'}], literal:'NOW + SUN = today\'s sun = TODAY ☀️', hook:'KYOU sounds like "here you go" — TODAY I give you today! きょう!', related:['明日','昨日','毎日'] }},
-    { k:'友達', f:'ともだち', r:'tomodachi', m:'friend', pos:'noun',
+      origin:{ pictograph:'今 (now) + 日 (sun/day) = TODAY. 今 shows something being held now — the present moment. 日 is the sun. Put them together: the sun of right now = today!', radicals:[{k:'今',m:'now'},{k:'日',m:'sun/day'}], literal:'NOW + SUN = today\'s sun = TODAY ☀️', hook:'KYOU — like a CUE ball hitting the table: TODAY is your CUE to act! ☀️ きょう!', related:['明日','昨日','毎日'] }},
+    { k:'友達', f:'ともだち', storyChain:{prev:'学生',next:'好き',theme:'🏫 School Days',story:'At school the teacher guides students, students make friends, and friends discover what they love!'}, scene:'After class your friend (ともだち) reaches out their hand — two hands clasped is the origin of 友. Someone you reach toward. Someone who always reaches back.', pitch:'LHLH', r:'tomodachi', m:'friend', pos:'noun',
       origin:{ pictograph:'友 shows two hands clasped together — two people reaching out to each other in friendship. 達 means "to reach/arrive" — a friend is someone you reach out to!', radicals:[{k:'友',m:'friend'},{k:'達',m:'reach/plural'}], literal:'Two hands clasped = friendship handshake 🤝', hook:'TOMODACHI — "TO-MO-DACHI" — Together, More, Dachi (Let\'s go)! Friends go together!', related:['仲間','家族','知人'] }},
-    { k:'学校', f:'がっこう', r:'gakkou', m:'school', pos:'noun',
+    { k:'学校', f:'がっこう', storyChain:{next:'先生',theme:'🏫 School Days',story:'At school the teacher guides students, students make friends, and friends discover what they love!'}, scene:'Monday morning — you groan as you push open the school gates (がっこう). The kanji 学 shows a child being taught under a roof. That is you. Under that roof. Every single Monday.', pitch:'LLHH', r:'gakkou', m:'school', pos:'noun',
       origin:{ pictograph:'学 shows a child (子) under a roof with hands above — a child being taught under a roof = learning. 校 adds wood (木) + the idea of a structure = school building!', radicals:[{k:'学',m:'study/learn'},{k:'校',m:'school building'}], literal:'Child being taught under a roof 🏫', hook:'GAKKOU — "GACK! School!" — that\'s your reaction Monday morning! がっこう!', related:['大学','教室','先生'] }},
-    { k:'好き', f:'すき', r:'suki', m:'like / fond of', pos:'adj (na)',
-      origin:{ pictograph:'好 shows a woman (女) next to a child (子) — a mother\'s love for her child was the original image of LIKING or loving something. Pure affection!', radicals:[{k:'女',m:'woman'},{k:'子',m:'child'}], literal:'Mother + child = love/like ❤️', hook:'SUKI sounds like "Suckey" — the opposite of what you LIKE! But you love suki! すき!', related:['嫌い','愛','恋'] }},
+    { k:'好き', f:'すき', storyChain:{prev:'友達',next:null,theme:'🏫 School Days',story:'At school the teacher guides students, students make friends, and friends discover what they love!'}, scene:'Your friend asks what food you LOVE (すき) — you both shout sukiyaki at the same instant and burst out laughing. 好 = woman + child = pure affection.', pitch:'LH', r:'suki', m:'like / fond of', pos:'adj (na)',
+      origin:{ pictograph:'好 shows a woman (女) next to a child (子) — a mother\'s love for her child was the original image of LIKING or loving something. Pure affection!', radicals:[{k:'女',m:'woman'},{k:'子',m:'child'}], literal:'Mother + child = love/like ❤️', hook:'SUKI-yaki is your all-time favourite dish — you absolutely LOVE (suki) it! 🍲 SUKI = that warm craving feeling of wanting MORE!', related:['嫌い','愛','恋'] }},
     { k:'今日', f:'きょう', r:'kyou', m:'today', pos:'noun',
       origin:{ pictograph:'今 (now) + 日 (day) = TODAY. The kanji for "now" combined with "sun/day."', radicals:[{k:'今',m:'now'},{k:'日',m:'day'}], literal:'The sun of right now ☀️', hook:'KYOU = today is happening right NOW under the sun!', related:['明日','昨日','毎日'] }},
     { k:'明日', f:'あした', r:'ashita', m:'tomorrow', pos:'noun',
@@ -3154,7 +3532,7 @@ const vocab = {
     { k:'月', f:'つき', r:'tsuki', m:'moon / month', pos:'noun',
       origin:{ pictograph:'月 was drawn as a crescent moon — the curved shape with two lines inside representing the moon\'s surface markings. It also means "month" because ancient calendars were lunar.', radicals:[{k:'月',m:'moon/month'}], literal:'A crescent moon with surface lines — the night sky lantern 🌙', hook:'TSUKI — the moon is TUSKy and sharp like a crescent! つき!', related:['明','期','朝'] }},
     { k:'年', f:'とし', r:'toshi', m:'year', pos:'noun',
-      origin:{ pictograph:'年 originally showed grain stalks (禾) being harvested — a harvest cycle = one year. The top part shows the stalks, the bottom shows the harvest being brought in. One full harvest = one full year.', radicals:[{k:'禾',m:'grain'}], literal:'Grain harvested after a full cycle — one year of growth 🌾', hook:'TOSHI — toss the grain after a full year! としの!', related:['毎','去','来'] }},
+      origin:{ pictograph:'年 originally showed grain stalks (禾) being harvested — a harvest cycle = one year. The top part shows the stalks, the bottom shows the harvest being brought in. One full harvest = one full year.', radicals:[{k:'禾',m:'grain'}], literal:'Grain harvested after a full cycle — one year of growth 🌾', hook:'TOSHI — imagine a samurai named TOSHI who ages exactly ONE YEAR every harvest! 🌾 とし!', related:['毎','去','来'] }},
     { k:'時', f:'とき', r:'toki', m:'time / hour', pos:'noun',
       origin:{ pictograph:'時 combines 日 (sun) + 寺 (temple). The sun moves past the temple — monks rang temple bells to mark the hours of the day. TIME was measured by the sun passing the temple.', radicals:[{k:'日',m:'sun'},{k:'寺',m:'temple'}], literal:'The sun passing the temple bell — hour by hour ⛩️', hook:'TOKI — the temple clock goes TOCK-I every hour! とき!', related:['間','分','秒'] }},
     { k:'何', f:'なに', r:'nani', m:'what', pos:'pronoun',
@@ -3162,7 +3540,7 @@ const vocab = {
     { k:'今', f:'いま', r:'ima', m:'now', pos:'noun',
       origin:{ pictograph:'今 shows something being held or covered (a lid 亼 on top of a contained thing 口). The idea is of something present, enclosed in this exact moment — NOW, not past or future.', radicals:[{k:'亼',m:'gather/lid'},{k:'口',m:'mouth/container'}], literal:'Something lidded and present — right now, this moment 📌', hook:'IMA — "I\'m-a here right NOW!" いま!', related:['現','直','即'] }},
     { k:'先', f:'さき', r:'saki', m:'ahead / previous', pos:'noun',
-      origin:{ pictograph:'先 shows a person (儿 at bottom = legs) with something above their head pointing forward — someone going AHEAD, taking the lead. The top stroke represents the path stretching forward.', radicals:[{k:'儿',m:'legs/person'},{k:'土',m:'earth/ground'}], literal:'A person stepping forward ahead of others 🏃', hook:'SAKI — "Sack-y leads the way AHEAD!" さき!', related:['前','後','次'] }},
+      origin:{ pictograph:'先 shows a person (儿 at bottom = legs) with something above their head pointing forward — someone going AHEAD, taking the lead. The top stroke represents the path stretching forward.', radicals:[{k:'儿',m:'legs/person'},{k:'土',m:'earth/ground'}], literal:'A person stepping forward ahead of others 🏃', hook:'SAKI — a ninja named Saki always sprints AHEAD of the pack. "Let SAKI go first!" さき!', related:['前','後','次'] }},
     { k:'後', f:'あと', r:'ato', m:'after / behind', pos:'noun',
       origin:{ pictograph:'後 combines 彳 (walk) + 幺 (small thread) + 夂 (follow behind). The image: walking slowly, trailing a small thread behind you — lagging AFTER, coming BEHIND.', radicals:[{k:'彳',m:'walk'},{k:'幺',m:'small'},{k:'夂',m:'follow behind'}], literal:'Walking slowly, trailing behind — coming after 🐢', hook:'ATO — "Ah-toe" drags behind after running! あと!', related:['前','次','最後'] }},
     { k:'前', f:'まえ', r:'mae', m:'before / front', pos:'noun',
@@ -3181,15 +3559,15 @@ const vocab = {
       origin:{ pictograph:'外 combines 夕 (evening/moon crescent) + 卜 (divination cracks). Ancient diviners read oracle cracks at night — outside under the stars. OUTSIDE is where divination happens, away from the house.', radicals:[{k:'夕',m:'evening'},{k:'卜',m:'divination'}], literal:'Reading omens outside at dusk — beyond the walls 🌆', hook:'SOTO — "so-tow your boat OUTSIDE the harbour!" そと!', related:['内','外国','外出'] }},
     { k:'家', f:'いえ', r:'ie', m:'house / home', pos:'noun',
       origin:{ pictograph:'家 shows a roof (宀 = house radical) over a pig (豕). In ancient China, pigs were kept under the family roof for warmth and safety. A home with a pig under the roof = a proper HOUSEHOLD.', radicals:[{k:'宀',m:'roof'},{k:'豕',m:'pig'}], literal:'A roof sheltering a pig — the ancestral family home 🏠🐷', hook:'IE/UCHI — "each house has a PIG under the roof!" いえ!', related:['宅','住','屋'] }},
-    { k:'車', f:'くるま', r:'kuruma', m:'car', pos:'noun',
+    { k:'車', f:'くるま', storyChain:{next:'駅',theme:'🚃 Getting Around',story:'The car drives to the station, the electric train runs along the road past the shop!'}, scene:'You look down from above at a cart (くるま) — the central shaft, the axle, two wheels. Ancient ox-carts looked exactly like this. The kanji has not changed in 3000 years.', pitch:'LHL', r:'kuruma', m:'car', pos:'noun',
       origin:{ pictograph:'車 is a top-down view of a wheeled cart — the central vertical shaft, the axle, and the two wheels on either side. One of the clearest pictographs in all of kanji. Ancient ox-carts looked exactly like this.', radicals:[{k:'車',m:'vehicle'}], literal:'A cart viewed from above — axle, shaft, and wheels 🛞', hook:'KURUMA — "cool ruma-ble wheels on a CAR!" くるま!', related:['電車','自動車','自転車'] }},
-    { k:'駅', f:'えき', r:'eki', m:'train station', pos:'noun',
+    { k:'駅', f:'えき', storyChain:{prev:'車',next:'電車',theme:'🚃 Getting Around',story:'The car drives to the station, the electric train runs along the road past the shop!'}, scene:'You arrive at the station (えき) — a horse relay post from the Edo era, where fresh horses waited at measured intervals. Now the trains wait. Same idea, electric horses.', pitch:'LH', r:'eki', m:'train station', pos:'noun',
       origin:{ pictograph:'駅 combines 馬 (horse) + 尺 (measure/distance). In the Edo period, horses were stationed at measured intervals along roads for relay transport. A horse-station = a STATION.', radicals:[{k:'馬',m:'horse'},{k:'尺',m:'measure'}], literal:'Horses stationed at measured distances — a relay post 🐎', hook:'EKI — "every station says EKI on the sign!" えき!', related:['電車','バス','交通'] }},
-    { k:'電車', f:'でんしゃ', r:'densha', m:'electric train', pos:'noun',
+    { k:'電車', f:'でんしゃ', storyChain:{prev:'駅',next:'道',theme:'🚃 Getting Around',story:'The car drives to the station, the electric train runs along the road past the shop!'}, scene:'The electric train (でんしゃ) slides in silently — lightning (電) powering the vehicle (車). Rain + bolt + wheels. You feel the hum under your feet as it accelerates.', pitch:'LLHH', r:'densha', m:'electric train', pos:'noun',
       origin:{ pictograph:'電 (electricity) + 車 (vehicle). 電 shows rain (雨) + lightning bolt (申) — electricity from a storm. Electric vehicle = ELECTRIC TRAIN. The compound perfectly describes the thing.', radicals:[{k:'電',m:'electricity'},{k:'車',m:'vehicle'}], literal:'Lightning-powered vehicle — the electric train ⚡🚃', hook:'DENSHA — "DEN the SHA-man rides the electric train!" でんしゃ!', related:['電気','列車','地下鉄'] }},
-    { k:'道', f:'みち', r:'michi', m:'road / path', pos:'noun',
+    { k:'道', f:'みち', storyChain:{prev:'電車',next:'店',theme:'🚃 Getting Around',story:'The car drives to the station, the electric train runs along the road past the shop!'}, scene:'You step off the train and follow the road (みち) — your head (首) guides your feet (辶). The road is whatever path your mind chooses to walk.', pitch:'LHL', r:'michi', m:'road / path', pos:'noun',
       origin:{ pictograph:'道 combines 辶 (movement/road radical) + 首 (head). The head — your guiding mind — showing you the WAY to go. A PATH is what your head chooses. The Dao (Tao) uses this same kanji.', radicals:[{k:'辶',m:'movement'},{k:'首',m:'head/neck'}], literal:'Your head guiding you along a path — the way 🛤️', hook:'MICHI — "me-chi takes THIS road!" みち!', related:['道路','街道','方法'] }},
-    { k:'店', f:'みせ', r:'mise', m:'shop / store', pos:'noun',
+    { k:'店', f:'みせ', storyChain:{prev:'道',next:null,theme:'🚃 Getting Around',story:'The car drives to the station, the electric train runs along the road past the shop!'}, scene:'At the end of the road a shop (みせ) leans against the street — a lean-to shelter (广) occupied by a merchant. You duck inside out of the rain.', pitch:'LHL', r:'mise', m:'shop / store', pos:'noun',
       origin:{ pictograph:'店 combines 广 (lean-to/shelter) + 占 (occupy/divine). A shelter that someone OCCUPIES to sell goods — a stall or SHOP. Ancient shops were lean-to structures where merchants divined good omens before selling.', radicals:[{k:'广',m:'shelter'},{k:'占',m:'occupy'}], literal:'A shelter occupied by a merchant — a stall or shop 🏪', hook:'MISE — "me-see all the goods at the SHOP!" みせ!', related:['店員','商店','本屋'] }},
     { k:'本', f:'ほん', r:'hon', m:'book', pos:'noun',
       origin:{ pictograph:'本 is the kanji 木 (tree) with a mark at the BASE (root). The added stroke at the bottom of the tree marks the ROOT — origin, foundation. Books are the roots of knowledge, so 本 means both "book" and "origin/root."', radicals:[{k:'木',m:'tree'},{k:'一',m:'one/mark'}], literal:'A tree with a mark at its root — the foundation 📚', hook:'HON — "hon-estly, BOOKS are the root of everything!" ほん!', related:['日本','本当','根本'] }},
@@ -3207,30 +3585,30 @@ const vocab = {
       origin:{ pictograph:'会 (meet/assemble) + 社 (shrine/society). 会 = lid + person gathering. 社 = spirit (示) + earth (土) — a place where people gather to serve society. People assembled for a social purpose = COMPANY.', radicals:[{k:'会',m:'meet'},{k:'社',m:'society/shrine'}], literal:'People gathered together for society — a corporation 🏢', hook:'KAISHA — "KAI-sha, shall we meet at the COMPANY?" かいしゃ!', related:['企業','組織','職場'] }},
     { k:'仕事', f:'しごと', r:'shigoto', m:'work / job', pos:'noun',
       origin:{ pictograph:'仕 (serve) + 事 (thing/matter). 仕 = person (亻) + samurai (士) — a person of service. 事 = hand holding a brush over a pile — writing up matters. Service + matters = WORK/JOB.', radicals:[{k:'亻',m:'person'},{k:'士',m:'samurai/service'},{k:'事',m:'matter'}], literal:'A servant handling important matters — work 💼', hook:'SHIGOTO — "she-got-o a new JOB to do!" しごと!', related:['職業','労働','業務'] }},
-    { k:'先生', f:'せんせい', r:'sensei', m:'teacher', pos:'noun',
+    { k:'先生', f:'せんせい', storyChain:{prev:'学校',next:'学生',theme:'🏫 School Days',story:'At school the teacher guides students, students make friends, and friends discover what they love!'}, scene:'Your sensei (せんせい) walks in and the room falls silent. 先 = going first. 生 = life. Someone born before you who went ahead — and now turns back to guide you forward.', pitch:'LLHH', r:'sensei', m:'teacher', pos:'noun',
       origin:{ pictograph:'先 (ahead/first) + 生 (life/born). 先 = going first. 生 = a plant sprouting from soil — life growing. One who was BORN before you and went ahead = TEACHER. A teacher is simply someone who lived and learned first.', radicals:[{k:'先',m:'ahead'},{k:'生',m:'life/born'}], literal:'Born before you and gone ahead — a teacher 🎓', hook:'SENSEI — your SENSEI always goes first, like a Naruto master! せんせい!', related:['教師','教授','恩師'] }},
-    { k:'学生', f:'がくせい', r:'gakusei', m:'student', pos:'noun',
+    { k:'学生', f:'がくせい', storyChain:{prev:'先生',next:'友達',theme:'🏫 School Days',story:'At school the teacher guides students, students make friends, and friends discover what they love!'}, scene:'The student (がくせい) — that is you — sits under the roof with hands raised, a sprouting plant just beginning to grow toward the light of knowledge.', pitch:'LLHH', r:'gakusei', m:'student', pos:'noun',
       origin:{ pictograph:'学 (study) + 生 (life/person). 学 = child being taught under a roof. 生 = a sprouting plant. A living person who is being taught = STUDENT. Someone whose life is currently about learning.', radicals:[{k:'学',m:'study'},{k:'生',m:'life/person'}], literal:'A living person currently being taught — a student 📚', hook:'GAKUSEI — "GACK! The student learns from SENSEI!" がくせい!', related:['生徒','留学生','受験生'] }},
-    { k:'子供', f:'こども', r:'kodomo', m:'child', pos:'noun',
+    { k:'子供', f:'こども', storyChain:{prev:'妹',next:null,theme:'👨‍👩‍👧‍👦 Family Gathering',story:'Father and mother raise older brother and older sister, who look after little brother and little sister, who protect the children!'}, scene:'A small child (こども) toddles through the hallway, arms spread wide for balance — exactly like the kanji 子, a swaddled baby with arms open. The whole family watches, smiling.', pitch:'LLHL', r:'kodomo', m:'child', pos:'noun',
       origin:{ pictograph:'子 (child) + 供 (accompany/offer). 子 shows a swaddled infant with arms spread. 供 = a person (亻) making an offering — a child accompanies and is offered to the family. CHILD = the little one who walks alongside.', radicals:[{k:'子',m:'child'},{k:'供',m:'accompany'}], literal:'The little one who accompanies the family 👶', hook:'KODOMO — "ko-DOME-o, the kid who dominoes around!" こども!', related:['子','赤ちゃん','若者'] }},
     { k:'男', f:'おとこ', r:'otoko', m:'man / male', pos:'noun',
       origin:{ pictograph:'男 combines 田 (rice field) + 力 (strength/muscle). The person who works with STRENGTH in the FIELDS — in ancient agricultural society, this was the man\'s role. Field + strength = MALE.', radicals:[{k:'田',m:'rice field'},{k:'力',m:'strength'}], literal:'Muscular strength in the rice fields — a man 💪', hook:'OTOKO — "oh-ToCo, the man flexes in the field!" おとこ!', related:['女','男性','彼'] }},
     { k:'女', f:'おんな', r:'onna', m:'woman / female', pos:'noun',
       origin:{ pictograph:'女 was originally drawn as a figure kneeling or bowing gracefully — a person in a composed, seated posture. It became the universal symbol for WOMAN and is a base radical in dozens of kanji.', radicals:[{k:'女',m:'woman'}], literal:'A gracefully kneeling figure — a woman 🧎‍♀️', hook:'ONNA — "on-na, a woman kneels with grace!" おんな!', related:['男','女性','彼女'] }},
-    { k:'父', f:'ちち', r:'chichi', m:'father (my)', pos:'noun',
+    { k:'父', f:'ちち', storyChain:{next:'母',theme:'👨‍👩‍👧‍👦 Family Gathering',story:'Father and mother raise older brother and older sister, who look after little brother and little sister, who protect the children!'}, scene:'Your father (ちち) stands tall, raising a stone tool above his head — provider and protector. The kanji shows a raised hand. Like Goku calling for Chichi across the fields.', pitch:'LH', r:'chichi', m:'father (my)', pos:'noun',
       origin:{ pictograph:'父 shows a hand (又) raising a stone tool or club — the one who holds the tool for the family, the provider and protector. The raised implement = authority and fatherly care.', radicals:[{k:'又',m:'hand'},{k:'父',m:'father'}], literal:'A hand raising a tool — the protector of the family 👨', hook:'CHICHI — "CHI-CHI is my papa!" (like Goku calls his dad!) ちち!', related:['母','親','家族'] }},
-    { k:'母', f:'はは', r:'haha', m:'mother (my)', pos:'noun',
+    { k:'母', f:'はは', storyChain:{prev:'父',next:'兄',theme:'👨‍👩‍👧‍👦 Family Gathering',story:'Father and mother raise older brother and older sister, who look after little brother and little sister, who protect the children!'}, scene:'Your mother (はは) holds you close — 母 evolved from 女 with two dots marking a nursing mother. Babies say mama; in Japanese that is haha. The warmth is the same in any language.', pitch:'HH', r:'haha', m:'mother (my)', pos:'noun',
       origin:{ pictograph:'母 evolved from 女 (woman) with two dots added to represent breasts — a nursing mother. The most intimate image of motherhood, nourishing a child.', radicals:[{k:'女',m:'woman'}], literal:'A woman with nursing marks — a mother feeding her child 🤱', hook:'HAHA — babies say "mama" — in Japanese it\'s HAHA! はは!', related:['父','親','家族'] }},
-    { k:'兄', f:'あに', r:'ani', m:'older brother (my)', pos:'noun',
+    { k:'兄', f:'あに', storyChain:{prev:'母',next:'姉',theme:'👨‍👩‍👧‍👦 Family Gathering',story:'Father and mother raise older brother and older sister, who look after little brother and little sister, who protect the children!'}, scene:'Your older brother (あに) speaks first — always. The kanji 兄 is a mouth (口) on top of walking legs (儿). He is the voice of authority at the dinner table.', pitch:'LH', r:'ani', m:'older brother (my)', pos:'noun',
       origin:{ pictograph:'兄 shows a mouth (口) above a person (儿 = legs) — the one whose MOUTH speaks most, who gives orders. Older siblings speak and the younger ones listen. The mouth-person = OLDER BROTHER.', radicals:[{k:'口',m:'mouth'},{k:'儿',m:'person/legs'}], literal:'The mouth that leads — the one who speaks first 👦', hook:'ANI — "any orders? Ask your OLDER BROTHER!" あに!', related:['姉','弟','妹'] }},
-    { k:'姉', f:'あね', r:'ane', m:'older sister (my)', pos:'noun',
+    { k:'姉', f:'あね', storyChain:{prev:'兄',next:'弟',theme:'👨‍👩‍👧‍👦 Family Gathering',story:'Father and mother raise older brother and older sister, who look after little brother and little sister, who protect the children!'}, scene:'Your older sister (あね) has been everywhere — the market, the city. She knows everything. She gives advice before you even ask. 姉 = woman + market/city.', pitch:'LH', r:'ane', m:'older sister (my)', pos:'noun',
       origin:{ pictograph:'姉 combines 女 (woman) + 市 (city/market). An older sister is the woman who has been to the market longer — she knows the ways of the world before her younger siblings do.', radicals:[{k:'女',m:'woman'},{k:'市',m:'market/city'}], literal:'The woman who has been around longer — older sister 👧', hook:'ANE — "ah-NEE, my OLDER SISTER knows everything!" あね!', related:['兄','弟','妹'] }},
-    { k:'弟', f:'おとうと', r:'otouto', m:'younger brother', pos:'noun',
+    { k:'弟', f:'おとうと', storyChain:{prev:'姉',next:'妹',theme:'👨‍👩‍👧‍👦 Family Gathering',story:'Father and mother raise older brother and older sister, who look after little brother and little sister, who protect the children!'}, scene:'Your little brother (おとうと) is still winding his knowledge, like a rope coiling from the bottom up. He is learning. Not done yet. Still following your footsteps.', pitch:'LHHHH', r:'otouto', m:'younger brother', pos:'noun',
       origin:{ pictograph:'弟 shows a rope or bow being wound from the bottom up — the YOUNGER one still winding, still learning. The younger sibling is still coiling their knowledge, not yet finished.', radicals:[{k:'弓',m:'bow'},{k:'弟',m:'younger brother'}], literal:'Still winding and learning — the younger male 👶', hook:'OTOUTO — "oh-TOO-toe, my little bro follows my footsteps!" おとうと!', related:['妹','兄','姉'] }},
-    { k:'妹', f:'いもうと', r:'imouto', m:'younger sister', pos:'noun',
-      origin:{ pictograph:'妹 combines 女 (woman) + 未 (not yet/immature). 未 shows a tree that has not yet reached its full height. A woman who has not yet fully grown = YOUNGER SISTER.', radicals:[{k:'女',m:'woman'},{k:'未',m:'not yet/immature'}], literal:'A woman not yet fully grown — younger sister 🌱', hook:'IMOUTO — "imo (potato) = small and still growing!" いもうと!', related:['弟','姉','兄'] }},
+    { k:'妹', f:'いもうと', storyChain:{prev:'弟',next:'子供',theme:'👨‍👩‍👧‍👦 Family Gathering',story:'Father and mother raise older brother and older sister, who look after little brother and little sister, who protect the children!'}, scene:'Your little sister (いもうと) stretches on tiptoes to reach the shelf — not quite there yet. 妹 = woman + 未 (not yet). Still growing into herself.', pitch:'LHHHH', r:'imouto', m:'younger sister', pos:'noun',
+      origin:{ pictograph:'妹 combines 女 (woman) + 未 (not yet/immature). 未 shows a tree that has not yet reached its full height. A woman who has not yet fully grown = YOUNGER SISTER.', radicals:[{k:'女',m:'woman'},{k:'未',m:'not yet/immature'}], literal:'A woman not yet fully grown — younger sister 🌱', hook:'I-MOU-TO — \"I want MORE TOO!\" 🙋 That\'s exactly what a little sister always says! いもうと!', related:['弟','姉','兄'] }},
     { k:'犬', f:'いぬ', r:'inu', m:'dog', pos:'noun',
-      origin:{ pictograph:'犬 is 大 (large/person) with a dot added — a big animal beside a person. Dogs were so common in ancient Chinese life that "big animal beside a person" became the word for DOG. The dot distinguishes it from 大.', radicals:[{k:'大',m:'large'},{k:'犬',m:'dog'}], literal:'A large animal close to a person — a loyal dog 🐕', hook:'INU — "ee-NOO, the dog says woof and comes to you!" いぬ!', related:['猫','動物','ペット'] }},
+      origin:{ pictograph:'犬 is 大 (large/person) with a dot added — a big animal beside a person. Dogs were so common in ancient Chinese life that "big animal beside a person" became the word for DOG. The dot distinguishes it from 大.', radicals:[{k:'大',m:'large'},{k:'犬',m:'dog'}], literal:'A large animal close to a person — a loyal dog 🐕', hook:'INU — the dog noses IN-to everything! "IN you go!" — inu, always first through the door! 🐕 いぬ!', related:['猫','動物','ペット'] }},
     { k:'猫', f:'ねこ', r:'neko', m:'cat', pos:'noun',
       origin:{ pictograph:'猫 combines 犭(animal radical) + 苗 (seedling/sprout). Cats were prized for protecting grain seedlings from mice. An animal that guards the seedlings = CAT.', radicals:[{k:'犭',m:'animal'},{k:'苗',m:'seedling'}], literal:'The animal that protects the seedlings from mice 🐱', hook:'NEKO — "NAY-ko? No, I\'m a CAT, not a dog!" ねこ!', related:['犬','動物','ペット'] }},
     { k:'魚', f:'さかな', r:'sakana', m:'fish', pos:'noun',
@@ -3263,7 +3641,7 @@ const vocab = {
       origin:{ pictograph:'高 shows a tower or tall building — a layered structure reaching upward. The base is a mouth/gate (口), above is a roof, above that more levels. A tall building = HIGH.', radicals:[{k:'高',m:'tall/high'}], literal:'A tall tower reaching upward — high and expensive 🏯', hook:'TAKAI — "ta-KAI! That tower is SO HIGH and EXPENSIVE!" たかい!', related:['低い','値段','山'] }},
     { k:'安い', f:'やすい', r:'yasui', m:'cheap / inexpensive', pos:'adj (i)' },
     { k:'早い', f:'はやい', r:'hayai', m:'early / fast', pos:'adj (i)',
-      origin:{ pictograph:'早 shows 日 (sun) + 十 (ten = emerging) — the sun just barely rising above the horizon mark. The very beginning of the day = EARLY. Also means FAST because both senses come from the idea of getting a head start.', radicals:[{k:'日',m:'sun'},{k:'十',m:'mark/cross'}], literal:'The sun just cresting the horizon — early and fast 🌅', hook:'HAYAI — "HA-ya-ee — HURRY! Be EARLY and FAST!" はやい!', related:['遅い','朝','速い'] }},
+      origin:{ pictograph:'早 shows 日 (sun) + 十 (ten = emerging) — the sun just barely rising above the horizon mark. The very beginning of the day = EARLY. Also means FAST because both senses come from the idea of getting a head start.', radicals:[{k:'日',m:'sun'},{k:'十',m:'mark/cross'}], literal:'The sun just cresting the horizon — early and fast 🌅', hook:'HA-YA-I — ninjas yell "Haya!" when they vanish in a speed blur! ⚡ Blink and they are gone — HAYAI! はやい!', related:['遅い','朝','速い'] }},
     { k:'遅い', f:'おそい', r:'osoi', m:'late / slow', pos:'adj (i)',
       origin:{ pictograph:'遅 combines 辶 (movement) + 犀 (rhinoceros). A rhinoceros walking slowly down a road — rhinos are massive and slow-moving. Slow movement = LATE, SLOW.', radicals:[{k:'辶',m:'movement'},{k:'犀',m:'rhinoceros'}], literal:'A rhinoceros plodding slowly down the road — late and slow 🦏', hook:'OSOI — "O-SO-ee — oh so late! The rhino is SLOW!" おそい!', related:['早い','時間','間に合う'] }},
     { k:'暑い', f:'あつい', r:'atsui', m:'hot weather', pos:'adj (i)',
@@ -3275,7 +3653,7 @@ const vocab = {
     { k:'楽しい', f:'たのしい', r:'tanoshii', m:'fun / enjoyable', pos:'adj (i)',
       origin:{ pictograph:'楽 shows a tree (木) with ornaments or bells — a decorated instrument tree, like a musical rack. Sound from a festive tree = MUSIC, JOY, ENJOYMENT.', radicals:[{k:'木',m:'tree'},{k:'楽',m:'music/ease'}], literal:'A tree hung with musical bells — joyful and fun 🎶', hook:'TANOSHII — "ta-NO-she-ee — TAN (fun) OS (yell) HI! So FUN!" たのしい!', related:['面白い','嬉しい','幸せ'] }},
     { k:'難しい', f:'むずかしい', r:'muzukashii', m:'difficult', pos:'adj (i)',
-      origin:{ pictograph:'難 combines 隹 (bird) + 堇 (yellow clay). A bird stuck in yellow clay — unable to move, struggling. Something that traps you = DIFFICULT.', radicals:[{k:'隹',m:'bird'},{k:'堇',m:'clay'}], literal:'A bird stuck in clay, struggling to escape — difficult 🐦', hook:'MUZUKASHII — "mu-zu-KA-she-ee — moo-zooka is HARD to pronounce!" むずかしい!', related:['易しい','大変','問題'] }},
+      origin:{ pictograph:'難 combines 隹 (bird) + 堇 (yellow clay). A bird stuck in yellow clay — unable to move, struggling. Something that traps you = DIFFICULT.', radicals:[{k:'隹',m:'bird'},{k:'堇',m:'clay'}], literal:'A bird stuck in clay, struggling to escape — difficult 🐦', hook:'MU-ZU-KA-SHI-I — picture a MOOSE (mu) at the ZOO (zu) trying to CASH IN (kashi) on a quiz — too DIFFICULT! 🦌 むずかしい!', related:['易しい','大変','問題'] }},
     { k:'易しい', f:'やさしい', r:'yasashii', m:'easy / gentle', pos:'adj (i)',
       origin:{ pictograph:'易 shows the sun (日) + flowing rays (勿) — like a lizard basking in the sun, perfectly comfortable. Something that flows easily like light = EASY, SIMPLE.', radicals:[{k:'日',m:'sun'},{k:'勿',m:'flowing rays'}], literal:'Sunlight flowing freely — easy and simple ☀️', hook:'YASASHII — "ya-SA-she-ee — easy as a SUNNY day!" やさしい!', related:['難しい','簡単','シンプル'] }},
     { k:'来る', f:'くる', r:'kuru', m:'to come', pos:'verb (irr)' },
@@ -3364,11 +3742,11 @@ const vocab = {
       origin:{ pictograph:'音 (sound) + 楽 (music/ease). The sounds of music — 音 shows a mouth/tongue producing sound. 楽 is a decorated instrument. Combined: the joyful organized sounds = MUSIC.', radicals:[{k:'音',m:'sound'},{k:'楽',m:'music/ease'}], literal:'Joyful organized sounds — music 🎵', hook:'ONGAKU — "ON-ga-koo! ON the music GAK! ONGAKU!" おんがく!', related:['歌','演奏','芸術'] }},
     { k:'映画', f:'えいが', r:'eiga', m:'movie / film', pos:'noun',
       origin:{ pictograph:'映 (reflect/project) + 画 (picture/draw). Projected pictures — 映 shows the sun (日) casting a reflection onto a surface (央 = centre). Moving pictures projected = MOVIE/FILM.', radicals:[{k:'映',m:'reflect/project'},{k:'画',m:'picture'}], literal:'Pictures projected onto a surface — a movie 🎬', hook:'EIGA — "AY-ga! EY, a great MOVIE (eiga)!" えいが!', related:['テレビ','音楽','芸術'] }},
-    { k:'旅行', f:'りょこう', r:'ryokou', m:'travel', pos:'noun',
+    { k:'旅行', f:'りょこう', r:'ryokou', m:'travel', pos:'noun', storyChain:{next:'病院',theme:'✈️ Travel & Life',story:'You travel by train, arrive at the hospital, take medicine, call home, and it rains outside!'}, scene:'You hoist your backpack (りょこう) and step onto the platform — flag-carrier (旅) meets crossroads (行). The journey begins the moment your foot leaves the pavement.', pitch:'LLHH',
       origin:{ pictograph:'旅 (travel) + 行 (go). Going on travel — 旅 shows a flag (方) leading a person on a journey. Following a flag while going = TRAVEL, TRIP.', radicals:[{k:'旅',m:'travel/journey'},{k:'行',m:'go'}], literal:'Following a flag while going — travel and a trip ✈️', hook:'RYOKOU — "RYO-ko! Let\'s GO on a TRIP!" りょこう!', related:['旅','出発','観光'] }},
-    { k:'病院', f:'びょういん', r:'byouin', m:'hospital', pos:'noun',
+    { k:'病院', f:'びょういん', storyChain:{prev:'旅行',next:'薬',theme:'✈️ Travel & Life',story:'You travel by train, arrive at the hospital, take medicine, call home, and it rains outside!'}, scene:'You twisted your ankle on the trip. You limp into the hospital (びょういん) — the siren wail is BYO-EEN! The enclosed institution (院) for illness (病) opens its doors.', pitch:'LHHLL', r:'byouin', m:'hospital', pos:'noun',
       origin:{ pictograph:'病 (illness) + 院 (institution/hall). A hall for illness — 院 shows a mound/hill (阝) + complete enclosure (完). An enclosed institution for treating illness = HOSPITAL.', radicals:[{k:'病',m:'illness'},{k:'院',m:'institution'}], literal:'An institution enclosed for treating illness — a hospital 🏥', hook:'BYOUIN — "BYO-een! BYO-een = the hospital siren!" びょういん!', related:['医者','薬','診察'] }},
-    { k:'薬', f:'くすり', r:'kusuri', m:'medicine', pos:'noun',
+    { k:'薬', f:'くすり', storyChain:{prev:'病院',next:'電話',theme:'✈️ Travel & Life',story:'You travel by train, arrive at the hospital, take medicine, call home, and it rains outside!'}, scene:'The doctor hands you medicine (くすり) — plant leaves (艹) that bring ease (楽). You pop the packet open and feel better almost immediately.', pitch:'LHH', r:'kusuri', m:'medicine', pos:'noun',
       origin:{ pictograph:'薬 combines 艹 (plant) + 楽 (ease/joy). A plant that brings ease — medicinal herbs that relieve pain and bring comfort. Joyful healing plants = MEDICINE.', radicals:[{k:'艹',m:'plant'},{k:'楽',m:'ease/joy'}], literal:'Plants that bring ease and comfort — medicine 💊', hook:'KUSURI — "KU-su-ree! COOL medicine makes you BETTER!" くすり!', related:['医者','病気','治療'] }},
     { k:'歯', f:'は', r:'ha', m:'tooth', pos:'noun' },
     { k:'髪', f:'かみ', r:'kami', m:'hair', pos:'noun' },
@@ -3384,32 +3762,26 @@ const vocab = {
     { k:'泊まる', f:'とまる', r:'tomaru', m:'to stay overnight', pos:'verb (u)' }
   ],
   N4: [
-    { k:'電話', f:'でんわ', r:'denwa', m:'telephone', pos:'noun',
+    { k:'電話', f:'でんわ', storyChain:{prev:'薬',next:'天気',theme:'✈️ Travel & Life',story:'You travel by train, arrive at the hospital, take medicine, call home, and it rains outside!'}, scene:'From the hospital lobby you call home (でんわ) — electricity (電) carrying your voice (話) across the wires. Your family picks up instantly.', pitch:'LLLH', r:'denwa', m:'telephone', pos:'noun',
       origin:{ pictograph:'電 shows rain (雨) with lightning bolts (電) — electricity from a storm. 話 shows a tongue (舌) + words (言) = speaking. Together: speaking with electricity!', radicals:[{k:'電',m:'electricity'},{k:'話',m:'speak'}], literal:'Electricity + Speech = Electric Talking Machine ⚡🗣️', hook:'DEN-WA: "DEN" like a dragon\'s den of electricity, "WA" like "wah!" you spoke! でんわ!', related:['携帯','メール','連絡'] }},
-    { k:'天気', f:'てんき', r:'tenki', m:'weather', pos:'noun',
+    { k:'天気', f:'てんき', storyChain:{prev:'電話',next:null,theme:'✈️ Travel & Life',story:'You travel by train, arrive at the hospital, take medicine, call home, and it rains outside!'}, scene:'You look out the hospital window at the weather (てんき) — the energy of the sky (天気) has turned dark. Rain is coming. Time to head home.', pitch:'LHH', r:'tenki', m:'weather', pos:'noun',
       origin:{ pictograph:'天 shows a person (大) with a line above their head — the sky ABOVE a person. 気 originally showed steam/vapour rising — energy, atmosphere, spirit. Sky energy = weather!', radicals:[{k:'天',m:'sky/heaven'},{k:'気',m:'energy/atmosphere'}], literal:'The energy of the sky = weather ⛅', hook:'TEN-KI: "TEN" like heaven, "KI" like energy — heavenly energy = today\'s weather!', related:['雨','晴れ','気温'] }},
-    { k:'料理', f:'りょうり', r:'ryouri', m:'cooking / dish', pos:'noun',
+    { k:'料理', f:'りょうり', storyChain:{prev:'社会',next:null,theme:'🎭 Culture & Society',story:'Culture shapes society, society loves food, food brings people to the restaurant!'}, scene:'The dinner table (りょうり) — measuring ingredients (料) and perfecting them (理) until the whole society pauses to eat together. Food is culture made edible.', pitch:'LLHH', r:'ryouri', m:'cooking / dish', pos:'noun',
       origin:{ pictograph:'料 shows rice (米) being measured (斗) — measuring ingredients. 理 shows a jade gem being polished — bringing out inner beauty. Together: measuring and perfecting food!', radicals:[{k:'料',m:'ingredients'},{k:'理',m:'logic/polish'}], literal:'Measuring + Perfecting = Cooking something beautifully 🍳', hook:'RYOU-RI: "RYO" like Rio carnival of flavours, "RI" like "really delicious!" りょうり!', related:['食べ物','味','レストラン'] }},
     { k:'旅行', f:'りょこう', r:'ryokou', m:'travel', pos:'noun',
       origin:{ pictograph:'旅 shows a person (人) under a flag on the move — a traveller following a route marker. 行 is a crossroads (going). Together: a person moving from place to place following the road!', radicals:[{k:'旅',m:'travel/trip'},{k:'行',m:'go/travel'}], literal:'Traveller + Road = Journey! ✈️', hook:'RYO-KOU: "Ryo" like your travel backpack, "kou" like GO — pack your bag and GO! りょこう!', related:['旅人','観光','外国'] }},
-    { k:'練習', f:'れんしゅう', r:'renshuu', m:'practice', pos:'noun',
+    { k:'練習', f:'れんしゅう', r:'renshuu', m:'practice', pos:'noun', storyChain:{next:'覚える',theme:'📚 Study Loop',story:'You practise your skills, memorise the rules, then forget them — and have to practise again!'}, scene:'You sit down to practise (れんしゅう) — pulling thread (練) again and again like a young bird (習) flapping its wings over and over. Progress is invisible until suddenly it is not.', pitch:'LLHH',
       origin:{ pictograph:'練 shows thread (糸) being pulled through repeatedly — refining silk by repeated action. 習 shows a bird (羽) learning to fly — a young bird practising flapping. Together: repeated refinement!', radicals:[{k:'糸',m:'thread'},{k:'羽',m:'wings/feathers'}], literal:'Refining thread + Young bird learning to fly = Practice! 🐦', hook:'REN-SHUU: "REN" like training again and again, "SHUU" like "Shoo! Keep practising!" れんしゅう!', related:['勉強','訓練','上達'] }},
-    { k:'覚える', f:'おぼえる', r:'oboeru', m:'to memorise', pos:'verb (ru)',
+    { k:'覚える', f:'おぼえる', storyChain:{prev:'練習',next:'忘れる',theme:'📚 Study Loop',story:'You practise your skills, memorise the rules, then forget them — and have to practise again!'}, scene:'Then it clicks — you memorise it (おぼえる)! Knowledge stored safely under a roof (宀) in your mind, an eye (見) keeping watch. OH BOY, you remember!', pitch:'LHHHH', r:'oboeru', m:'to memorise', pos:'verb (ru)',
       origin:{ pictograph:'覚 shows a roof (宀) protecting a crossed pattern (爻) above an eye (見) — knowledge being seen and protected under a roof in your mind = to remember!', radicals:[{k:'見',m:'see'},{k:'宀',m:'roof'}], literal:'Keeping knowledge safe under a mental roof 🧠', hook:'O-BOE-RU: "OH BOY, I REMEMBER!" — say it when you suddenly recall something! おぼえる!', related:['忘れる','思い出す','記憶'] }},
-    { k:'忘れる', f:'わすれる', r:'wasureru', m:'to forget', pos:'verb (ru)',
+    { k:'忘れる', f:'わすれる', storyChain:{prev:'覚える',next:'練習',theme:'📚 Study Loop',story:'You practise your skills, memorise the rules, then forget them — and have to practise again!'}, scene:'Three days later it is gone — you forget (わすれる). Something dying from your heart (亡+心). The knowledge was there. And then it was not. Time to practise again.', pitch:'LHHHH', r:'wasureru', m:'to forget', pos:'verb (ru)',
       origin:{ pictograph:'忘 combines 亡 (death/gone) + 心 (heart/mind) — when something dies from your heart/mind, you forget it. Poetic and a little sad!', radicals:[{k:'亡',m:'gone/dead'},{k:'心',m:'heart/mind'}], literal:'Something dying from your heart = forgetting 💔', hook:'WASU-RERU: "WAS-URE" — something WAS here, now it\'s URE-levant... I forgot! わすれる!', related:['覚える','記憶','思い出す'] }},
     { k:'親切', f:'しんせつ', r:'shinsetsu', m:'kind / kindness', pos:'adj (na)',
       origin:{ pictograph:'親 shows a tree (木) being stood next to and watched (見) — a parent standing close, watching over. 切 means to cut — cutting through with care. Kindness cuts through barriers!', radicals:[{k:'親',m:'parent/close'},{k:'切',m:'cut/sincere'}], literal:'Close + Sincere = Genuine Kindness 💛', hook:'SHIN-SETSU: "SHIN" like shining heart, "SETSU" like "let\'s" be kind! しんせつ!', related:['優しい','丁寧','思いやり'] }},
-    { k:'旅行', f:'りょこう', r:'ryokou', m:'travel / trip', pos:'noun' ,
-      origin:{ pictograph:'旅 (travel) + 行 (go). Going on travel — 旅 shows a flag (方) leading a person on a journey. Following a flag while going = TRAVEL, TRIP.', radicals:[{k:'旅',m:'travel/journey'},{k:'行',m:'go'}], literal:'Following a flag while going — travel and a trip ✈️', hook:'RYOKOU — "RYO-ko! Let\'s GO on a TRIP!" りょこう!', related:['旅','出発','観光'] }},
-    { k:'覚える', f:'おぼえる', r:'oboeru', m:'to memorise / remember', pos:'verb (ru)' },
-    { k:'忘れる', f:'わすれる', r:'wasureru', m:'to forget', pos:'verb (ru)' },
-    { k:'親切', f:'しんせつ', r:'shinsetsu', m:'kind / kindness', pos:'adj (na)' },
-    { k:'練習', f:'れんしゅう', r:'renshuu', m:'practice', pos:'noun',
-      origin:{ pictograph:'練 (refine/train) + 習 (learn/practise). Refined learning — 練 = silk thread (糸) being repeatedly worked. 習 = feathers (羽) + white = a bird repeatedly flapping to learn flight. Repeated refinement = PRACTICE.', radicals:[{k:'練',m:'refine/train'},{k:'習',m:'learn/practise'}], literal:'Refining through repeated learning — practice 🔄', hook:'RENSHUU — "REN-shoo! WREN birds PRACTICE flying!" れんしゅう!', related:['勉強','訓練','上達'] }},
-    { k:'文化', f:'ぶんか', r:'bunka', m:'culture', pos:'noun',
+
+    { k:'文化', f:'ぶんか', storyChain:{next:'社会',theme:'🎭 Culture & Society',story:'Culture shapes society, society loves food, food brings people to the restaurant!'}, scene:'Culture (ぶんか) — the written patterns (文) that transform (化) a people. Every story, every song, every kanji is a thread in the weave.', pitch:'LHH', r:'bunka', m:'culture', pos:'noun',
       origin:{ pictograph:'文 (writing/pattern) + 化 (change/transform). Patterns that transform people — the accumulated written patterns of a society that shape how it thinks and acts = CULTURE.', radicals:[{k:'文',m:'writing/pattern'},{k:'化',m:'transform'}], literal:'Transforming patterns of a society — culture and civilization 🎭', hook:'BUNKA — "BUNK-a! The culture of BOOKS changed everything!" ぶんか!', related:['文明','伝統','社会'] }},
-    { k:'社会', f:'しゃかい', r:'shakai', m:'society', pos:'noun',
+    { k:'社会', f:'しゃかい', storyChain:{prev:'文化',next:'料理',theme:'🎭 Culture & Society',story:'Culture shapes society, society loves food, food brings people to the restaurant!'}, scene:'Society (しゃかい) — people gathering (会) at the communal shrine (社). A place where culture becomes community becomes identity.', pitch:'LLHH', r:'shakai', m:'society', pos:'noun',
       origin:{ pictograph:'社 (shrine/society) + 会 (meet). Meeting at the shrine — a place where the community gathers. A gathering society = SOCIETY, COMMUNITY.', radicals:[{k:'社',m:'shrine/group'},{k:'会',m:'meet/gather'}], literal:'People gathering together at a common place — society 🏛️', hook:'SHAKAI — "SHA-kai — the sha-king society!" しゃかい!', related:['文化','集団','国民'] }},
     { k:'経済', f:'けいざい', r:'keizai', m:'economy', pos:'noun',
       origin:{ pictograph:'経 (pass through/manage) + 済 (settle/complete). Managing the flow of goods to completion — the system that threads resources through society to settle needs = ECONOMY.', radicals:[{k:'経',m:'manage/thread'},{k:'済',m:'complete/settle'}], literal:'Threading resources through society to completion — the economy 💴', hook:'KEIZAI — "KAY-zai — the economy keys your ZAI (wealth)!" けいざい!', related:['社会','政治','財政'] }},
@@ -4529,6 +4901,19 @@ function pickLevel(lv) {
   const dkTypeSection = document.getElementById('dokkaiTypeSection');
   if (dkTypeSection) dkTypeSection.style.display = 'none';
 
+  // Update kana drill tile name based on level
+  const kanaName = document.getElementById('kanaModeName');
+  const kanaHint = document.getElementById('kanaModeHint');
+  if (kanaName && kanaHint) {
+    if (lv === 'N5') {
+      kanaName.textContent = 'かな Kana Drill';
+      kanaHint.textContent = 'Hiragana & Katakana speed recognition';
+    } else {
+      kanaName.textContent = '📖 Reading Drill';
+      kanaHint.textContent = lv + ' vocab — see the kanji, choose the reading';
+    }
+  }
+
   showScreen('modeScreen');
 }
 
@@ -4948,7 +5333,16 @@ function showSenseiQuote() {
 // ─────────────────────────────────────────────
 // ORIGIN PANEL
 // ─────────────────────────────────────────────
-function openOrigin() {
+function openOrigin(jumpToKanji) {
+  // Allow jumping directly to a specific kanji from story chain nav
+  if (jumpToKanji) {
+    const allWords = [].concat(vocab.N5 || [], vocab.N4 || []);
+    const target = allWords.find(w => w.k === jumpToKanji);
+    if (target) {
+      currentEntry = target;
+    }
+  }
+
   const entry = currentEntry;
   if (!entry) return;
   const o = entry.origin;
@@ -4957,12 +5351,14 @@ function openOrigin() {
   document.getElementById('opReading').textContent = `${entry.f} (${entry.r}) · ${entry.pos}`;
 
   if (!o) {
-    // No origin data — show a friendly placeholder
     document.getElementById('opPictograph').innerHTML = `<em style="color:var(--stone)">Origin story coming soon for ${entry.k}! 🛠️<br><br>This word is part of our growing kanji origin database. In the meantime, try looking up the individual radicals of "${entry.k}" to build your own memory hook.</em>`;
     document.getElementById('opLiteral').innerHTML = `<em style="color:var(--stone)">—</em>`;
     document.getElementById('opHook').innerHTML = `<em style="color:var(--stone)">Tip: Break <strong>${entry.k}</strong> into its components and create a silly story linking them to "<strong>${entry.m}</strong>". Your own hook is the most powerful! 🧠</em>`;
     document.getElementById('opRadicals').innerHTML = '';
     document.getElementById('opRelated').innerHTML = '';
+    document.getElementById('opChainSection').style.display = 'none';
+    document.getElementById('opSceneSection').style.display = 'none';
+    document.getElementById('opPitchSection').style.display = 'none';
     document.getElementById('originOverlay').classList.add('show');
     return;
   }
@@ -4971,6 +5367,7 @@ function openOrigin() {
   document.getElementById('opLiteral').innerHTML = o.literal;
   document.getElementById('opHook').innerHTML = o.hook;
 
+  // ── RADICALS ──
   const radEl = document.getElementById('opRadicals');
   radEl.innerHTML = '';
   (o.radicals || []).forEach(r => {
@@ -4980,6 +5377,7 @@ function openOrigin() {
     radEl.appendChild(pill);
   });
 
+  // ── RELATED ──
   const relEl = document.getElementById('opRelated');
   relEl.innerHTML = '';
   (o.related || []).forEach(r => {
@@ -4988,6 +5386,110 @@ function openOrigin() {
     chip.textContent = r;
     relEl.appendChild(chip);
   });
+
+  // ── STRATEGY 3: SCENE CARD ──
+  const sceneSection = document.getElementById('opSceneSection');
+  const sceneEl = document.getElementById('opScene');
+  if (entry.scene) {
+    sceneEl.textContent = entry.scene;
+    sceneSection.style.display = '';
+  } else {
+    sceneSection.style.display = 'none';
+  }
+
+  // ── STRATEGY 4: PITCH PATTERN ──
+  const pitchSection = document.getElementById('opPitchSection');
+  const pitchMorae = document.getElementById('opPitchMorae');
+  pitchMorae.innerHTML = '';
+  if (entry.pitch && entry.f) {
+    // Build mora list from furigana (split on small kana carefully)
+    const furigana = entry.f;
+    // Split furigana into morae (handle digraphs: きゃ,しゅ etc.)
+    const morae = [];
+    const hiragana = 'ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔっー';
+    const smallKana = 'ぁぃぅぇぉゃゅょゎ';
+    for (let i = 0; i < furigana.length; i++) {
+      if (i + 1 < furigana.length && smallKana.includes(furigana[i+1])) {
+        morae.push(furigana[i] + furigana[i+1]);
+        i++;
+      } else {
+        morae.push(furigana[i]);
+      }
+    }
+    const pattern = entry.pitch;
+    morae.forEach((mora, idx) => {
+      const tone = pattern[idx] || pattern[pattern.length - 1]; // fallback to last
+      const div = document.createElement('div');
+      div.className = 'pitch-mora';
+      const dot = document.createElement('div');
+      dot.className = `pitch-dot ${tone}`;
+      dot.textContent = mora;
+      dot.title = tone === 'H' ? 'High pitch' : 'Low pitch';
+      div.appendChild(dot);
+      pitchMorae.appendChild(div);
+      // Add connector between dots
+      if (idx < morae.length - 1) {
+        const nextTone = pattern[idx + 1] || tone;
+        const conn = document.createElement('div');
+        conn.className = `pitch-connector ${tone}${nextTone}`;
+        pitchMorae.appendChild(conn);
+      }
+    });
+    pitchSection.style.display = '';
+  } else {
+    pitchSection.style.display = 'none';
+  }
+
+  // ── STRATEGY 1: STORY CHAIN ──
+  const chainSection = document.getElementById('opChainSection');
+  const chainEl = document.getElementById('opChain');
+  chainEl.innerHTML = '';
+  if (entry.storyChain) {
+    const sc = entry.storyChain;
+    const allWords = [].concat(vocab.N5 || [], vocab.N4 || []);
+
+    const banner = document.createElement('div');
+    banner.className = 'story-chain-banner';
+
+    // Theme label
+    const theme = document.createElement('div');
+    theme.className = 'sc-theme';
+    theme.textContent = sc.theme || '📖 Story Chain';
+    banner.appendChild(theme);
+
+    // Story summary
+    const story = document.createElement('div');
+    story.className = 'sc-story';
+    story.textContent = sc.story || '';
+    banner.appendChild(story);
+
+    // Navigation buttons
+    const nav = document.createElement('div');
+    nav.className = 'sc-nav';
+
+    if (sc.prev) {
+      const prevWord = allWords.find(w => w.k === sc.prev);
+      const btn = document.createElement('button');
+      btn.className = 'sc-btn sc-prev';
+      btn.innerHTML = `← <span class="sc-btn-kanji">${sc.prev}</span> ${prevWord ? prevWord.m : ''}`;
+      btn.onclick = () => openOrigin(sc.prev);
+      nav.appendChild(btn);
+    }
+    if (sc.next) {
+      const nextWord = allWords.find(w => w.k === sc.next);
+      const btn = document.createElement('button');
+      btn.className = 'sc-btn sc-next';
+      btn.innerHTML = `<span class="sc-btn-kanji">${sc.next}</span> ${nextWord ? nextWord.m : ''} →`;
+      btn.onclick = () => openOrigin(sc.next);
+      nav.appendChild(btn);
+    }
+
+    banner.appendChild(nav);
+    chainEl.appendChild(banner);
+    chainSection.style.display = '';
+  } else {
+    chainSection.style.display = 'none';
+  }
 
   document.getElementById('originOverlay').classList.add('show');
 }
@@ -6130,15 +6632,240 @@ let kanaCorrectCount = 0, kanaWrongCount = 0, kanaStreakCount = 0, kanaBestStrea
 let kanaAnswered = false;
 
 function startKana() {
-  kanaCorrectCount = 0; kanaWrongCount = 0; kanaStreakCount = 0;
-  document.getElementById('kanaCorrect').textContent = '0';
-  document.getElementById('kanaWrong').textContent = '0';
-  document.getElementById('kanaStreak').textContent = '0';
-  document.getElementById('kanaStreakMsg').textContent = '';
-  buildKanaPool();
-  showScreen('kanaScreen');
-  renderKana();
+  // N5 → original kana drill; N4+ → word reading drill
+  if (currentLevel === 'N5') {
+    kanaCorrectCount = 0; kanaWrongCount = 0; kanaStreakCount = 0;
+    document.getElementById('kanaCorrect').textContent = '0';
+    document.getElementById('kanaWrong').textContent = '0';
+    document.getElementById('kanaStreak').textContent = '0';
+    document.getElementById('kanaStreakMsg').textContent = '';
+    document.getElementById('kanaSubScreen').style.display = '';
+    document.getElementById('wrdSubScreen').style.display = 'none';
+    buildKanaPool();
+    showScreen('kanaScreen');
+    renderKana();
+  } else {
+    startWrdDrill();
+  }
 }
+
+// ═══════════════════════════════════════════════
+// WORD READING DRILL  (N4, N3, N2, N1)
+// ═══════════════════════════════════════════════
+
+const WRD_LEVEL_COLORS = { N4:'#2980b9', N3:'#8e44ad', N2:'#e67e22', N1:'#c0392b' };
+const WRD_BLITZ_SECS = 60;
+const WRD_CIRCUMFERENCE = 175.9;
+
+let wrdPool = [], wrdIdx = 0;
+let wrdCorrectCount = 0, wrdWrongCount = 0, wrdStreakCount = 0, wrdBestStreak = 0;
+let wrdAnswered = false, wrdTimerInterval = null, wrdTimeLeft = 0;
+
+function startWrdDrill() {
+  wrdCorrectCount = 0; wrdWrongCount = 0; wrdStreakCount = 0; wrdBestStreak = 0;
+  wrdTimeLeft = WRD_BLITZ_SECS;
+  clearInterval(wrdTimerInterval);
+
+  const lv = currentLevel;
+  const color = WRD_LEVEL_COLORS[lv] || '#2980b9';
+  const badge = document.getElementById('wrdLevelBadge');
+  badge.textContent = lv;
+  badge.style.color = color;
+  badge.style.borderColor = color;
+
+  const levelWords = (vocab[lv] || []).filter(w => w.f && w.k && w.k !== w.f);
+  wrdPool = shuffle([...levelWords]);
+  wrdIdx = 0;
+
+  document.getElementById('wrdCorrect').textContent = '0';
+  document.getElementById('wrdWrong').textContent = '0';
+  document.getElementById('wrdBest').textContent = '0';
+  document.getElementById('wrdStreakMsg').textContent = '';
+  document.getElementById('wrdReveal').classList.remove('show');
+  document.getElementById('wrdDrillPanel').style.display = '';
+  document.getElementById('wrdResultPanel').style.display = 'none';
+  document.getElementById('kanaSubScreen').style.display = 'none';
+  document.getElementById('wrdSubScreen').style.display = '';
+
+  const ring = document.getElementById('wrdTimerRing');
+  ring.style.strokeDashoffset = '0';
+  ring.style.stroke = color;
+  ring.classList.remove('urgent','critical');
+
+  showScreen('kanaScreen');
+  renderWrd();
+  startWrdTimer(color);
+}
+
+function startWrdTimer(color) {
+  const ring = document.getElementById('wrdTimerRing');
+  const numEl = document.getElementById('wrdTimerNum');
+  wrdTimerInterval = setInterval(function() {
+    wrdTimeLeft--;
+    numEl.textContent = wrdTimeLeft;
+    // Animate ring
+    const pct = wrdTimeLeft / WRD_BLITZ_SECS;
+    ring.style.strokeDashoffset = (WRD_CIRCUMFERENCE * (1 - pct)).toString();
+    // Urgency colour shifts
+    if (wrdTimeLeft <= 10) {
+      ring.classList.add('critical');
+      ring.classList.remove('urgent');
+    } else if (wrdTimeLeft <= 20) {
+      ring.classList.add('urgent');
+      ring.style.stroke = '#e67e22';
+    }
+    if (wrdTimeLeft <= 0) {
+      clearInterval(wrdTimerInterval);
+      endWrdBlitz();
+    }
+  }, 1000);
+}
+
+function renderWrd() {
+  if (wrdIdx >= wrdPool.length) {
+    wrdPool = shuffle([...wrdPool]);
+    wrdIdx = 0;
+  }
+  const item = wrdPool[wrdIdx];
+  wrdAnswered = false;
+
+  document.getElementById('wrdReveal').classList.remove('show');
+  document.getElementById('wrdKanji').textContent = item.k;
+  document.getElementById('wrdMeaning').textContent = item.m;
+  document.getElementById('wrdPos').textContent = item.pos || '';
+
+  const correct = item.f;
+  const allFurigana = wrdPool.map(w => w.f).filter(f => f && f !== correct);
+  const wrongs = shuffle(allFurigana).slice(0, 3);
+  const opts = shuffle([correct, ...wrongs]);
+
+  const optsEl = document.getElementById('wrdOpts');
+  optsEl.innerHTML = '';
+  opts.forEach(function(f) {
+    const btn = document.createElement('button');
+    btn.className = 'wrd-opt';
+    btn.textContent = f;
+    btn.dataset.chosen = f;
+    btn.dataset.correct = correct;
+    btn.addEventListener('click', function() {
+      answerWrd(this.dataset.chosen, this.dataset.correct, item);
+    });
+    optsEl.appendChild(btn);
+  });
+}
+
+function answerWrd(chosen, correct, item) {
+  if (wrdAnswered || wrdTimeLeft <= 0) return;
+  wrdAnswered = true;
+
+  document.querySelectorAll('.wrd-opt').forEach(function(btn) {
+    if (btn.dataset.chosen === correct) btn.classList.add('correct');
+    else if (btn.dataset.chosen === chosen && chosen !== correct) btn.classList.add('wrong');
+    btn.disabled = true;
+  });
+
+  if (chosen === correct) {
+    wrdCorrectCount++;
+    wrdStreakCount++;
+    if (wrdStreakCount > wrdBestStreak) wrdBestStreak = wrdStreakCount;
+    document.getElementById('wrdBest').textContent = wrdBestStreak;
+    soundCorrect && soundCorrect();
+    const msg = wrdStreakCount >= 10 ? '&#128293; ' + wrdStreakCount + ' — ON FIRE!' :
+                wrdStreakCount >= 5  ? '&#9889; ' + wrdStreakCount + ' in a row!' :
+                wrdStreakCount >= 3  ? '&#10024; ' + wrdStreakCount + ' streak!' : '';
+    document.getElementById('wrdStreakMsg').innerHTML = msg;
+    document.getElementById('wrdReveal').classList.remove('show');
+  } else {
+    wrdWrongCount++;
+    wrdStreakCount = 0;
+    soundWrong && soundWrong();
+    document.getElementById('wrdStreakMsg').textContent = '';
+    document.getElementById('wrdRevealFurigana').textContent = item.f;
+    document.getElementById('wrdRevealRomaji').textContent =
+      item.r + (item.m ? '  \u00B7  ' + item.m : '');
+    document.getElementById('wrdReveal').classList.add('show');
+  }
+
+  document.getElementById('wrdCorrect').textContent = wrdCorrectCount;
+  document.getElementById('wrdWrong').textContent = wrdWrongCount;
+  wrdIdx++;
+  setTimeout(function() { renderWrd(); }, chosen === correct ? 380 : 900);
+}
+
+function endWrdBlitz() {
+  // Disable opts
+  document.querySelectorAll('.wrd-opt').forEach(function(b) { b.disabled = true; });
+
+  const total = wrdCorrectCount + wrdWrongCount;
+  const acc = total > 0 ? Math.round((wrdCorrectCount / total) * 100) : 0;
+  const lv = currentLevel;
+  const color = WRD_LEVEL_COLORS[lv] || '#2980b9';
+
+  const grade = acc >= 90 ? { e:'&#127942;', t:'完璧！Perfect!', s:'S' } :
+                acc >= 75 ? { e:'&#127881;', t:'素晴らしい！Excellent!', s:'A' } :
+                acc >= 60 ? { e:'&#128170;', t:'よくできました！Good work!', s:'B' } :
+                acc >= 40 ? { e:'&#128218;', t:'もっと練習しよう Keep going!', s:'C' } :
+                            { e:'&#129354;', t:'練習あるのみ！Keep practising!', s:'D' };
+
+  // XP reward
+  const xpEarned = wrdCorrectCount * 3 + (wrdBestStreak >= 5 ? 10 : 0);
+
+  document.getElementById('wrdResultCard').innerHTML =
+    '<div style="font-size:3.5rem;margin-bottom:8px">' + grade.e + '</div>' +
+    '<div style="font-family:\'DM Serif Display\',serif;font-size:1.4rem;color:white;margin-bottom:4px">' + grade.t + '</div>' +
+    '<div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:20px">' + lv + ' Reading Blitz</div>' +
+    '<div style="display:flex;justify-content:center;gap:18px;margin-bottom:20px">' +
+      '<div style="text-align:center">' +
+        '<div style="font-family:\'DM Serif Display\',serif;font-size:3rem;color:#27ae60;line-height:1">' + wrdCorrectCount + '</div>' +
+        '<div style="font-size:0.65rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px">Correct</div>' +
+      '</div>' +
+      '<div style="text-align:center">' +
+        '<div style="font-family:\'DM Serif Display\',serif;font-size:3rem;color:rgba(255,255,255,0.25);line-height:1">' + wrdWrongCount + '</div>' +
+        '<div style="font-size:0.65rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px">Wrong</div>' +
+      '</div>' +
+      '<div style="text-align:center">' +
+        '<div style="font-family:\'DM Serif Display\',serif;font-size:3rem;color:var(--gold);line-height:1">' + wrdBestStreak + '</div>' +
+        '<div style="font-size:0.65rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px">Best Streak</div>' +
+      '</div>' +
+    '</div>' +
+    '<div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between">' +
+      '<span style="font-size:0.85rem;color:rgba(255,255,255,0.7)">Accuracy</span>' +
+      '<span style="font-family:\'DM Serif Display\',serif;font-size:1.4rem;color:white">' + acc + '%</span>' +
+    '</div>' +
+    (xpEarned > 0 ? '<div style="color:var(--gold);font-size:0.82rem;font-weight:700;margin-bottom:18px">+' + xpEarned + ' XP earned</div>' : '') +
+    '<div style="display:flex;gap:10px;justify-content:center">' +
+      '<button onclick="goHome()" style="padding:12px 20px;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;color:white;font-family:\'DM Serif Display\',serif;font-size:0.9rem;cursor:pointer">&#127968; Home</button>' +
+      '<button onclick="startWrdDrill()" style="padding:12px 22px;background:' + color + ';border:none;border-radius:12px;color:white;font-family:\'DM Serif Display\',serif;font-size:0.9rem;font-weight:700;cursor:pointer">&#9889; Blitz Again</button>' +
+    '</div>';
+
+  document.getElementById('wrdDrillPanel').style.display = 'none';
+  document.getElementById('wrdResultPanel').style.display = '';
+
+  // Award XP
+  if (xpEarned > 0) {
+    try {
+      const p = getProgress();
+      const oldXp = p.totalXP || 0;
+      p.totalXP = oldXp + xpEarned;
+      p.totalSessions = (p.totalSessions || 0) + 1;
+      const today = new Date().toISOString().slice(0,10);
+      const yesterday = new Date(Date.now()-86400000).toISOString().slice(0,10);
+      if (p.lastVisit === yesterday) p.streak = (p.streak||0) + 1;
+      else if (p.lastVisit !== today) p.streak = 1;
+      p.lastVisit = today;
+      saveProgress(p);
+      checkRankUp && checkRankUp(oldXp, p.totalXP);
+    } catch(e) {}
+  }
+}
+
+function confirmWrdBack() {
+  clearInterval(wrdTimerInterval);
+  const o = document.getElementById('backConfirmOverlay');
+  if (o) o.style.display = 'flex';
+  else confirmKanaBack();
+}
+
 
 function buildKanaPool() {
   let base = [];
@@ -6168,9 +6895,15 @@ function renderKana() {
   const wrongs = shuffle(allRomaji.filter(r => r !== item.r)).slice(0, 3);
   const opts = shuffle([item.r, ...wrongs]);
 
-  document.getElementById('kanaOpts').innerHTML = opts.map(r =>
-    `<button class="kana-opt" onclick="answerKana('${r}','${item.r}')">${r}</button>`
+  const kanaOptsEl = document.getElementById('kanaOpts');
+  kanaOptsEl.innerHTML = opts.map((r, i) =>
+    `<button class="kana-opt" data-chosen="${r}" data-correct="${item.r}">${r}</button>`
   ).join('');
+  kanaOptsEl.querySelectorAll('.kana-opt').forEach(btn => {
+    btn.addEventListener('click', function() {
+      answerKana(this.dataset.chosen, this.dataset.correct);
+    });
+  });
 }
 
 function answerKana(chosen, correct) {
@@ -6519,6 +7252,8 @@ const KAIWA = [
   { theme:'shopping', level:'N5',
     scenario:'コンビニで', sub:'At the convenience store',
     npc:{ name:'店員さん', avatar:'🧑‍💼', role:'Store clerk' },
+        grammar:{ point:'〜は どこですか？', explanation:'Use は + どこですか to ask WHERE something is located.', example:'「おにぎりは どこですか？」— Where are the onigiri?' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'いらっしゃいませ！', trans:'Welcome!' },
         opts:[
@@ -6555,6 +7290,8 @@ const KAIWA = [
   { theme:'shopping', level:'N4',
     scenario:'ふくやで', sub:'At a clothing store',
     npc:{ name:'スタッフ', avatar:'👗', role:'Shop assistant' },
+        grammar:{ point:'〜を 探しているんですが', explanation:'ている + んですが = explaining ongoing action while seeking help. The んです softens the request.', example:'「プレゼントを 探しているんですが」— I\'m looking for a gift (could you help?)' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'いらっしゃいませ。なにか お探しですか？', trans:'Welcome. Are you looking for something?' },
         opts:[
@@ -6592,6 +7329,8 @@ const KAIWA = [
   { theme:'school', level:'N5',
     scenario:'がっこうで', sub:'At school',
     npc:{ name:'田中先生', avatar:'👩‍🏫', role:'Japanese teacher' },
+        grammar:{ point:'〜は できましたか？', explanation:'できる (dekiru) = "can do / finished". Past form できました asks if something got done.', example:'「しゅくだいは できましたか？」— Did you finish your homework?' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'おはようございます！きょうは げんきですか？', trans:'Good morning! How are you today?' },
         opts:[
@@ -6628,6 +7367,8 @@ const KAIWA = [
   { theme:'school', level:'N4',
     scenario:'クラスメートと', sub:'With a classmate',
     npc:{ name:'ゆいちゃん', avatar:'👧', role:'Classmate & friend' },
+        grammar:{ point:'〜てもらえますか？', explanation:'てもらう = receive the favour of someone doing X. てもらえますか？ = politely asking someone to do something for you.', example:'「教えてもらえますか？」— Could you teach me?' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'ねえ、昨日のテスト どうだった？', trans:'Hey, how was yesterday\'s test?' },
         opts:[
@@ -6665,6 +7406,8 @@ const KAIWA = [
   { theme:'restaurant', level:'N5',
     scenario:'ラーメンやで', sub:'At a ramen shop',
     npc:{ name:'店主さん', avatar:'👨‍🍳', role:'Ramen shop owner' },
+        grammar:{ point:'〜を ください', explanation:'ください = "please give me". Attach it after を + the thing you want.', example:'「みずを ください」— Water, please.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'いらっしゃい！なんめいですか？', trans:'Welcome! How many people?' },
         opts:[
@@ -6701,6 +7444,8 @@ const KAIWA = [
   { theme:'restaurant', level:'N4',
     scenario:'レストランの予約', sub:'Reserving a restaurant by phone',
     npc:{ name:'スタッフ', avatar:'📞', role:'Restaurant receptionist' },
+        grammar:{ point:'〜に します', explanation:'に します = "I\'ll go with / I\'ll decide on". Used when making a final choice from options.', example:'「これに します」— I\'ll have this one.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'はい、レストラン「さくら」でございます。', trans:'Hello, this is Restaurant Sakura.' },
         opts:[
@@ -6738,6 +7483,8 @@ const KAIWA = [
   { theme:'friends', level:'N5',
     scenario:'ともだちと', sub:'Hanging out with a friend',
     npc:{ name:'けんくん', avatar:'👦', role:'Your best friend' },
+        grammar:{ point:'〜が すきです', explanation:'すき (suki) = like. The thing you like takes が, not を.', example:'「アニメが すきです」— I like anime.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'ねえ！きょう ひまですか？', trans:'Hey! Are you free today?' },
         opts:[
@@ -6774,6 +7521,8 @@ const KAIWA = [
   { theme:'friends', level:'N4',
     scenario:'久しぶりの再会', sub:'Meeting a friend you haven\'t seen in a while',
     npc:{ name:'さくらさん', avatar:'👩', role:'Old friend' },
+        grammar:{ point:'〜んじゃないかな', explanation:'んじゃないかな = a soft, tentative suggestion. More casual than でしょう. Shows uncertainty or modesty.', example:'「むずかしいんじゃないかな」— It\'s probably difficult, don\'t you think?' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'あ！久しぶり！元気だった？', trans:'Oh! Long time no see! Have you been well?' },
         opts:[
@@ -6811,6 +7560,8 @@ const KAIWA = [
   { theme:'family', level:'N5',
     scenario:'うちで', sub:'At home with family',
     npc:{ name:'おかあさん', avatar:'👩', role:'Your mother' },
+        grammar:{ point:'〜は なんさいですか？', explanation:'なんさい = how old? A polite alternative is おいくつですか for adults.', example:'「いもうとは なんさいですか？」— How old is your younger sister?' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'おかえり！きょうは どうだった？', trans:'Welcome home! How was your day?' },
         opts:[
@@ -6847,6 +7598,8 @@ const KAIWA = [
   { theme:'family', level:'N4',
     scenario:'おじいちゃんと', sub:'Chatting with your grandfather',
     npc:{ name:'おじいちゃん', avatar:'👴', role:'Your grandfather' },
+        grammar:{ point:'〜てあげる / 〜てもらう', explanation:'てあげる = do something FOR someone (you give). てもらう = have someone do it for you (you receive the action).', example:'「おくってあげる」— I\'ll send you / take you there.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'おお、久しぶりだな。元気にしてたか？', trans:'Oh, long time no see. Have you been well?' },
         opts:[
@@ -6884,6 +7637,8 @@ const KAIWA = [
   { theme:'work', level:'N4',
     scenario:'はじめての しごと', sub:'First day at your part-time job',
     npc:{ name:'山田マネージャー', avatar:'👔', role:'Your manager' },
+        grammar:{ point:'〜ていただけますか？', explanation:'The most polite way to make a request. いただく is the humble form of もらう, so this literally means "could I receive the honour of you doing X?".', example:'「説明していただけますか？」— Could you please explain?' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'はじめまして。今日からよろしくね。', trans:'Nice to meet you. Looking forward to working together.' },
         opts:[
@@ -6924,6 +7679,8 @@ const KAIWA = [
   { theme:'shopping', level:'N3',
     scenario:'デパートで返品', sub:'Returning an item at a department store',
     npc:{ name:'サービス係', avatar:'🏬', role:'Customer service staff' },
+        grammar:{ point:'〜かねます', explanation:'かねます = cannot do (polite refusal). More formal than できません, used in business/service contexts.', example:'「お断りしかねます」— I\'m afraid we cannot accommodate that.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'いらっしゃいませ。どのようなご用件でしょうか？', trans:'Welcome. How may I help you today?' },
         opts:[
@@ -6961,6 +7718,8 @@ const KAIWA = [
   { theme:'school', level:'N3',
     scenario:'留学相談', sub:'Consulting about studying abroad',
     npc:{ name:'田村先生', avatar:'👨‍🎓', role:'Study abroad advisor' },
+        grammar:{ point:'〜ばよかった', explanation:'ば + よかった = "I wish I had..." / "I should have...". Expresses regret about a past action (or inaction).', example:'「もっと 勉強すればよかった」— I should have studied more.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'こんにちは。今日はどのようなご相談ですか？', trans:'Hello. What would you like to discuss today?' },
         opts:[
@@ -6998,6 +7757,8 @@ const KAIWA = [
   { theme:'restaurant', level:'N3',
     scenario:'料理の感想を伝える', sub:'Giving feedback on a dish',
     npc:{ name:'シェフ', avatar:'👨‍🍳', role:'Head chef' },
+        grammar:{ point:'〜ようにする', explanation:'ようにする = make an effort to / try to (as a habit or policy). Different from ようになる (change of state over time).', example:'「なるべく 野菜を 食べるようにしています」— I try to eat vegetables as much as possible.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'本日はご来店いただきありがとうございます。お食事はいかがでしたか？', trans:'Thank you for visiting today. How was your meal?' },
         opts:[
@@ -7035,6 +7796,8 @@ const KAIWA = [
   { theme:'friends', level:'N3',
     scenario:'旅行の計画', sub:'Planning a trip together',
     npc:{ name:'りょうくん', avatar:'🧑', role:'Close friend' },
+        grammar:{ point:'〜ているうちに', explanation:'うちに = while / during the time that. Used when something changes or should happen WITHIN a window of time.', example:'「話しているうちに 仲よくなった」— While we were talking, we became close.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'なあ、夏休みにどこか旅行に行かない？', trans:'Hey, wanna go somewhere for summer vacation?' },
         opts:[
@@ -7072,6 +7835,8 @@ const KAIWA = [
   { theme:'family', level:'N3',
     scenario:'進路の相談', sub:'Discussing future plans with a parent',
     npc:{ name:'お父さん', avatar:'👨', role:'Your father' },
+        grammar:{ point:'〜てしまった', explanation:'てしまう = completed action, often with a nuance of regret or something unintended happening.', example:'「忘れてしまった」— I completely forgot (and I regret it).' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'最近、大学の志望校は決まったか？', trans:'Have you decided which university you want to apply to?' },
         opts:[
@@ -7109,6 +7874,8 @@ const KAIWA = [
   { theme:'work', level:'N3',
     scenario:'会議での提案', sub:'Making a proposal in a meeting',
     npc:{ name:'鈴木部長', avatar:'👔', role:'Department manager' },
+        grammar:{ point:'〜させていただく', explanation:'The ultra-polite causative-humble form. Literally "humbly receive permission to do X". Standard in Japanese business speech.', example:'「担当させていただきます」— I will be in charge (humble).' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'それでは、田中さんから今月の企画についての報告をお願いします。', trans:'Now, Tanaka-san, please give us your report on this month\'s project.' },
         opts:[
@@ -7146,6 +7913,8 @@ const KAIWA = [
   { theme:'random', level:'N3',
     scenario:'病院で', sub:'At the doctor\'s clinic',
     npc:{ name:'山本先生', avatar:'👨‍⚕️', role:'Doctor' },
+        grammar:{ point:'〜ても', explanation:'Even if / even though. Concessive form — the result stays the same regardless of the condition.', example:'「何を 言っても 聞かない」— No matter what you say, they won\'t listen.' },
+    blank:1,
     exchanges:[
       { npc:{ jp:'今日はどうされましたか？', trans:'What brings you in today?' },
         opts:[
@@ -7187,7 +7956,10 @@ let kaiwaConversation = null;
 let kaiwaExchangeIdx = 0;
 let kaiwaScore = 0;
 let kaiwaAnswered = false;
-// kaiwaHistory removed — was unused
+let kaiwaSeenIds = [];       // track seen conversations this session
+let kaiwaCurrentRating = 0; // star rating for current convo
+let kaiwaBlankExchangeIdx = -1; // which exchange is the fill-in-the-blank
+let kaiwaBlankDone = false;
 
 function pickKaiwaTheme(el, theme) {
   kaiwaTheme = theme;
@@ -7197,42 +7969,60 @@ function pickKaiwaTheme(el, theme) {
 
 function startKaiwa() {
   const level = currentLevel;
-  // Build pool from theme + level
   let pool;
   if (kaiwaTheme === 'random') {
     pool = KAIWA.filter(c => c.level === level);
   } else {
     pool = KAIWA.filter(c => c.theme === kaiwaTheme && c.level === level);
-    if (pool.length === 0) {
-      // fallback to any of that level
-      pool = KAIWA.filter(c => c.level === level);
-    }
+    if (pool.length === 0) pool = KAIWA.filter(c => c.level === level);
   }
-  if (pool.length === 0) {
-    pool = KAIWA.filter(c => c.level === (['N5','N4','N3'].includes(currentLevel) ? currentLevel : 'N5')); // ultimate fallback
+  if (pool.length === 0) pool = KAIWA.filter(c => c.level === (['N5','N4','N3'].includes(currentLevel) ? currentLevel : 'N5'));
+
+  // Deduplicate — pick unseen across ALL conversations for this level
+  const levelPool = KAIWA.filter(c => c.level === level);
+  const unseenLevel = levelPool.filter(c => !kaiwaSeenIds.includes(c.scenario));
+  // If all seen, reset and start fresh (but avoid immediate repeat)
+  if (unseenLevel.length === 0) {
+    const lastSeen = kaiwaSeenIds[kaiwaSeenIds.length - 1];
+    kaiwaSeenIds = lastSeen ? [lastSeen] : [];
   }
-  kaiwaConversation = pool[Math.floor(Math.random() * pool.length)];
+  const freshUnseen = levelPool.filter(c => !kaiwaSeenIds.includes(c.scenario));
+  // Prefer matching theme, fall back to any unseen level conversation
+  const themeMatch = freshUnseen.filter(c => kaiwaTheme === 'random' || c.theme === kaiwaTheme);
+  const pickFrom = themeMatch.length > 0 ? themeMatch : freshUnseen.length > 0 ? freshUnseen : levelPool;
+  kaiwaConversation = pickFrom[Math.floor(Math.random() * pickFrom.length)];
+  kaiwaSeenIds.push(kaiwaConversation.scenario);
+
   kaiwaExchangeIdx = 0;
   kaiwaScore = 0;
   kaiwaAnswered = false;
+  kaiwaCurrentRating = 0;
+  kaiwaBlankDone = false;
 
+  // Pick which exchange gets blanked (use conv.blank index if defined, else pick one mid-way)
+  const exLen = kaiwaConversation.exchanges.length;
+  kaiwaBlankExchangeIdx = typeof kaiwaConversation.blank === 'number'
+    ? Math.min(kaiwaConversation.blank, exLen - 1)
+    : Math.floor(exLen / 2);
 
-  // Set header
   const themeLabels = {
     shopping:'🛒 SHOPPING', school:'🏫 SCHOOL', restaurant:'🍜 RESTAURANT',
     friends:'👫 FRIENDS', family:'👨‍👩‍👧 FAMILY', work:'💼 WORK', random:'🎲 RANDOM'
   };
   document.getElementById('kaiwaThemeBadge').textContent = themeLabels[kaiwaTheme] || '💬 KAIWA';
   document.getElementById('kaiwaScenarioTitle').textContent = kaiwaConversation.scenario;
-  document.getElementById('kaiwaScenarioSub').textContent   = kaiwaConversation.sub;
+  document.getElementById('kaiwaScenarioSub').textContent = kaiwaConversation.sub;
   document.getElementById('kaiwaProgFill').style.width = '0%';
   document.getElementById('kaiwaChat').innerHTML = '';
   document.getElementById('kaiwaOptions').innerHTML = '';
+  // Remove grammar/blank cards if leftover
+  ['kaiwaBlankCard','kaiwaGrammarCard'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.remove();
+  });
 
   showScreen('kaiwaScreen');
-
-  // Animate NPC opening line after a short delay
-  setTimeout(() => renderKaiwaExchange(), 400);
+  setTimeout(function() { renderKaiwaExchange(); }, 400);
 }
 
 function renderKaiwaExchange() {
@@ -7241,54 +8031,144 @@ function renderKaiwaExchange() {
   const exchange = conv.exchanges[kaiwaExchangeIdx];
   kaiwaAnswered = false;
 
-  // Progress bar
   const pct = Math.round(kaiwaExchangeIdx / conv.exchanges.length * 100);
   document.getElementById('kaiwaProgFill').style.width = pct + '%';
 
-  // Show typing indicator — remove any stale one first, then add fresh
   const chat = document.getElementById('kaiwaChat');
   const existingTyping = document.getElementById('kaiwaTyping');
   if (existingTyping) existingTyping.remove();
 
+  // Remove previous blank/grammar overlays
+  ['kaiwaBlankCard','kaiwaGrammarCard'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.remove();
+  });
+  document.getElementById('kaiwaOptions').innerHTML = '';
+
+  // Is this the fill-in-the-blank exchange?
+  const isBlank = (kaiwaExchangeIdx === kaiwaBlankExchangeIdx) && !kaiwaBlankDone;
+
+  if (isBlank) {
+    renderKaiwaBlank(exchange);
+    return;
+  }
+
   const typingRow = document.createElement('div');
   typingRow.className = 'kaiwa-typing';
   typingRow.id = 'kaiwaTyping';
-  typingRow.innerHTML = `
-    <span style="font-size:1.4rem">${conv.npc.avatar}</span>
-    <div class="kaiwa-typing-dots">
-      <span></span><span></span><span></span>
-    </div>`;
+  typingRow.innerHTML =
+    '<span style="font-size:1.4rem">' + conv.npc.avatar + '</span>' +
+    '<div class="kaiwa-typing-dots"><span></span><span></span><span></span></div>';
   chat.appendChild(typingRow);
   chat.scrollTop = chat.scrollHeight;
 
-  // Replace typing indicator with actual bubble after delay
   const typingDelay = kaiwaExchangeIdx === 0 ? 800 : 1100;
-  setTimeout(() => {
-    const t = document.getElementById('kaiwaTyping');
+  setTimeout(function() {
+    var t = document.getElementById('kaiwaTyping');
     if (t) t.remove();
     appendNpcBubble(exchange.npc.jp, exchange.npc.trans, conv.npc);
-    // Show options after bubble
-    setTimeout(() => renderKaiwaOptions(exchange.opts), 500);
+    setTimeout(function() { renderKaiwaOptions(exchange.opts); }, 500);
   }, typingDelay);
 }
 
+// ── FILL-IN-THE-BLANK ──────────────────────────────────────────────────
+function renderKaiwaBlank(exchange) {
+  const conv = kaiwaConversation;
+  const correct = exchange.opts.find(function(o) { return o.correct; });
+  const wrongs = exchange.opts.filter(function(o) { return !o.correct; });
+  const allOpts = shuffle([correct].concat(wrongs));
+
+  // Show NPC line first with a blank slot for the player's reply
+  const chat = document.getElementById('kaiwaChat');
+
+  // NPC bubble showing what they said (prompting the blank)
+  appendNpcBubble(exchange.npc.jp, exchange.npc.trans, conv.npc);
+
+  // Build blank card
+  const blankCard = document.createElement('div');
+  blankCard.className = 'kaiwa-blank-card';
+  blankCard.id = 'kaiwaBlankCard';
+
+  blankCard.innerHTML =
+    '<div class="kaiwa-blank-label">✏️ Fill in the blank</div>' +
+    '<div class="kaiwa-blank-prompt">あなた: <span class="kaiwa-blank-slot" id="kaiwaBlankSlot">＿＿＿</span></div>' +
+    '<div class="kaiwa-blank-opts" id="kaiwaBlankOpts"></div>';
+
+  // Insert before kaiwaOptions
+  const optionsEl = document.getElementById('kaiwaOptions');
+  optionsEl.parentNode.insertBefore(blankCard, optionsEl);
+  chat.scrollTop = chat.scrollHeight;
+
+  // Build options
+  const blankOptsEl = document.getElementById('kaiwaBlankOpts');
+  allOpts.forEach(function(opt) {
+    const btn = document.createElement('button');
+    btn.className = 'kaiwa-blank-opt';
+    btn.textContent = opt.jp;
+    btn.dataset.jp = opt.jp;
+    btn.dataset.correct = opt.correct ? '1' : '0';
+    btn.addEventListener('click', function() {
+      answerKaiwaBlank(btn, opt, correct, allOpts);
+    });
+    blankOptsEl.appendChild(btn);
+  });
+
+  setTimeout(function() { chat.scrollTop = chat.scrollHeight; }, 100);
+}
+
+function answerKaiwaBlank(clickedBtn, chosen, correct, allOpts) {
+  if (kaiwaAnswered) return;
+  kaiwaAnswered = true;
+  kaiwaBlankDone = true;
+
+  const isCorrect = chosen.correct;
+  const slot = document.getElementById('kaiwaBlankSlot');
+
+  // Fill slot
+  if (slot) {
+    slot.textContent = chosen.jp;
+    slot.className = 'kaiwa-blank-slot ' + (isCorrect ? 'filled' : '');
+  }
+
+  // Colour buttons
+  document.querySelectorAll('.kaiwa-blank-opt').forEach(function(btn) {
+    btn.disabled = true;
+    if (btn.dataset.correct === '1') btn.classList.add('correct');
+    else if (btn === clickedBtn && !isCorrect) btn.classList.add('wrong');
+  });
+
+  if (isCorrect) { kaiwaScore++; soundCorrect && soundCorrect(); }
+  else { soundWrong && soundWrong(); }
+
+  // Append player bubble
+  setTimeout(function() {
+    appendPlayerBubble(chosen.jp, correct.jp, isCorrect);
+    kaiwaExchangeIdx++;
+    setTimeout(function() {
+      var bc = document.getElementById('kaiwaBlankCard');
+      if (bc) bc.remove();
+      renderKaiwaExchange();
+    }, isCorrect ? 700 : 1200);
+  }, 400);
+}
+
+// ── STANDARD OPTIONS ──────────────────────────────────────────────────
 function appendNpcBubble(jp, trans, npc, extraClass) {
   const chat = document.getElementById('kaiwaChat');
   const bubbleClass = extraClass || 'npc';
-
   const row = document.createElement('div');
   row.className = 'kaiwa-npc-row';
-  row.innerHTML = `
-    <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0">
-      <span style="font-size:1.6rem;display:inline-block">${npc.avatar}</span>
-      <span style="font-size:0.55rem;color:var(--stone);font-weight:700;white-space:nowrap">${npc.name}</span>
-    </div>
-    <div>
-      <div class="kaiwa-bubble ${bubbleClass}">${jp}</div>
-      <div class="kaiwa-translation">${trans}</div>
-    </div>`;
+  row.innerHTML =
+    '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0">' +
+      '<span style="font-size:1.6rem;display:inline-block">' + npc.avatar + '</span>' +
+      '<span style="font-size:0.55rem;color:var(--stone);font-weight:700;white-space:nowrap">' + npc.name + '</span>' +
+    '</div>' +
+    '<div>' +
+      '<div class="kaiwa-bubble ' + bubbleClass + '">' + jp + '</div>' +
+      '<div class="kaiwa-translation">' + trans + '</div>' +
+    '</div>';
   chat.appendChild(row);
-  setTimeout(() => { chat.scrollTop = chat.scrollHeight; }, 50);
+  setTimeout(function() { chat.scrollTop = chat.scrollHeight; }, 50);
 }
 
 function appendPlayerBubble(chosenJp, correctJp, isCorrect) {
@@ -7296,24 +8176,30 @@ function appendPlayerBubble(chosenJp, correctJp, isCorrect) {
   const wrap = document.createElement('div');
   wrap.style.cssText = 'display:flex;flex-direction:column;align-items:flex-end';
   const bubbleContent = isCorrect
-    ? `<div class="kaiwa-bubble player">${chosenJp}</div>`
-    : `<div class="kaiwa-bubble player wrong" style="opacity:0.7;text-decoration:line-through;font-size:0.82rem">${chosenJp}</div>
-       <div class="kaiwa-bubble player" style="margin-top:5px;background:linear-gradient(135deg,#27ae60,#2ecc71);box-shadow:0 3px 10px rgba(39,174,96,.35)">${correctJp} ✓</div>`;
-  wrap.innerHTML = `
-    <div class="kaiwa-bubble-label right">あなた · You</div>
-    ${bubbleContent}`;
+    ? '<div class="kaiwa-bubble player">' + chosenJp + '</div>'
+    : '<div class="kaiwa-bubble player wrong" style="opacity:0.7;text-decoration:line-through;font-size:0.82rem">' + chosenJp + '</div>' +
+      '<div class="kaiwa-bubble player" style="margin-top:5px;background:linear-gradient(135deg,#27ae60,#2ecc71);box-shadow:0 3px 10px rgba(39,174,96,.35)">' + correctJp + ' \u2713</div>';
+  wrap.innerHTML =
+    '<div class="kaiwa-bubble-label right">\u3042\u306a\u305f \u00b7 You</div>' +
+    bubbleContent;
   chat.appendChild(wrap);
-  setTimeout(() => { chat.scrollTop = chat.scrollHeight; }, 50);
+  setTimeout(function() { chat.scrollTop = chat.scrollHeight; }, 50);
 }
 
 function renderKaiwaOptions(opts) {
   const optDiv = document.getElementById('kaiwaOptions');
-  optDiv.innerHTML = opts.map((opt, i) =>
-    `<button class="kaiwa-opt" id="kwOpt${i}" onclick="answerKaiwa(${i})">
-      <div class="kaiwa-opt-jp">${opt.jp}</div>
-      <div class="kaiwa-opt-romaji">${opt.r}</div>
-    </button>`
-  ).join('');
+  optDiv.innerHTML = '';
+  opts.forEach(function(opt, i) {
+    const btn = document.createElement('button');
+    btn.className = 'kaiwa-opt';
+    btn.id = 'kwOpt' + i;
+    btn.innerHTML =
+      '<div class="kaiwa-opt-jp">' + opt.jp + '</div>' +
+      '<div class="kaiwa-opt-romaji">' + opt.r + '</div>';
+    btn.dataset.idx = i;
+    btn.addEventListener('click', function() { answerKaiwa(i); });
+    optDiv.appendChild(btn);
+  });
 }
 
 function answerKaiwa(chosen) {
@@ -7321,107 +8207,141 @@ function answerKaiwa(chosen) {
   kaiwaAnswered = true;
   const conv = kaiwaConversation;
   const opts = conv.exchanges[kaiwaExchangeIdx].opts;
-  const correctIdx = opts.findIndex(o => o.correct);
+  const correctIdx = opts.findIndex(function(o) { return o.correct; });
   const isCorrect = chosen === correctIdx;
 
-  // Disable all buttons immediately
-  opts.forEach((_, i) => {
-    const btn = document.getElementById('kwOpt'+i);
+  opts.forEach(function(_, i) {
+    const btn = document.getElementById('kwOpt' + i);
     if (btn) btn.disabled = true;
   });
 
-  // Brief pause then show result animations
-  setTimeout(() => {
-    opts.forEach((_, i) => {
-      const btn = document.getElementById('kwOpt'+i);
+  setTimeout(function() {
+    opts.forEach(function(_, i) {
+      const btn = document.getElementById('kwOpt' + i);
       if (!btn) return;
-      if (i === correctIdx) {
-        btn.classList.add('correct');
-        // Force reflow to restart animation
-        void btn.offsetWidth;
-      } else if (i === chosen && !isCorrect) {
-        btn.classList.add('wrong');
-        void btn.offsetWidth;
-      }
+      if (i === correctIdx) { btn.classList.add('correct'); void btn.offsetWidth; }
+      else if (i === chosen && !isCorrect) { btn.classList.add('wrong'); void btn.offsetWidth; }
     });
-
-    if (isCorrect) {
-      kaiwaScore++;
-      soundCorrect();
-    } else {
-      soundWrong();
-    }
+    if (isCorrect) { kaiwaScore++; soundCorrect(); }
+    else { soundWrong(); }
   }, 80);
 
-  // Append player bubble after result is visible
-  setTimeout(() => {
+  setTimeout(function() {
     appendPlayerBubble(opts[chosen].jp, opts[correctIdx].jp, isCorrect);
-
-    // Advance after bubble shows
-    setTimeout(() => {
+    setTimeout(function() {
       document.getElementById('kaiwaOptions').innerHTML = '';
       kaiwaExchangeIdx++;
-
       if (kaiwaExchangeIdx >= conv.exchanges.length) {
-        setTimeout(() => endKaiwa(), 600);
+        setTimeout(function() { endKaiwa(); }, 600);
       } else {
-        setTimeout(() => renderKaiwaExchange(), 550);
+        setTimeout(function() { renderKaiwaExchange(); }, 550);
       }
     }, isCorrect ? 750 : 1100);
   }, 350);
 }
 
+// ── END + GRAMMAR SPOTLIGHT + STAR RATING ────────────────────────────
 function endKaiwa() {
-  const total = kaiwaConversation.exchanges.length;
+  const conv = kaiwaConversation;
+  const total = conv.exchanges.length;
   const pct   = Math.round(kaiwaScore / total * 100);
-  const emoji = pct === 100 ? '🌟' : pct >= 70 ? '😊' : pct >= 40 ? '🤔' : '📚';
-  const title = pct === 100 ? '完璧！Perfect conversation!'
-              : pct >= 70  ? 'よくできました！Great replies!'
-              : pct >= 40  ? 'もう少し！Keep practising!'
-              :               'がんばれ！You\'ll get there!';
+  const emoji = pct === 100 ? '\uD83C\uDF1F' : pct >= 70 ? '\uD83D\uDE0A' : pct >= 40 ? '\uD83E\uDD14' : '\uD83D\uDCDA';
+  const title = pct === 100 ? '\u5B8C\u74A7\uFF01 Perfect conversation!'
+              : pct >= 70  ? '\u3088\u304F\u3067\u304D\u307E\u3057\u305F\uFF01 Great replies!'
+              : pct >= 40  ? '\u3082\u3046\u5C11\u3057\uFF01 Keep practising!'
+              :              '\u304C\u3093\u3070\u308C\uFF01 You\'ll get there!';
 
   document.getElementById('kaiwaProgFill').style.width = '100%';
   document.getElementById('kaiwaOptions').innerHTML = '';
 
-  // Append score card into chat for seamless feel
   const chat = document.getElementById('kaiwaChat');
+
+  // Score card
   const scoreEl = document.createElement('div');
   scoreEl.style.cssText = 'text-align:center;padding:20px 10px;animation:fadeUp .4s ease both';
-  scoreEl.innerHTML = `
-    <div style="font-size:2.5rem;margin-bottom:6px">${emoji}</div>
-    <div style="font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--ink);margin-bottom:4px">${title}</div>
-    <div style="font-size:0.72rem;color:var(--stone);margin-bottom:12px">会話完了 · Conversation complete</div>
-    <div style="font-size:2rem;font-weight:900;color:#e91e8c;margin-bottom:16px">
-      ${kaiwaScore}<span style="font-size:1rem;font-weight:400;color:var(--stone)"> / ${total}</span>
-    </div>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <button onclick="goHome()" style="padding:11px 20px;background:var(--paper);border:1.5px solid var(--border);border-radius:12px;font-family:'DM Serif Display',serif;font-size:0.85rem;cursor:pointer;color:var(--ink)">🏠 Home</button>
-      <button onclick="startKaiwa()" style="padding:11px 20px;background:#e91e8c;border:none;border-radius:12px;color:white;font-family:'DM Serif Display',serif;font-size:0.85rem;font-weight:700;cursor:pointer">Play Again</button>
-    </div>`;
+  scoreEl.innerHTML =
+    '<div style="font-size:2.5rem;margin-bottom:6px">' + emoji + '</div>' +
+    '<div style="font-family:\'DM Serif Display\',serif;font-size:1.15rem;color:var(--ink);margin-bottom:4px">' + title + '</div>' +
+    '<div style="font-size:0.72rem;color:var(--stone);margin-bottom:12px">\u4F1A\u8A71\u5B8C\u4E86 \u00B7 Conversation complete</div>' +
+    '<div style="font-size:2rem;font-weight:900;color:#e91e8c;margin-bottom:4px">' +
+      kaiwaScore + '<span style="font-size:1rem;font-weight:400;color:var(--stone)"> / ' + total + '</span>' +
+    '</div>';
   chat.appendChild(scoreEl);
+
+  // ── GRAMMAR SPOTLIGHT ──
+  if (conv.grammar) {
+    const g = conv.grammar;
+    const grammarCard = document.createElement('div');
+    grammarCard.className = 'kaiwa-grammar-card';
+    grammarCard.id = 'kaiwaGrammarCard';
+    grammarCard.innerHTML =
+      '<div class="kaiwa-grammar-label">\uD83D\uDCDA Grammar Spotlight</div>' +
+      '<div class="kaiwa-grammar-point">' + g.point + '</div>' +
+      '<div class="kaiwa-grammar-explain">' + g.explanation + '</div>' +
+      '<div class="kaiwa-grammar-example">' + g.example + '</div>';
+    chat.appendChild(grammarCard);
+  }
+
+  // ── STAR RATING ──
+  const starRow = document.createElement('div');
+  starRow.innerHTML =
+    '<div style="text-align:center;font-size:0.72rem;color:var(--stone);margin:14px 0 4px">' +
+      'How well did you understand this conversation?' +
+    '</div>' +
+    '<div class="kaiwa-star-row" id="kaiwaStarRow">' +
+      '<span class="kaiwa-star-label">Rate it:</span>' +
+      ['1','2','3'].map(function(n) {
+        return '<span class="kaiwa-star" data-star="' + n + '" onclick="rateKaiwa(' + n + ')">&#11088;</span>';
+      }).join('') +
+    '</div>' +
+    '<div class="kaiwa-star-hint" id="kaiwaStarHint">Tap a star to rate</div>';
+  chat.appendChild(starRow);
+
+  // ── ACTION BUTTONS ──
+  const actionsEl = document.createElement('div');
+  actionsEl.style.cssText = 'display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:4px 16px 8px';
+  actionsEl.innerHTML =
+    '<button onclick="goHome()" style="padding:11px 20px;background:var(--paper);border:1.5px solid var(--border);border-radius:12px;font-family:\'DM Serif Display\',serif;font-size:0.85rem;cursor:pointer;color:var(--ink)">\uD83C\uDFE0 Home</button>' +
+    '<button onclick="startKaiwa()" style="padding:11px 20px;background:#e91e8c;border:none;border-radius:12px;color:white;font-family:\'DM Serif Display\',serif;font-size:0.85rem;font-weight:700;cursor:pointer">Next Convo \u2192</button>';
+  chat.appendChild(actionsEl);
   chat.scrollTop = chat.scrollHeight;
 
-  // Save XP
+  // XP
   const xp = kaiwaScore * 6;
   if (xp > 0) {
-    const p = getProgress();
-    const oldXp = p.totalXP || 0;
-    p.totalXP = oldXp + xp;
-    p.totalSessions = (p.totalSessions || 0) + 1;
-    const today = new Date().toISOString().slice(0,10);
-    const yesterday = new Date(Date.now()-86400000).toISOString().slice(0,10);
-    if (p.lastVisit === yesterday) p.streak = (p.streak||0)+1;
-    else if (p.lastVisit !== today) p.streak = 1;
-    p.lastVisit = today;
-    saveProgress(p);
-    checkRankUp(oldXp, p.totalXP);
+    try {
+      const p = getProgress();
+      const oldXp = p.totalXP || 0;
+      p.totalXP = oldXp + xp;
+      p.totalSessions = (p.totalSessions || 0) + 1;
+      const today = new Date().toISOString().slice(0, 10);
+      const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+      if (p.lastVisit === yesterday) p.streak = (p.streak || 0) + 1;
+      else if (p.lastVisit !== today) p.streak = 1;
+      p.lastVisit = today;
+      saveProgress(p);
+      checkRankUp && checkRankUp(oldXp, p.totalXP);
+    } catch(e) {}
   }
+}
+
+function rateKaiwa(stars) {
+  kaiwaCurrentRating = stars;
+  const hints = { 1: 'That was tough — keep at it! \uD83D\uDCDA', 2: 'Getting there! \uD83D\uDCAA', 3: '\u5B8C\u74A7\uFF01 You nailed it! \uD83C\uDF1F' };
+  const starEls = document.querySelectorAll('.kaiwa-star');
+  starEls.forEach(function(el) {
+    const n = parseInt(el.dataset.star);
+    el.classList.toggle('active', n <= stars);
+  });
+  const hint = document.getElementById('kaiwaStarHint');
+  if (hint) hint.textContent = hints[stars] || '';
 }
 
 function confirmKaiwaBack() {
   const o = document.getElementById('backConfirmOverlay');
   if (o) o.style.display = 'flex';
 }
+
 
 
 
