@@ -15,6 +15,12 @@
 <meta name="twitter:description" content="Learn Japanese the anime way. Free forever — quiz, flashcards, N5 to N1.">
 <meta name="twitter:image" content="https://placehold.co/1200x630/1a1a2e/c0392b?text=%E6%97%A5%E6%9C%AC%E8%AA%9E+JLPT+Vocab+Master">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6025762973104448" crossorigin="anonymous"></script>
+<!-- Privacy / legal meta -->
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jlptvocabmaster.github.io/jlpt-vocab-master/">
+<meta name="theme-color" content="#1a1a2e">
 <style>
 :root {
   --crimson: #c0392b;
@@ -48,6 +54,9 @@ body.dark {
 body.dark .stripe { background: linear-gradient(180deg, var(--crimson), #e74c3c, var(--gold), var(--crimson)); }
 body.dark .lp-tile { background: #1a1a2e; }
 body.dark .ms-screen { background: #1a1a2e; }
+body.dark .beginner-banner { background: linear-gradient(135deg, #0d0d1a 0%, #0a1428 100%); border-color: rgba(240,192,64,0.25); }
+body.dark .bb-recommended { background: rgba(240,192,64,0.08); border-color: rgba(240,192,64,0.2); }
+body.dark .ms-beginner-hint { background: #2a2200; border-color: rgba(240,192,64,0.3); color: var(--ink); }
 body.dark .q-card { background: #1a1a2e; }
 body.dark .score-wrap { background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%); }
 body.dark .pp-opt { background: #13131f; }
@@ -76,6 +85,275 @@ body.dark .welcome-back { background: linear-gradient(135deg, #0d0d1a, #1a2035);
 .settings-bar-btn.active { background: var(--ink); color: white; }
 .settings-bar-sep { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
 .dm-toggle { display: none; } /* legacy — replaced by settings-bar */
+
+/* ── PROGRESSIVE DISCLOSURE — beginner mode ── */
+body.beginner-mode .daily-challenge-card { display: none !important; }
+body.beginner-mode .home-pill { display: none !important; }
+body.beginner-mode .lp-utils { display: none !important; }
+body.beginner-mode .lp-label { display: none !important; }
+body.beginner-mode .welcome-back { display: none !important; }
+body.beginner-mode .continue-bar { display: none !important; }
+
+/* Beginner home banner */
+.beginner-banner {
+  display: none;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: var(--radius); padding: 22px 20px 18px;
+  margin-bottom: 20px; position: relative; overflow: hidden;
+  border: 1px solid rgba(212,172,13,0.25);
+  animation: fadeUp .5s ease both;
+}
+body.beginner-mode .beginner-banner { display: block; }
+.beginner-banner::before {
+  content: '始'; position: absolute; right: -8px; top: -12px;
+  font-family: 'Noto Serif JP', serif; font-size: 6rem;
+  color: rgba(212,172,13,0.05); pointer-events: none; line-height: 1;
+}
+.bb-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.bb-emoji { font-size: 2rem; flex-shrink: 0; }
+.bb-title { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: white; line-height: 1.2; }
+.bb-sub { font-size: 0.75rem; color: #94a3b8; margin-top: 3px; }
+.bb-recommended {
+  background: rgba(212,172,13,0.12); border: 1px solid rgba(212,172,13,0.3);
+  border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.bb-rec-icon { font-size: 1.4rem; flex-shrink: 0; }
+.bb-rec-text { font-size: 0.78rem; color: #e8d5a3; line-height: 1.5; }
+.bb-rec-text strong { color: var(--gold); }
+.bb-cta-row { display: flex; gap: 10px; }
+.bb-cta-primary {
+  flex: 1; padding: 13px 16px; background: var(--gold); border: none;
+  border-radius: 12px; font-family: 'DM Serif Display', serif; font-size: 1rem;
+  color: var(--ink); cursor: pointer; font-weight: 700; transition: transform .18s, box-shadow .18s;
+}
+.bb-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,172,13,0.4); }
+.bb-cta-secondary {
+  padding: 13px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px; font-size: 0.8rem; font-weight: 700; color: #94a3b8;
+  cursor: pointer; transition: background .18s; white-space: nowrap;
+}
+.bb-cta-secondary:hover { background: rgba(255,255,255,0.14); color: white; }
+
+/* Level tiles — highlight recommended level */
+.lp-tile.recommended-level {
+  box-shadow: 0 0 0 2px var(--gold), 0 8px 32px rgba(212,172,13,0.2);
+  position: relative;
+}
+.lp-tile .rec-badge {
+  display: none; position: absolute; top: -8px; right: -6px;
+  background: var(--gold); color: var(--ink); border-radius: 99px;
+  font-size: 0.55rem; font-weight: 800; padding: 2px 8px;
+  letter-spacing: 0.5px; text-transform: uppercase; z-index: 2;
+  box-shadow: 0 2px 8px rgba(212,172,13,0.4);
+}
+.lp-tile.recommended-level .rec-badge { display: block; }
+
+/* Simple level grid label for beginners */
+.beginner-level-label {
+  display: none;
+  font-size: 0.72rem; font-weight: 700; color: var(--stone);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  text-align: center; margin-bottom: 12px;
+}
+body.beginner-mode .beginner-level-label { display: block; }
+
+/* Beginner footer hint */
+.beginner-footer-hint {
+  display: none;
+  text-align: center; padding: 16px; margin-top: 8px;
+  font-size: 0.72rem; color: var(--stone); line-height: 1.7;
+  background: var(--white); border-radius: 12px; border: 1px solid var(--border);
+}
+body.beginner-mode .beginner-footer-hint { display: block; }
+.beginner-footer-hint a { color: var(--crimson); text-decoration: none; font-weight: 700; cursor: pointer; }
+
+/* Hide advanced footer in beginner mode */
+body.beginner-mode .home-footer { display: none !important; }
+
+/* ══════════════════════════════════════════
+   COOKIE CONSENT BANNER
+══════════════════════════════════════════ */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
+  background: var(--ink); color: #e8e4dc;
+  padding: 16px 20px; display: flex; align-items: center;
+  gap: 14px; flex-wrap: wrap;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.35);
+  animation: slideUpIn .4s cubic-bezier(.4,0,.2,1) both;
+  border-top: 2px solid rgba(212,172,13,0.3);
+}
+@keyframes slideUpIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.cookie-banner.hide {
+  animation: slideDownOut .3s ease forwards;
+}
+@keyframes slideDownOut {
+  to { transform: translateY(110%); opacity: 0; }
+}
+.cookie-text {
+  flex: 1; font-size: 0.78rem; line-height: 1.6; min-width: 220px;
+  color: #c8c4bc;
+}
+.cookie-text a { color: var(--gold); text-decoration: underline; cursor: pointer; }
+.cookie-text strong { color: white; }
+.cookie-btns { display: flex; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
+.cookie-btn-accept {
+  padding: 9px 20px; background: var(--gold); border: none;
+  border-radius: 10px; font-family: 'DM Serif Display', serif;
+  font-size: 0.88rem; font-weight: 700; color: var(--ink);
+  cursor: pointer; transition: transform .18s, box-shadow .18s;
+  white-space: nowrap;
+}
+.cookie-btn-accept:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(212,172,13,0.4); }
+.cookie-btn-decline {
+  padding: 9px 16px; background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 10px; font-size: 0.8rem; color: #94a3b8;
+  cursor: pointer; transition: border-color .18s, color .18s; white-space: nowrap;
+}
+.cookie-btn-decline:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+/* ══════════════════════════════════════════
+   PRIVACY POLICY / TERMS MODAL
+══════════════════════════════════════════ */
+.legal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 99998;
+  background: rgba(26,26,46,.7); backdrop-filter: blur(4px);
+  align-items: flex-start; justify-content: center;
+  padding: 20px; overflow-y: auto;
+}
+.legal-overlay.open { display: flex; }
+.legal-box {
+  background: var(--paper); border-radius: 20px;
+  max-width: 600px; width: 100%; margin: auto;
+  overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,.35);
+  animation: fadeUp .3s ease both;
+}
+.legal-header {
+  background: linear-gradient(135deg, var(--ink), #2c3e50);
+  padding: 20px 22px; display: flex; align-items: center;
+  justify-content: space-between; position: relative; overflow: hidden;
+}
+.legal-header::before {
+  content: '法'; position: absolute; right: -5px; top: -10px;
+  font-family: 'Noto Serif JP', serif; font-size: 6rem;
+  color: rgba(255,255,255,0.04); pointer-events: none; line-height: 1;
+}
+.legal-header-title {
+  font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: white;
+}
+.legal-header-sub { font-size: 0.68rem; color: #94a3b8; margin-top: 3px; }
+.legal-close-btn {
+  background: rgba(255,255,255,.1); border: none; border-radius: 10px;
+  padding: 8px 14px; color: white; cursor: pointer; font-size: 0.82rem;
+  font-weight: 700; transition: background .18s; flex-shrink: 0;
+}
+.legal-close-btn:hover { background: rgba(255,255,255,.2); }
+.legal-tabs {
+  display: flex; border-bottom: 1.5px solid var(--border);
+  background: var(--white);
+}
+.legal-tab {
+  flex: 1; padding: 12px 8px; font-size: 0.78rem; font-weight: 700;
+  color: var(--stone); background: none; border: none;
+  cursor: pointer; transition: color .18s, border-bottom .18s;
+  border-bottom: 2.5px solid transparent; margin-bottom: -1.5px;
+}
+.legal-tab.active { color: var(--crimson); border-bottom-color: var(--crimson); }
+.legal-tab:hover:not(.active) { color: var(--ink); }
+.legal-body {
+  padding: 22px; max-height: 65vh; overflow-y: auto;
+  font-size: 0.82rem; color: var(--stone); line-height: 1.8;
+}
+.legal-body h3 {
+  font-family: 'DM Serif Display', serif; font-size: 1rem;
+  color: var(--ink); margin: 18px 0 6px; padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.legal-body h3:first-child { margin-top: 0; }
+.legal-body p { margin-bottom: 10px; }
+.legal-body ul { padding-left: 18px; margin-bottom: 10px; }
+.legal-body ul li { margin-bottom: 4px; }
+.legal-body a { color: var(--crimson); }
+.legal-body strong { color: var(--ink); }
+.legal-body .legal-updated {
+  font-size: 0.7rem; color: var(--stone); text-align: right;
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);
+}
+
+/* ══════════════════════════════════════════
+   AD UNIT — HOME SCREEN BANNER
+══════════════════════════════════════════ */
+.ad-unit-wrap {
+  margin: 16px 0; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border); background: var(--white);
+  min-height: 90px; display: flex; align-items: center;
+  justify-content: center; position: relative;
+}
+.ad-unit-label {
+  position: absolute; top: 4px; right: 8px;
+  font-size: 0.55rem; color: var(--stone); letter-spacing: 1px;
+  text-transform: uppercase; pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   LEGAL FOOTER
+══════════════════════════════════════════ */
+.legal-footer {
+  text-align: center; padding: 20px 0 32px;
+  border-top: 1px solid var(--border); margin-top: 24px;
+}
+.legal-footer-links {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; flex-wrap: wrap; margin-bottom: 8px;
+}
+.legal-footer-link {
+  font-size: 0.7rem; color: var(--stone); background: none;
+  border: none; cursor: pointer; padding: 3px 6px;
+  text-decoration: underline; transition: color .18s;
+}
+.legal-footer-link:hover { color: var(--crimson); }
+.legal-footer-sep {
+  font-size: 0.7rem; color: var(--border);
+}
+.legal-footer-copy {
+  font-size: 0.65rem; color: var(--stone); line-height: 1.6;
+}
+.legal-footer-copy a { color: var(--stone); text-decoration: underline; }
+
+/* ── MODE SCREEN BEGINNER LOCKS ── */
+.ms-mode-card.beginner-locked {
+  opacity: 0.45; position: relative; cursor: default;
+}
+.ms-mode-card.beginner-locked::after {
+  content: attr(data-lock-label);
+  position: absolute; bottom: 8px; left: 0; right: 0;
+  text-align: center; font-size: 0.58rem; font-weight: 700;
+  color: var(--stone); letter-spacing: 0.5px;
+}
+.ms-mode-card.beginner-locked:hover { border-color: var(--border); transform: none; box-shadow: none; }
+
+/* ── SESSION TIME ESTIMATE ── */
+.ms-size-time-hint {
+  text-align: center; font-size: 0.72rem; color: var(--stone);
+  margin-top: 4px; margin-bottom: 0;
+  transition: opacity .2s;
+}
+.ms-size-time-hint span { color: var(--crimson); font-weight: 700; }
+
+/* ── BEGINNER START HINT ── */
+.ms-beginner-hint {
+  display: none;
+  background: var(--gold-lt); border: 1.5px solid rgba(212,172,13,0.4);
+  border-radius: 12px; padding: 11px 14px; margin-bottom: 14px;
+  font-size: 0.78rem; color: var(--ink); line-height: 1.5;
+  animation: fadeUp .4s ease both;
+}
+body.beginner-mode .ms-beginner-hint { display: flex; align-items: center; gap: 10px; }
+.ms-beginner-hint-icon { font-size: 1.3rem; flex-shrink: 0; }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { overflow-x: hidden; }
@@ -1297,6 +1575,15 @@ body { background: #fdf4e8; }
   margin-bottom: 24px;
 }
 .onboard-body strong { color: var(--crimson); }
+.ob-level-btn {
+  width: 100%; display: flex; align-items: center;
+  padding: 11px 14px; border-radius: 12px;
+  border: 1.5px solid var(--border); background: var(--white);
+  cursor: pointer; transition: all .18s; font-size: 0.85rem;
+  color: var(--ink); text-align: left;
+}
+.ob-level-btn:hover { border-color: var(--crimson); background: var(--crimson-lt); }
+.ob-level-btn.sel { border-color: var(--gold); background: var(--gold-lt); box-shadow: 0 0 0 1px var(--gold); }
 .onboard-dots {
   display: flex; gap: 6px; justify-content: center; margin-bottom: 22px;
 }
@@ -2280,16 +2567,48 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
   <div class="onboard-box">
     <div class="onboard-slides" id="onboardSlides">
 
-      <!-- Single welcome slide -->
-      <div class="onboard-slide">
+      <!-- Slide 1: Welcome -->
+      <div class="onboard-slide" id="obSlide1">
         <div class="onboard-emoji">🇯🇵</div>
         <div class="onboard-title">JLPT Vocab Master</div>
         <div class="onboard-body">
-          Learn Japanese vocabulary <strong>the anime way</strong> — kanji stories, memory hooks, and wisdom from your favourite characters.<br><br>
-          <strong>N5 → N1</strong> · Quiz · Flashcard · Type It · Past Paper · Completely free.
+          Learn Japanese vocabulary <strong>the anime way</strong> — kanji origin stories, memory hooks, and wisdom from your favourite characters.<br><br>
+          <strong>N5 → N1</strong> · Quiz · Flashcard · Type It · Always free.
         </div>
         <div class="onboard-btns">
-          <button class="onboard-next" onclick="closeOnboarding()" style="width:100%">Start Learning →</button>
+          <button class="onboard-next" onclick="obGoSlide2()" style="width:100%">Let's set you up →</button>
+        </div>
+      </div>
+
+      <!-- Slide 2: Level picker -->
+      <div class="onboard-slide" id="obSlide2" style="display:none">
+        <div class="onboard-emoji">🎯</div>
+        <div class="onboard-title">What's your level?</div>
+        <div class="onboard-body" style="margin-bottom:14px">Pick the level that matches you — you can always change it later.</div>
+        <div id="obLevelPicker" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;text-align:left">
+          <button class="ob-level-btn" onclick="obSelectLevel('N5', this)" data-level="N5">
+            <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--n5);margin-right:8px">N5</span>
+            <span><strong>Complete beginner</strong> <span style="color:#94a3b8;font-size:0.78rem">— I'm just starting out</span></span>
+          </button>
+          <button class="ob-level-btn" onclick="obSelectLevel('N4', this)" data-level="N4">
+            <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--n4);margin-right:8px">N4</span>
+            <span><strong>Elementary</strong> <span style="color:#94a3b8;font-size:0.78rem">— I know basics, want more vocab</span></span>
+          </button>
+          <button class="ob-level-btn" onclick="obSelectLevel('N3', this)" data-level="N3">
+            <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--n3);margin-right:8px">N3</span>
+            <span><strong>Intermediate</strong> <span style="color:#94a3b8;font-size:0.78rem">— I can handle daily conversation</span></span>
+          </button>
+          <button class="ob-level-btn" onclick="obSelectLevel('N2', this)" data-level="N2">
+            <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--n2);margin-right:8px">N2</span>
+            <span><strong>Upper Intermediate</strong> <span style="color:#94a3b8;font-size:0.78rem">— Advanced reading/writing</span></span>
+          </button>
+          <button class="ob-level-btn" onclick="obSelectLevel('N1', this)" data-level="N1">
+            <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--n1);margin-right:8px">N1</span>
+            <span><strong>Advanced / Native-level</strong> <span style="color:#94a3b8;font-size:0.78rem">— Near fluent</span></span>
+          </button>
+        </div>
+        <div class="onboard-btns">
+          <button class="onboard-next" id="obStartBtn" onclick="closeOnboardingWithLevel()" style="width:100%;opacity:0.4;pointer-events:none">Start Learning →</button>
         </div>
       </div>
 
@@ -2478,21 +2797,29 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <span id="hpRank">🥋 Genin</span>
   </div>
 
-  <!-- Daily Challenge Card -->
-  <div class="daily-challenge-card" id="dailyChallengeCard" onclick="startDailyChallenge()">
-    <div class="dc-label">
-      🏆 DAILY CHALLENGE
-      <span class="dc-gold-badge" id="dcResetLabel">Resets at midnight</span>
+  <!-- Beginner welcome banner (shown in beginner-mode) -->
+  <div class="beginner-banner" id="beginnerBanner">
+    <div class="bb-top">
+      <div class="bb-emoji">🥋</div>
+      <div>
+        <div class="bb-title">Welcome, <span id="bbLevelName">Genin</span>!</div>
+        <div class="bb-sub">Your journey to JLPT <span id="bbLevelBadge">N5</span> starts here</div>
+      </div>
     </div>
-    <div class="dc-title" id="dcTitle">Today's 10-Question Challenge</div>
-    <div class="dc-sub" id="dcSub">Same questions for everyone today · Earn 2× Bonus XP</div>
-    <div class="dc-progress-row" id="dcProgressRow">
-      <div class="dc-progress-track"><div class="dc-progress-fill" id="dcProgressFill" style="width:0%"></div></div>
-      <div class="dc-progress-label" id="dcProgressLabel">0 / 10</div>
+    <div class="bb-recommended" id="bbRec">
+      <div class="bb-rec-icon">⭐</div>
+      <div class="bb-rec-text">We recommend starting with <strong id="bbRecLevel">N5</strong> — it covers everyday vocabulary you'll use from day one. Quiz mode is great for beginners.</div>
+    </div>
+    <div class="bb-cta-row">
+      <button class="bb-cta-primary" id="bbStartBtn" onclick="pickLevel(localStorage.getItem('jlpt_chosen_level')||'N5')">Start N5 Quiz →</button>
+      <button class="bb-cta-secondary" onclick="exitBeginnerMode()">Show full app</button>
     </div>
   </div>
 
-  <!-- Daily Word of the Day -->
+  <!-- Beginner level label -->
+  <div class="beginner-level-label">Choose your starting level</div>
+
+  <!-- Daily Word of the Day — shown first, friendliest entry point -->
   <div class="daily-word-card" onclick="startDailyWordPractice()" style="cursor:pointer">
     <div class="dw-label">
       📅 WORD OF THE DAY
@@ -2515,12 +2842,27 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     </div>
   </div>
 
+  <!-- Daily Challenge Card -->
+  <div class="daily-challenge-card" id="dailyChallengeCard" onclick="startDailyChallenge()">
+    <div class="dc-label">
+      🏆 DAILY CHALLENGE
+      <span class="dc-gold-badge" id="dcResetLabel">Resets at midnight</span>
+    </div>
+    <div class="dc-title" id="dcTitle">Today's 10-Question Challenge</div>
+    <div class="dc-sub" id="dcSub">Same questions for everyone today · Earn 2× Bonus XP</div>
+    <div class="dc-progress-row" id="dcProgressRow">
+      <div class="dc-progress-track"><div class="dc-progress-fill" id="dcProgressFill" style="width:0%"></div></div>
+      <div class="dc-progress-label" id="dcProgressLabel">0 / 10</div>
+    </div>
+  </div>
+
   <div class="lp-label">選択してください — Choose your level</div>
 
   <!-- Level tiles — click goes straight to mode screen -->
   <div class="lp-grid">
 
-    <div class="lp-tile" style="--tc:var(--n5)" onclick="pickLevel('N5')">
+    <div class="lp-tile" id="lpTile-N5" style="--tc:var(--n5)" onclick="pickLevel('N5')">
+      <div class="rec-badge">Recommended</div>
       <div class="lp-glow"></div>
       <div class="lp-lvname" style="color:var(--n5)">N5</div>
       <div class="lp-kana">にほんご</div>
@@ -2538,7 +2880,8 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
       </div>
     </div>
 
-    <div class="lp-tile" style="--tc:var(--n4)" onclick="pickLevel('N4')">
+    <div class="lp-tile" id="lpTile-N4" style="--tc:var(--n4)" onclick="pickLevel('N4')">
+      <div class="rec-badge">Recommended</div>
       <div class="lp-glow"></div>
       <div class="lp-lvname" style="color:var(--n4)">N4</div>
       <div class="lp-kana">しょきゅう</div>
@@ -2620,6 +2963,13 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <button class="lp-util-btn" onclick="openStats()">📊 Stats</button>
     <button class="lp-util-btn" onclick="openAchievements()">🏆 Badges</button>
     <button class="lp-util-btn" onclick="continueIfSaved()">▶ Resume</button>
+  </div>
+
+  <!-- Beginner footer hint -->
+  <div class="beginner-footer-hint">
+    🧭 Take your time — just pick a level and tap <strong>Quiz</strong> to start.<br>
+    More features like Stats, Badges, and Daily Challenges unlock after your first session.<br>
+    <a onclick="exitBeginnerMode()">Show everything now →</a>
   </div>
 
   <!-- ── INTRODUCTION / GUIDE ── -->
@@ -2933,6 +3283,35 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <button onclick="openPayModal()" style="background:none;border:1.5px solid var(--border);border-radius:99px;padding:9px 20px;font-size:0.78rem;font-weight:700;color:var(--stone);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--stone)'">🥋 Support Sensei · ₹99</button>
   </div>
 
+  <!-- Ad unit — shown between content and footer -->
+  <div class="ad-unit-wrap" id="homeAdUnit">
+    <span class="ad-unit-label">Advertisement</span>
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;min-height:90px"
+         data-ad-client="ca-pub-6025762973104448"
+         data-ad-slot="auto"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+
+  <!-- Legal footer -->
+  <div class="legal-footer home-footer">
+    <div class="legal-footer-links">
+      <button class="legal-footer-link" onclick="openLegal('privacy')">Privacy Policy</button>
+      <span class="legal-footer-sep">·</span>
+      <button class="legal-footer-link" onclick="openLegal('terms')">Terms of Use</button>
+      <span class="legal-footer-sep">·</span>
+      <button class="legal-footer-link" onclick="openLegal('cookies')">Cookie Policy</button>
+      <span class="legal-footer-sep">·</span>
+      <button class="legal-footer-link" onclick="openCookieSettings()">Ad Preferences</button>
+    </div>
+    <div class="legal-footer-copy">
+      © 2025 JLPT Vocab Master · Always Free · Made with ❤️ for Japanese learners<br>
+      This site uses cookies and displays ads to keep it free.
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy</a>
+    </div>
+  </div>
+
 </div><!-- /#homeScreen -->
 
 <!-- ── MODE SCREEN (shown after tapping a level) ── -->
@@ -2952,6 +3331,12 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <!-- anime quote for this level -->
     <div class="ms-quote-box" id="msQuote"></div>
 
+    <!-- Beginner hint (shown in beginner-mode) -->
+    <div class="ms-beginner-hint" id="msBeginnerHint">
+      <div class="ms-beginner-hint-icon">💡</div>
+      <div><strong>New here?</strong> Start with <strong>Meaning Quiz</strong> — it's the best way to build vocabulary fast. Other modes unlock as you progress.</div>
+    </div>
+
     <!-- mode tiles -->
     <div class="ms-modes-lbl">Choose your study mode</div>
     <div class="ms-mode-grid">
@@ -2965,7 +3350,7 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
         <div class="ms-mode-name">Reading</div>
         <div class="ms-mode-hint">Kanji → furigana</div>
       </div>
-      <div class="ms-mode-card" data-mode="fill" onclick="pickMode(this)">
+      <div class="ms-mode-card" data-mode="fill" id="modeCardFill" onclick="handleModeCardClick(this,'fill')">
         <div class="ms-mode-icon">✏️</div>
         <div class="ms-mode-name">Type It</div>
         <div class="ms-mode-hint">Type the reading</div>
@@ -2975,14 +3360,14 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
         <div class="ms-mode-name">Flashcard</div>
         <div class="ms-mode-hint">Flip & self-grade</div>
       </div>
-      <div class="ms-mode-card pp-card" data-mode="pastpaper" onclick="pickMode(this)">
+      <div class="ms-mode-card pp-card" data-mode="pastpaper" id="modeCardPP" onclick="handleModeCardClick(this,'pastpaper')">
         <div class="ms-mode-icon">📜</div>
         <div>
           <div class="ms-mode-name">Past Paper</div>
           <div class="ms-mode-hint">Real JLPT exam questions</div>
         </div>
       </div>
-      <div class="ms-mode-card pp-card dokkai-card" data-mode="dokkai" onclick="pickMode(this)" id="dokkaiModeTile">
+      <div class="ms-mode-card pp-card dokkai-card" data-mode="dokkai" onclick="handleModeCardClick(this,'dokkai')" id="dokkaiModeTile">
         <div class="ms-mode-icon">📰</div>
         <div>
           <div class="ms-mode-name">読解 Dokkai</div>
@@ -2996,14 +3381,14 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
           <div class="ms-mode-hint" id="kanaModeHint">Hiragana &amp; Katakana speed recognition</div>
         </div>
       </div>
-      <div class="ms-mode-card pp-card shadow-mode-tile" data-mode="shadow" onclick="pickMode(this)" id="shadowModeTile">
+      <div class="ms-mode-card pp-card shadow-mode-tile" data-mode="shadow" onclick="handleModeCardClick(this,'shadow')" id="shadowModeTile">
         <div class="ms-mode-icon">🔊</div>
         <div>
           <div class="ms-mode-name">シャドウ Shadowing</div>
           <div class="ms-mode-hint">Read → reveal → self-grade your pronunciation</div>
         </div>
       </div>
-      <div class="ms-mode-card pp-card kaiwa-mode-tile" data-mode="kaiwa" onclick="pickMode(this)" id="kaiwaModeTile">
+      <div class="ms-mode-card pp-card kaiwa-mode-tile" data-mode="kaiwa" onclick="handleModeCardClick(this,'kaiwa')" id="kaiwaModeTile">
         <div class="ms-mode-icon">💬</div>
         <div>
           <div class="ms-mode-name">会話 Kaiwa</div>
@@ -3061,6 +3446,7 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
         <button class="ms-size-pill"        data-sz="all" onclick="pickSize(this,'all')">All</button>
       </div>
       <div class="ms-size-hint" id="msSizeHint"></div>
+      <div class="ms-size-time-hint" id="msTimeHint">⏱ About <span>~3 min</span> · Perfect for a study break</div>
     </div>
 
     <button class="ms-start-btn" onclick="startGame()">Start Session</button>
@@ -3170,6 +3556,19 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
       <button class="sc-btn sc-home" onclick="goHome()">🏠 Home</button>
       <button class="sc-btn sc-again" onclick="startGame()">Play Again</button>
       <button class="sc-btn" id="retryMissedBtn" onclick="retryMissedWords()" style="display:none;background:linear-gradient(135deg,#e67e22,#d35400);color:white;border-color:transparent;flex-basis:100%">🔁 Retry Missed Words</button>
+    </div>
+
+    <!-- Grammar tip card (shown contextually) -->
+    <div id="scoreGrammarTip" style="display:none;margin-top:14px;background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;animation:fadeUp .4s ease both">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">📖</span>
+        <div style="flex:1">
+          <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:2px">Study the grammar too?</div>
+          <div style="font-size:0.72rem;color:var(--stone);line-height:1.5">The <strong id="sgtLevel">N5</strong> Grammar Cheatsheet covers all the patterns that go with these words — particles, verb forms, and more.</div>
+        </div>
+        <button onclick="closeScoreGrammarTip()" style="background:none;border:none;color:var(--stone);cursor:pointer;font-size:1rem;padding:4px;flex-shrink:0">✕</button>
+      </div>
+      <button onclick="openGrammarFromScore()" style="width:100%;margin-top:10px;padding:10px;background:var(--gold-lt);border:1.5px solid rgba(212,172,13,0.4);border-radius:10px;font-family:'DM Serif Display',serif;font-size:0.9rem;color:var(--ink);cursor:pointer;transition:all .18s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--gold-lt)'">📖 Open Grammar Cheatsheet →</button>
     </div>
   </div>
 </div>
@@ -4915,6 +5314,10 @@ function pickLevel(lv) {
   }
 
   showScreen('modeScreen');
+  // Apply beginner mode locks after showing screen
+  applyBeginnerModeLocks();
+  // Set initial time hint
+  updateTimeHint(sessionSize || 10);
 }
 
 // ── MODE TILE CLICK ──
@@ -4932,12 +5335,64 @@ function pickMode(el) {
   if (kaiwaThemeSec) kaiwaThemeSec.style.display = currentMode === 'kaiwa' ? '' : 'none';
 }
 
+// Handle mode card clicks — respect beginner locks
+function handleModeCardClick(el, mode) {
+  const beMode = localStorage.getItem('jlpt_beginner_mode');
+  if (beMode && el.classList.contains('beginner-locked')) {
+    // Show a gentle unlock prompt
+    const p = getProgress();
+    const sessions = p.totalSessions || 0;
+    const needed = parseInt(el.dataset.unlockAt || '3', 10);
+    const remaining = Math.max(1, needed - sessions);
+    showAchievementToast({ icon: '🔒', name: 'Keep going!', desc: `Complete ${remaining} more session${remaining !== 1 ? 's' : ''} to unlock this mode` });
+    return;
+  }
+  pickMode(el);
+}
+
+// Apply beginner mode locks to mode cards
+function applyBeginnerModeLocks() {
+  const beMode = localStorage.getItem('jlpt_beginner_mode');
+  if (!beMode) return;
+  const p = getProgress();
+  const sessions = p.totalSessions || 0;
+  // Lock rules: unlock thresholds
+  const locks = {
+    'modeCardFill':   { after: 2, label: 'Unlocks after 2 sessions' },
+    'modeCardPP':     { after: 3, label: 'Unlocks after 3 sessions' },
+    'dokkaiModeTile': { after: 3, label: 'Unlocks after 3 sessions' },
+    'shadowModeTile': { after: 2, label: 'Unlocks after 2 sessions' },
+    'kaiwaModeTile':  { after: 2, label: 'Unlocks after 2 sessions' },
+  };
+  Object.entries(locks).forEach(([id, cfg]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (sessions < cfg.after) {
+      el.classList.add('beginner-locked');
+      el.dataset.lockLabel = cfg.label;
+      el.dataset.unlockAt = cfg.after;
+    } else {
+      el.classList.remove('beginner-locked');
+    }
+  });
+}
+
 // ── SESSION SIZE ──
 function pickSize(el, sz) {
   sessionSize = sz;
   document.querySelectorAll('.ms-size-pill').forEach(p=>p.classList.remove('active'));
   el.classList.add('active');
   updateMsSizeHint();
+  updateTimeHint(sz);
+}
+
+function updateTimeHint(sz) {
+  const el = document.getElementById('msTimeHint');
+  if (!el) return;
+  const timeMap = { 10: '~3 min · Perfect for a study break', 25: '~7 min · A solid session', 50: '~15 min · Deep practice', all: 'Full deck · Take your time' };
+  const key = sz === 'all' ? 'all' : sz;
+  const hint = timeMap[key] || '~3 min';
+  el.innerHTML = `⏱ <span>${hint}</span>`;
 }
 
 function updateMsSizeHint() {
@@ -4963,6 +5418,14 @@ function goHome() {
   _streakCount = 0;
   const dcHeader = document.getElementById('dcGameHeader');
   if (dcHeader) dcHeader.style.display = 'none';
+  // Auto-exit beginner mode after first session
+  const beMode = localStorage.getItem('jlpt_beginner_mode');
+  if (beMode) {
+    const p = getProgress();
+    if ((p.totalSessions || 0) >= 1) {
+      exitBeginnerMode();
+    }
+  }
   showScreen('homeScreen');
   initHomeUI();
   initDailyChallenge();
@@ -5555,6 +6018,9 @@ function endGame() {
 
   showScreen('scoreScreen');
   maybeShowEmail();
+  // Always reset grammar tip visibility at start of score render
+  const grammarTipReset = document.getElementById('scoreGrammarTip');
+  if (grammarTipReset) grammarTipReset.style.display = 'none';
   const pct = total > 0 ? correct/total : 0;
 
   // Check flawless achievement
@@ -5612,6 +6078,18 @@ function endGame() {
     retryBtn.style.display = missCount > 0 ? '' : 'none';
     if (missCount > 0) retryBtn.textContent = `🔁 Retry ${missCount} Missed Word${missCount !== 1 ? 's' : ''}`;
   }
+
+  // Show grammar tip card (after 1st session or if score < 80%)
+  const grammarTip = document.getElementById('scoreGrammarTip');
+  if (grammarTip) {
+    const hasSeen = localStorage.getItem('jlpt_score_grammar_dismissed');
+    const shouldShow = !hasSeen || pct < 0.8;
+    if (shouldShow && ['N5','N4','N3'].includes(currentLevel)) {
+      grammarTip.style.display = 'block';
+      const lvEl = document.getElementById('sgtLevel');
+      if (lvEl) lvEl.textContent = currentLevel;
+    }
+  }
 }
 
 // ─────────────────────────────────────────────
@@ -5635,6 +6113,13 @@ function showFeedback(good, msg) {
     shareBtn.onclick = () => shareWord(entry.k, entry.f, entry.m);
     fb.appendChild(document.createElement('br'));
     fb.appendChild(shareBtn);
+  }
+  // On wrong answers, nudge towards Origin story if it exists
+  if (!good && currentEntry && currentEntry.origin) {
+    const nudge = document.createElement('div');
+    nudge.style.cssText = 'margin-top:8px;font-size:0.75rem;color:var(--stone);display:flex;align-items:center;gap:6px';
+    nudge.innerHTML = `<span style="font-size:1rem">⛩️</span> <span>Tap <strong style="color:var(--ink)">⛩️ Origin</strong> to see the story behind this word — it'll stick in your memory!</span>`;
+    fb.appendChild(nudge);
   }
 }
 function shuffle(arr) {
@@ -8757,31 +9242,97 @@ function initDarkMode() {
   }
 }
 
-// ═══════════════════════════════════════════════════════
-// ONBOARDING
-// ═══════════════════════════════════════════════════════
-let _obSlide = 0;
-const _obTotal = 3;
+// ─────────────────────────────────────────────
+// BEGINNER MODE + ONBOARDING
+// ─────────────────────────────────────────────
+let _obSelectedLevel = null;
+
+function obGoSlide2() {
+  document.getElementById('obSlide1').style.display = 'none';
+  document.getElementById('obSlide2').style.display = 'block';
+}
+
+function obSelectLevel(level, btn) {
+  _obSelectedLevel = level;
+  document.querySelectorAll('.ob-level-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  const startBtn = document.getElementById('obStartBtn');
+  startBtn.style.opacity = '1';
+  startBtn.style.pointerEvents = 'auto';
+  startBtn.textContent = `Start ${level} →`;
+}
+
+function closeOnboardingWithLevel() {
+  const level = _obSelectedLevel || 'N5';
+  document.getElementById('onboardOverlay').classList.remove('show');
+  localStorage.setItem('jlpt_onboard_done', '1');
+  localStorage.setItem('jlpt_chosen_level', level);
+  // Activate beginner mode for N5 and N4 users, or any first-time user
+  const isBeginnerLevel = level === 'N5' || level === 'N4';
+  if (isBeginnerLevel) {
+    localStorage.setItem('jlpt_beginner_mode', '1');
+    document.body.classList.add('beginner-mode');
+  }
+  applyBeginnerBanner(level);
+}
+
+function applyBeginnerBanner(level) {
+  const banner = document.getElementById('beginnerBanner');
+  if (!banner) return;
+  const levelNames = { N5: 'Genin', N4: 'Chunin', N3: 'Jonin', N2: 'ANBU', N1: 'Kage' };
+  const recMap = { N5: 'N5', N4: 'N4', N3: 'N3', N2: 'N2', N1: 'N1' };
+  const name = levelNames[level] || 'Learner';
+  document.getElementById('bbLevelName').textContent = name;
+  document.getElementById('bbLevelBadge').textContent = level;
+  const recEl = document.getElementById('bbRecLevel');
+  if (recEl) recEl.textContent = level;
+  const startBtn = document.getElementById('bbStartBtn');
+  if (startBtn) {
+    startBtn.textContent = `Start ${level} Quiz →`;
+    startBtn.onclick = () => pickLevel(level);
+  }
+  // Highlight the recommended level tile
+  document.querySelectorAll('.lp-tile').forEach(t => t.classList.remove('recommended-level'));
+  const tile = document.getElementById('lpTile-' + level);
+  if (tile) tile.classList.add('recommended-level');
+}
+
+function exitBeginnerMode() {
+  document.body.classList.remove('beginner-mode');
+  localStorage.removeItem('jlpt_beginner_mode');
+}
 
 function initOnboarding() {
   const seen = localStorage.getItem('jlpt_onboard_done');
   if (!seen) {
     document.getElementById('onboardOverlay').classList.add('show');
+    return;
   }
-}
-
-function onboardNext() {
-  _obSlide++;
-  if (_obSlide >= _obTotal) { closeOnboarding(); return; }
-  document.getElementById('onboardSlides').style.transform = `translateX(-${_obSlide * 100}%)`;
+  // Returning user — check if they should still be in beginner mode
+  const beMode = localStorage.getItem('jlpt_beginner_mode');
+  if (beMode) {
+    const p = getProgress();
+    if ((p.totalSessions || 0) >= 1) {
+      // Graduated — silently exit beginner mode, don't apply it at all
+      exitBeginnerMode();
+    } else {
+      // Still a beginner — apply the mode and banner
+      document.body.classList.add('beginner-mode');
+      const chosenLevel = localStorage.getItem('jlpt_chosen_level') || 'N5';
+      applyBeginnerBanner(chosenLevel);
+    }
+  }
 }
 
 function closeOnboarding() {
   document.getElementById('onboardOverlay').classList.remove('show');
   localStorage.setItem('jlpt_onboard_done', '1');
-  _obSlide = 0;
-  document.getElementById('onboardSlides').style.transform = 'translateX(0)';
 }
+
+function onboardNext() {
+  obGoSlide2();
+}
+
 
 // ═══════════════════════════════════════════════════════
 // STATS DASHBOARD
@@ -9249,6 +9800,8 @@ function endDailyChallenge() {
   setTimeout(() => checkRankUp(oldXp, p.totalXP), 800);
 
   showScreen('scoreScreen');
+  const grammarTipDC = document.getElementById('scoreGrammarTip');
+  if (grammarTipDC) grammarTipDC.style.display = 'none';
 
   const correct = results.filter(Boolean).length;
   const total = results.length;
@@ -10002,6 +10555,19 @@ function openGrammar() {
   document.getElementById('grammarOverlay').scrollTop = 0;
 }
 
+function openGrammarFromScore() {
+  localStorage.setItem('jlpt_score_grammar_dismissed', '1');
+  const tip = document.getElementById('scoreGrammarTip');
+  if (tip) tip.style.display = 'none';
+  openGrammar();
+}
+
+function closeScoreGrammarTip() {
+  localStorage.setItem('jlpt_score_grammar_dismissed', '1');
+  const tip = document.getElementById('scoreGrammarTip');
+  if (tip) tip.style.display = 'none';
+}
+
 function closeGrammar() {
   document.getElementById('grammarOverlay').classList.remove('open');
 }
@@ -10227,6 +10793,267 @@ setTimeout(initOnboarding, 400);
     </div>
   </div>
 </div>
+<!-- ══════════════════════════════════════════
+     COOKIE CONSENT BANNER
+══════════════════════════════════════════ -->
+<div class="cookie-banner" id="cookieBanner" style="display:none">
+  <div class="cookie-text">
+    <strong>🍪 We use cookies</strong> to personalise content, show relevant ads, and remember your study progress.
+    By clicking <strong>Accept</strong> you consent to our use of cookies and Google AdSense ads.
+    <a onclick="openLegal('cookies')">Cookie Policy</a> · <a onclick="openLegal('privacy')">Privacy Policy</a>
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-btn-decline" onclick="declineCookies()">Decline</button>
+    <button class="cookie-btn-accept" onclick="acceptCookies()">Accept All</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PRIVACY / TERMS / COOKIES MODAL
+══════════════════════════════════════════ -->
+<div class="legal-overlay" id="legalOverlay" onclick="if(event.target===this)closeLegal()">
+  <div class="legal-box">
+    <div class="legal-header">
+      <div>
+        <div class="legal-header-title" id="legalTitle">Privacy Policy</div>
+        <div class="legal-header-sub" id="legalSub">Last updated June 2025</div>
+      </div>
+      <button class="legal-close-btn" onclick="closeLegal()">✕ Close</button>
+    </div>
+    <div class="legal-tabs" id="legalTabs">
+      <button class="legal-tab active" onclick="switchLegalTab('privacy',this)">Privacy</button>
+      <button class="legal-tab" onclick="switchLegalTab('terms',this)">Terms</button>
+      <button class="legal-tab" onclick="switchLegalTab('cookies',this)">Cookies</button>
+    </div>
+    <div class="legal-body" id="legalBody"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// LEGAL CONTENT
+// ══════════════════════════════════════════
+const LEGAL_CONTENT = {
+  privacy: {
+    title: 'Privacy Policy',
+    sub: 'Last updated June 2025',
+    html: `
+      <h3>1. Who We Are</h3>
+      <p>JLPT Vocab Master ("we", "us", "our") is a free Japanese vocabulary learning tool available at <strong>jlptvocabmaster.github.io</strong>. We are committed to protecting your privacy.</p>
+
+      <h3>2. Information We Collect</h3>
+      <p>We collect the following types of information:</p>
+      <ul>
+        <li><strong>Local storage data</strong> — Your study progress, XP, streaks, and preferences are stored entirely in your browser's localStorage. This data never leaves your device and is not transmitted to us.</li>
+        <li><strong>Usage data via Google AdSense</strong> — Our advertising partner Google may collect information about your visits, including IP address, browser type, pages visited, and time spent. This helps serve relevant advertisements.</li>
+        <li><strong>Analytics</strong> — We may use anonymised analytics to understand how the app is used (e.g. page views, session duration). No personally identifiable information is collected.</li>
+      </ul>
+
+      <h3>3. How We Use Your Information</h3>
+      <ul>
+        <li>To display personalised or contextual advertisements via Google AdSense</li>
+        <li>To improve the app's features and user experience</li>
+        <li>To maintain your study progress locally on your device</li>
+      </ul>
+
+      <h3>4. Google AdSense & Third-Party Advertising</h3>
+      <p>We use <strong>Google AdSense</strong> (publisher ID: ca-pub-6025762973104448) to display ads. Google and its partners may use cookies and web beacons to serve ads based on your prior visits to this website or other websites. You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</p>
+      <p>Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site. For more details, see <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google's Advertising Policies</a>.</p>
+
+      <h3>5. Cookies</h3>
+      <p>We use cookies as described in our Cookie Policy. You can manage cookie preferences using our consent banner or your browser settings.</p>
+
+      <h3>6. Data Retention</h3>
+      <p>All study progress data is stored locally in your browser. You can clear it at any time by clearing your browser's localStorage or site data. We do not store personal data on our servers.</p>
+
+      <h3>7. Your Rights</h3>
+      <p>Depending on your location, you may have rights including access, correction, deletion, and data portability. Since we don't collect personal data on our servers, most requests can be fulfilled by clearing your browser data. For advertising data, contact <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google</a>.</p>
+
+      <h3>8. Children's Privacy</h3>
+      <p>This app is designed for language learners of all ages. We do not knowingly collect personal information from children under 13. If you believe a child has provided personal information, please contact us.</p>
+
+      <h3>9. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date.</p>
+
+      <h3>10. Contact</h3>
+      <p>For privacy questions, please use the feedback option within the app or contact us via our GitHub page.</p>
+      <div class="legal-updated">Last updated: June 2025 · Version 1.0</div>
+    `
+  },
+  terms: {
+    title: 'Terms of Use',
+    sub: 'Please read before using the app',
+    html: `
+      <h3>1. Acceptance of Terms</h3>
+      <p>By using JLPT Vocab Master, you agree to these Terms of Use. If you do not agree, please do not use the app.</p>
+
+      <h3>2. Use of the App</h3>
+      <p>JLPT Vocab Master is provided <strong>free of charge</strong> for personal, non-commercial educational use. You may:</p>
+      <ul>
+        <li>Use the app to study Japanese vocabulary for personal learning</li>
+        <li>Share the app link with friends and fellow learners</li>
+      </ul>
+      <p>You may not:</p>
+      <ul>
+        <li>Reproduce, distribute, or sell the app's content commercially</li>
+        <li>Attempt to reverse-engineer, scrape, or copy the vocabulary data at scale</li>
+        <li>Use automated tools to interact with the app</li>
+        <li>Remove or obscure any copyright notices</li>
+      </ul>
+
+      <h3>3. Intellectual Property</h3>
+      <p>The app's design, code, and original content are owned by JLPT Vocab Master. Vocabulary definitions and JLPT level classifications are based on publicly available Japanese language learning standards. Anime quotes are used for educational and motivational purposes under fair use principles.</p>
+
+      <h3>4. Advertisements</h3>
+      <p>This app displays advertisements via Google AdSense to remain free. By using the app you acknowledge and agree to the presence of advertisements. Ad preferences can be managed via your Google account or our Cookie/Ad Preferences settings.</p>
+
+      <h3>5. Disclaimers</h3>
+      <p>JLPT Vocab Master is an <strong>unofficial study aid</strong> and is not affiliated with, endorsed by, or connected to the Japan Foundation or any official JLPT body. Passing the JLPT requires comprehensive study beyond vocabulary alone.</p>
+      <p>The app is provided "as is" without any warranty. We do not guarantee the accuracy of all vocabulary entries or that use of the app will result in passing any examination.</p>
+
+      <h3>6. Limitation of Liability</h3>
+      <p>To the extent permitted by law, we shall not be liable for any indirect, incidental, or consequential damages arising from your use of the app.</p>
+
+      <h3>7. Changes to Terms</h3>
+      <p>We reserve the right to update these terms at any time. Continued use of the app after changes constitutes acceptance of the new terms.</p>
+
+      <div class="legal-updated">Last updated: June 2025 · Version 1.0</div>
+    `
+  },
+  cookies: {
+    title: 'Cookie Policy',
+    sub: 'How we use cookies and similar technologies',
+    html: `
+      <h3>1. What Are Cookies?</h3>
+      <p>Cookies are small text files stored on your device by your browser. They help websites remember your preferences and enable certain features. We also use localStorage, which is similar but stored differently.</p>
+
+      <h3>2. Cookies We Use</h3>
+      <p><strong>Essential (localStorage):</strong> These are required for the app to function. They store your study progress, XP, streaks, level preferences, and settings. These are never sent to any server.</p>
+      <ul>
+        <li><code>jlpt_progress</code> — Your XP, streak, and level progress</li>
+        <li><code>jlpt_onboard_done</code> — Whether you've completed onboarding</li>
+        <li><code>jlpt_chosen_level</code> — Your preferred study level</li>
+        <li><code>jlpt_beginner_mode</code> — Beginner mode state</li>
+        <li><code>jlpt_hide_romaji</code> — Romaji display preference</li>
+        <li><code>jlpt_dark_mode</code> — Dark mode preference</li>
+        <li><code>jlpt_word_accuracy</code> — Per-word accuracy tracking</li>
+        <li><code>jlpt_weekly</code> — Weekly activity data</li>
+        <li><code>jlpt_daily_challenge</code> — Daily challenge progress</li>
+        <li><code>jlpt_cookie_consent</code> — Your cookie consent choice</li>
+      </ul>
+      <p><strong>Advertising Cookies (Google AdSense):</strong> Google AdSense sets cookies to serve relevant ads. These may include:</p>
+      <ul>
+        <li>Cookies to measure ad performance and prevent fraud</li>
+        <li>Cookies for personalised advertising based on your interests (if consented)</li>
+        <li>Third-party cookies from Google's advertising partners</li>
+      </ul>
+
+      <h3>3. Managing Cookies</h3>
+      <p>You can manage your preferences at any time:</p>
+      <ul>
+        <li><strong>Browser settings</strong> — Most browsers allow you to block or delete cookies</li>
+        <li><strong>Google Ad Settings</strong> — <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Opt out of personalised ads</a></li>
+        <li><strong>NAI opt-out</strong> — <a href="https://optout.networkadvertising.org" target="_blank" rel="noopener">Network Advertising Initiative</a></li>
+        <li><strong>Study data</strong> — Clear your progress by clearing this site's localStorage in your browser settings</li>
+      </ul>
+      <p>Declining cookies will hide personalised ads but the app will still show non-personalised ads to support free access.</p>
+
+      <h3>4. Third-Party Links</h3>
+      <p>Our app contains links to external sites (e.g. JLPT exam centers). We are not responsible for the cookie practices of third-party websites.</p>
+
+      <h3>5. Updates</h3>
+      <p>We may update this Cookie Policy as our use of cookies changes. The latest version is always available in the app footer.</p>
+
+      <div class="legal-updated">Last updated: June 2025 · Version 1.0</div>
+    `
+  }
+};
+
+// ══════════════════════════════════════════
+// COOKIE CONSENT LOGIC
+// ══════════════════════════════════════════
+function initCookieConsent() {
+  const consent = localStorage.getItem('jlpt_cookie_consent');
+  if (!consent) {
+    // Show banner after a short delay so it doesn't fight page load
+    setTimeout(() => {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) banner.style.display = 'flex';
+    }, 1200);
+  } else if (consent === 'accepted') {
+    pushAdSense();
+  }
+}
+
+function acceptCookies() {
+  localStorage.setItem('jlpt_cookie_consent', 'accepted');
+  hideCookieBanner();
+  pushAdSense();
+}
+
+function declineCookies() {
+  localStorage.setItem('jlpt_cookie_consent', 'declined');
+  hideCookieBanner();
+  // Hide ad unit if declined
+  const adUnit = document.getElementById('homeAdUnit');
+  if (adUnit) adUnit.style.display = 'none';
+}
+
+function hideCookieBanner() {
+  const banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+  banner.classList.add('hide');
+  setTimeout(() => { banner.style.display = 'none'; banner.classList.remove('hide'); }, 320);
+}
+
+function pushAdSense() {
+  // Push AdSense ad after consent
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch(e) {}
+}
+
+function openCookieSettings() {
+  // Re-show the cookie banner to let user change preference
+  localStorage.removeItem('jlpt_cookie_consent');
+  const banner = document.getElementById('cookieBanner');
+  if (banner) { banner.style.display = 'flex'; }
+}
+
+// ══════════════════════════════════════════
+// LEGAL MODAL LOGIC
+// ══════════════════════════════════════════
+function openLegal(tab) {
+  tab = tab || 'privacy';
+  renderLegalTab(tab);
+  // Highlight correct tab button
+  document.querySelectorAll('.legal-tab').forEach(t => {
+    t.classList.toggle('active', t.getAttribute('onclick').includes("'" + tab + "'"));
+  });
+  document.getElementById('legalOverlay').classList.add('open');
+}
+
+function closeLegal() {
+  document.getElementById('legalOverlay').classList.remove('open');
+}
+
+function switchLegalTab(tab, btn) {
+  document.querySelectorAll('.legal-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderLegalTab(tab);
+}
+
+function renderLegalTab(tab) {
+  const content = LEGAL_CONTENT[tab];
+  if (!content) return;
+  document.getElementById('legalTitle').textContent = content.title;
+  document.getElementById('legalSub').textContent   = content.sub;
+  document.getElementById('legalBody').innerHTML    = content.html;
+}
+
+// Init on page load
+initCookieConsent();
+</script>
 
 </body>
 </html>
