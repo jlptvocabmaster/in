@@ -15,12 +15,6 @@
 <meta name="twitter:description" content="Learn Japanese the anime way. Free forever — quiz, flashcards, N5 to N1.">
 <meta name="twitter:image" content="https://placehold.co/1200x630/1a1a2e/c0392b?text=%E6%97%A5%E6%9C%AC%E8%AA%9E+JLPT+Vocab+Master">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6025762973104448" crossorigin="anonymous"></script>
-<!-- Privacy / legal meta -->
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://jlptvocabmaster.github.io/jlpt-vocab-master/">
-<meta name="theme-color" content="#1a1a2e">
 <style>
 :root {
   --crimson: #c0392b;
@@ -171,158 +165,6 @@ body.beginner-mode .beginner-footer-hint { display: block; }
 /* Hide advanced footer in beginner mode */
 body.beginner-mode .home-footer { display: none !important; }
 
-/* ══════════════════════════════════════════
-   COOKIE CONSENT BANNER
-══════════════════════════════════════════ */
-.cookie-banner {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
-  background: var(--ink); color: #e8e4dc;
-  padding: 16px 20px; display: flex; align-items: center;
-  gap: 14px; flex-wrap: wrap;
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.35);
-  animation: slideUpIn .4s cubic-bezier(.4,0,.2,1) both;
-  border-top: 2px solid rgba(212,172,13,0.3);
-}
-@keyframes slideUpIn {
-  from { transform: translateY(100%); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
-}
-.cookie-banner.hide {
-  animation: slideDownOut .3s ease forwards;
-}
-@keyframes slideDownOut {
-  to { transform: translateY(110%); opacity: 0; }
-}
-.cookie-text {
-  flex: 1; font-size: 0.78rem; line-height: 1.6; min-width: 220px;
-  color: #c8c4bc;
-}
-.cookie-text a { color: var(--gold); text-decoration: underline; cursor: pointer; }
-.cookie-text strong { color: white; }
-.cookie-btns { display: flex; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
-.cookie-btn-accept {
-  padding: 9px 20px; background: var(--gold); border: none;
-  border-radius: 10px; font-family: 'DM Serif Display', serif;
-  font-size: 0.88rem; font-weight: 700; color: var(--ink);
-  cursor: pointer; transition: transform .18s, box-shadow .18s;
-  white-space: nowrap;
-}
-.cookie-btn-accept:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(212,172,13,0.4); }
-.cookie-btn-decline {
-  padding: 9px 16px; background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  border-radius: 10px; font-size: 0.8rem; color: #94a3b8;
-  cursor: pointer; transition: border-color .18s, color .18s; white-space: nowrap;
-}
-.cookie-btn-decline:hover { border-color: rgba(255,255,255,0.4); color: white; }
-
-/* ══════════════════════════════════════════
-   PRIVACY POLICY / TERMS MODAL
-══════════════════════════════════════════ */
-.legal-overlay {
-  display: none; position: fixed; inset: 0; z-index: 99998;
-  background: rgba(26,26,46,.7); backdrop-filter: blur(4px);
-  align-items: flex-start; justify-content: center;
-  padding: 20px; overflow-y: auto;
-}
-.legal-overlay.open { display: flex; }
-.legal-box {
-  background: var(--paper); border-radius: 20px;
-  max-width: 600px; width: 100%; margin: auto;
-  overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,.35);
-  animation: fadeUp .3s ease both;
-}
-.legal-header {
-  background: linear-gradient(135deg, var(--ink), #2c3e50);
-  padding: 20px 22px; display: flex; align-items: center;
-  justify-content: space-between; position: relative; overflow: hidden;
-}
-.legal-header::before {
-  content: '法'; position: absolute; right: -5px; top: -10px;
-  font-family: 'Noto Serif JP', serif; font-size: 6rem;
-  color: rgba(255,255,255,0.04); pointer-events: none; line-height: 1;
-}
-.legal-header-title {
-  font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: white;
-}
-.legal-header-sub { font-size: 0.68rem; color: #94a3b8; margin-top: 3px; }
-.legal-close-btn {
-  background: rgba(255,255,255,.1); border: none; border-radius: 10px;
-  padding: 8px 14px; color: white; cursor: pointer; font-size: 0.82rem;
-  font-weight: 700; transition: background .18s; flex-shrink: 0;
-}
-.legal-close-btn:hover { background: rgba(255,255,255,.2); }
-.legal-tabs {
-  display: flex; border-bottom: 1.5px solid var(--border);
-  background: var(--white);
-}
-.legal-tab {
-  flex: 1; padding: 12px 8px; font-size: 0.78rem; font-weight: 700;
-  color: var(--stone); background: none; border: none;
-  cursor: pointer; transition: color .18s, border-bottom .18s;
-  border-bottom: 2.5px solid transparent; margin-bottom: -1.5px;
-}
-.legal-tab.active { color: var(--crimson); border-bottom-color: var(--crimson); }
-.legal-tab:hover:not(.active) { color: var(--ink); }
-.legal-body {
-  padding: 22px; max-height: 65vh; overflow-y: auto;
-  font-size: 0.82rem; color: var(--stone); line-height: 1.8;
-}
-.legal-body h3 {
-  font-family: 'DM Serif Display', serif; font-size: 1rem;
-  color: var(--ink); margin: 18px 0 6px; padding-bottom: 4px;
-  border-bottom: 1px solid var(--border);
-}
-.legal-body h3:first-child { margin-top: 0; }
-.legal-body p { margin-bottom: 10px; }
-.legal-body ul { padding-left: 18px; margin-bottom: 10px; }
-.legal-body ul li { margin-bottom: 4px; }
-.legal-body a { color: var(--crimson); }
-.legal-body strong { color: var(--ink); }
-.legal-body .legal-updated {
-  font-size: 0.7rem; color: var(--stone); text-align: right;
-  margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);
-}
-
-/* ══════════════════════════════════════════
-   AD UNIT — HOME SCREEN BANNER
-══════════════════════════════════════════ */
-.ad-unit-wrap {
-  margin: 16px 0; border-radius: 12px; overflow: hidden;
-  border: 1px solid var(--border); background: var(--white);
-  min-height: 90px; display: flex; align-items: center;
-  justify-content: center; position: relative;
-}
-.ad-unit-label {
-  position: absolute; top: 4px; right: 8px;
-  font-size: 0.55rem; color: var(--stone); letter-spacing: 1px;
-  text-transform: uppercase; pointer-events: none;
-}
-
-/* ══════════════════════════════════════════
-   LEGAL FOOTER
-══════════════════════════════════════════ */
-.legal-footer {
-  text-align: center; padding: 20px 0 32px;
-  border-top: 1px solid var(--border); margin-top: 24px;
-}
-.legal-footer-links {
-  display: flex; align-items: center; justify-content: center;
-  gap: 6px; flex-wrap: wrap; margin-bottom: 8px;
-}
-.legal-footer-link {
-  font-size: 0.7rem; color: var(--stone); background: none;
-  border: none; cursor: pointer; padding: 3px 6px;
-  text-decoration: underline; transition: color .18s;
-}
-.legal-footer-link:hover { color: var(--crimson); }
-.legal-footer-sep {
-  font-size: 0.7rem; color: var(--border);
-}
-.legal-footer-copy {
-  font-size: 0.65rem; color: var(--stone); line-height: 1.6;
-}
-.legal-footer-copy a { color: var(--stone); text-decoration: underline; }
 
 /* ── MODE SCREEN BEGINNER LOCKS ── */
 .ms-mode-card.beginner-locked {
@@ -3283,34 +3125,6 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <button onclick="openPayModal()" style="background:none;border:1.5px solid var(--border);border-radius:99px;padding:9px 20px;font-size:0.78rem;font-weight:700;color:var(--stone);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--stone)'">🥋 Support Sensei · ₹99</button>
   </div>
 
-  <!-- Ad unit — shown between content and footer -->
-  <div class="ad-unit-wrap" id="homeAdUnit">
-    <span class="ad-unit-label">Advertisement</span>
-    <ins class="adsbygoogle"
-         style="display:block;width:100%;min-height:90px"
-         data-ad-client="ca-pub-6025762973104448"
-         data-ad-slot="auto"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-  </div>
-
-  <!-- Legal footer -->
-  <div class="legal-footer home-footer">
-    <div class="legal-footer-links">
-      <button class="legal-footer-link" onclick="openLegal('privacy')">Privacy Policy</button>
-      <span class="legal-footer-sep">·</span>
-      <button class="legal-footer-link" onclick="openLegal('terms')">Terms of Use</button>
-      <span class="legal-footer-sep">·</span>
-      <button class="legal-footer-link" onclick="openLegal('cookies')">Cookie Policy</button>
-      <span class="legal-footer-sep">·</span>
-      <button class="legal-footer-link" onclick="openCookieSettings()">Ad Preferences</button>
-    </div>
-    <div class="legal-footer-copy">
-      © 2025 JLPT Vocab Master · Always Free · Made with ❤️ for Japanese learners<br>
-      This site uses cookies and displays ads to keep it free.
-      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy</a>
-    </div>
-  </div>
 
 </div><!-- /#homeScreen -->
 
@@ -4262,7 +4076,6 @@ const vocab = {
     { k:'変える', f:'かえる', r:'kaeru', m:'to change something', pos:'verb (ru)' },
     { k:'決める', f:'きめる', r:'kimeru', m:'to decide', pos:'verb (ru)' },
     { k:'続ける', f:'つづける', r:'tsuzukeru', m:'to continue', pos:'verb (ru)' },
-    { k:'伝える', f:'つたえる', r:'tsutaeru', m:'to convey / tell', pos:'verb (ru)' },
     { k:'教える', f:'おしえる', r:'oshieru', m:'to teach / tell', pos:'verb (ru)' },
     { k:'尋ねる', f:'たずねる', r:'tazuneru', m:'to ask / visit', pos:'verb (ru)' },
     { k:'答える', f:'こたえる', r:'kotaeru', m:'to answer', pos:'verb (ru)' },
@@ -4275,10 +4088,6 @@ const vocab = {
     { k:'準備', f:'じゅんび', r:'junbi', m:'preparation', pos:'noun',
       origin:{ pictograph:'準 (standard/level) + 備 (prepare/equip). Levelled preparation — setting things to the right standard before starting. Equipping to the right level = PREPARATION.', radicals:[{k:'準',m:'standard/level'},{k:'備',m:'prepare/equip'}], literal:'Bringing everything to the right level — preparation 📋', hook:'JUNBI — "JUN-bee! JUNE BEE prepares her hive!" じゅんび!', related:['用意','支度','計画'] }},
     { k:'機会', f:'きかい', r:'kikai', m:'opportunity / chance', pos:'noun' },
-    { k:'目的', f:'もくてき', r:'mokuteki', m:'purpose / goal', pos:'noun' },
-    { k:'理由', f:'りゆう', r:'riyuu', m:'reason / cause', pos:'noun',
-      origin:{ pictograph:'理 (reason/logic) + 由 (origin/cause). The logical origin of a thing — 理 = jade (王) + village (里) = organizing principle. 由 = a container with something springing from it. The springing logical origin = REASON, CAUSE.', radicals:[{k:'理',m:'reason/logic'},{k:'由',m:'origin/cause'}], literal:'The logical origin from which something springs — reason 🤔', hook:'RIYUU — "REE-yoo! The REASON (riyuu) is YOU!" りゆう!', related:['原因','理解','なぜ'] }},
-    { k:'結果', f:'けっか', r:'kekka', m:'result / outcome', pos:'noun' },
     { k:'方法', f:'ほうほう', r:'houhou', m:'method / way', pos:'noun' },
     { k:'問題', f:'もんだい', r:'mondai', m:'problem / question', pos:'noun',
       origin:{ pictograph:'問 (question/ask) + 題 (topic/title). A titled question — the topic that has been presented as a formal question. A question set as a topic = PROBLEM, QUESTION.', radicals:[{k:'問',m:'question'},{k:'題',m:'topic/title'}], literal:'A question presented as a formal topic — a problem ❗', hook:'MONDAI — "MON-dai! MONDAY problems are mondai!" もんだい!', related:['質問','答え','困る'] }},
@@ -4297,8 +4106,6 @@ const vocab = {
       origin:{ pictograph:'失 (lose/miss) + 敗 (defeat/fail). Losing and being defeated — 失 = a hand losing something (一 slipping from 手). 敗 = shell (貝) being struck (攴) = something valuable destroyed. Losing something valuable = FAILURE.', radicals:[{k:'手',m:'hand'},{k:'貝',m:'shell/valuable'},{k:'攴',m:'strike'}], literal:'Losing something valuable through a blow — failure 💔', hook:'SHIPPAI — "SHIP-pie! The ship SANK — failure (shippai)!" しっぱい!', related:['成功','挫折','反省'] }},
     { k:'夢', f:'ゆめ', r:'yume', m:'dream', pos:'noun' },
     { k:'希望', f:'きぼう', r:'kibou', m:'hope / wish', pos:'noun' },
-    { k:'関係', f:'かんけい', r:'kankei', m:'relationship', pos:'noun',
-      origin:{ pictograph:'関 (barrier/gate/relate) + 係 (connection/tie). A connection at the gate — 関 = a gate with a bar across it. 係 = a person (亻) tying threads (糸). A person tying through the gate = RELATIONSHIP.', radicals:[{k:'関',m:'gate/relate'},{k:'亻',m:'person'},{k:'糸',m:'thread'}], literal:'Threads tied through the gate connecting two sides — relationship 🔗', hook:'KANKEI — "KAN-kee! CONNECT the KEY — kankei!" かんけい!', related:['関連','繋がり','縁'] }},
     { k:'友情', f:'ゆうじょう', r:'yuujou', m:'friendship', pos:'noun' },
     { k:'愛', f:'あい', r:'ai', m:'love', pos:'noun' },
     { k:'言語', f:'げんご', r:'gengo', m:'language', pos:'noun' },
@@ -4313,8 +4120,6 @@ const vocab = {
     { k:'温度', f:'おんど', r:'ondo', m:'temperature', pos:'noun' },
     { k:'湿度', f:'しつど', r:'shitsudo', m:'humidity', pos:'noun' },
     { k:'天候', f:'てんこう', r:'tenkou', m:'weather conditions', pos:'noun' },
-    { k:'台風', f:'たいふう', r:'taifuu', m:'typhoon', pos:'noun',
-      origin:{ pictograph:'台 (platform/base) + 風 (wind). A wind that builds on itself — 風 shows a sail catching wind over an insect (the spinning feeling). A mounding wind = TYPHOON.', radicals:[{k:'台',m:'platform/base'},{k:'風',m:'wind'}], literal:'A mounting, spinning wind — a typhoon 🌀', hook:'TAIFUU — "TI-foo! TY-phoon goes FOO!" たいふう!', related:['地震','嵐','天気'] }},
     { k:'地震', f:'じしん', r:'jishin', m:'earthquake', pos:'noun',
       origin:{ pictograph:'地 (earth) + 震 (shake/tremble). The earth shaking — 震 shows rain (雨) + rising (辰) suggesting violent upheaval from below. Earth shaking = EARTHQUAKE.', radicals:[{k:'地',m:'earth'},{k:'震',m:'shake/tremble'}], literal:'The earth trembling violently — an earthquake 🌋', hook:'JISHIN — "JEE-shin! JEE-sus! The ground SHAKES!" じしん!', related:['台風','津波','自然'] }},
     { k:'洪水', f:'こうずい', r:'kouzui', m:'flood', pos:'noun' },
@@ -4362,7 +4167,6 @@ const vocab = {
     { k:'切り取る', f:'きりとる', r:'kiritoru', m:'to cut out', pos:'verb (u)' },
     { k:'完成する', f:'かんせいする', r:'kanseisuru', m:'to complete / finish', pos:'verb (suru)' },
     { k:'申し込む', f:'もうしこむ', r:'moushikomu', m:'to apply / register', pos:'verb (u)' },
-    { k:'断る', f:'ことわる', r:'kotowaru', m:'to refuse / decline', pos:'verb (u)' },
     { k:'許す', f:'ゆるす', r:'yurusu', m:'to forgive / permit', pos:'verb (u)' }
   ],
   N3: [
@@ -4826,36 +4630,20 @@ Object.values(vocab).forEach(arr => arr.forEach(w => { if (!w.origin) w.origin =
 
 // Add more N4 words — all with full rich origin data
 const extraN4 = [
-  { k:'音楽', f:'おんがく', r:'ongaku', m:'music', pos:'noun',
-    origin:{ pictograph:'音 shows a mouth (口) with a sound wave line coming out — sound itself! 楽 shows strings stretched over a frame (木) — a stringed instrument being played. Sound + instrument = music!', radicals:[{k:'音',m:'sound'},{k:'楽',m:'music/pleasure'}], literal:'Sound waves + a stringed instrument = Music flowing through the air 🎵', hook:'ON-GA-KU: "Oh! Nice! Cool!" — that\'s what you say when you hear great music! おんがく!', related:['歌','楽器','演奏'] }},
-  { k:'映画', f:'えいが', r:'eiga', m:'movie', pos:'noun',
-    origin:{ pictograph:'映 shows the sun (日) projecting light (央) outward — like a projector beam! 画 shows a field (田) divided by lines — a frame, a picture. Light projected into frames = movie!', radicals:[{k:'日',m:'sun/light'},{k:'画',m:'picture/frame'}], literal:'Projected light + framed pictures = cinema magic 🎬', hook:'EI-GA: "Hey! GAH!" — you say "Hey! Gah!" when a plot twist hits in a movie! えいが!', related:['映画館','俳優','監督'] }},
   { k:'仕事', f:'しごと', r:'shigoto', m:'work / job', pos:'noun',
     origin:{ pictograph:'仕 shows a person (人) serving — originally "to serve a master." 事 shows a hand holding a writing brush (史) — recording things, doing official business. Serving + doing official things = work!', radicals:[{k:'人',m:'person'},{k:'事',m:'matter/thing'}], literal:'A servant diligently recording work = your job! 💼', hook:'SHI-GO-TO: "She goes to" work every day — SHI-GO-TO! しごと!', related:['働く','職業','会社'] }},
-  { k:'準備', f:'じゅんび', r:'junbi', m:'preparation', pos:'noun',
-    origin:{ pictograph:'準 shows water (氵) flowing level (隼) — getting everything level and ready. 備 shows a person (人) with arrows (備) stored ready to use — being armed and prepared!', radicals:[{k:'氵',m:'water'},{k:'人',m:'person'},{k:'矢',m:'arrow'}], literal:'Levelling the water + storing arrows = fully prepared! 🏹', hook:'JUN-BI: "JUNE BE ready!" — prepare in June for summer! じゅんび!', related:['用意','準備する','計画'] }},
   { k:'遊ぶ', f:'あそぶ', r:'asobu', m:'to play / hang out', pos:'verb (u)',
     origin:{ pictograph:'遊 shows movement (辶) with a flag and child (斿) — a child wandering freely with a flag, like playing outside! The freedom of movement = to play!', radicals:[{k:'辶',m:'movement'},{k:'子',m:'child'}], literal:'A child freely roaming and waving a flag = playing! 🎈', hook:'A-SO-BU: "Ah! So BOOM!" — you shout "AH SO!" when you find someone to play with! あそぶ!', related:['楽しむ','ゲーム','遊園地'] }},
   { k:'働く', f:'はたらく', r:'hataraku', m:'to work', pos:'verb (u)',
     origin:{ pictograph:'働 is a Japanese-made kanji (和製漢字)! It combines person (人) + move (動) — a person in motion, actively doing something. A moving person = working!', radicals:[{k:'人',m:'person'},{k:'動',m:'move/motion'}], literal:'A person constantly in motion = working hard! ⚙️', hook:'HA-TA-RA-KU: "HIT-A-ROCK-OO!" — you hit a rock while working hard! はたらく!', related:['仕事','労働','勤める'] }},
-  { k:'教える', f:'おしえる', r:'oshieru', m:'to teach / tell', pos:'verb (ru)',
-    origin:{ pictograph:'教 shows an elder (孝) with a stick/rod (攵) — an elder instructing a child with a teaching stick. The authority of wisdom being passed down = to teach!', radicals:[{k:'孝',m:'filial piety'},{k:'攵',m:'strike/action'}], literal:'An elder with a teaching rod guiding the next generation 📚', hook:'O-SHI-E-RU: "Oh! She\'s a RU-ler!" — the teacher who rules the class! おしえる!', related:['学ぶ','先生','授業'] }},
-  { k:'急ぐ', f:'いそぐ', r:'isogu', m:'to hurry', pos:'verb (u)',
-    origin:{ pictograph:'急 shows a hand (又) gripping a heart (心) from above — urgency gripping your chest! When your heart is grabbed, you move fast. Urgency seizing the heart = to hurry!', radicals:[{k:'心',m:'heart'},{k:'又',m:'hand'}], literal:'A hand grabbing your heart with urgency — you\'d hurry too! ⚡', hook:'I-SO-GU: "I\'m SO GU-nna be late!" — that panic when you\'re running late! いそぐ!', related:['速い','走る','急いで'] }},
   { k:'困る', f:'こまる', r:'komaru', m:'to be troubled', pos:'verb (u)',
     origin:{ pictograph:'困 shows a tree (木) trapped inside a box (囗) — a tree that can\'t grow, confined and stunted. Feeling trapped like a tree in a box = being troubled or stuck!', radicals:[{k:'木',m:'tree'},{k:'囗',m:'enclosure/box'}], literal:'A tree imprisoned in a box — stuck, can\'t move = troubled! 😰', hook:'KO-MA-RU: "Oh COMMA, RU-ined!" — a grammar comma that ruins your sentence = total trouble! こまる!', related:['悩む','問題','大変'] }},
-  { k:'決める', f:'きめる', r:'kimeru', m:'to decide', pos:'verb (ru)',
-    origin:{ pictograph:'決 shows water (氵) breaking through (夬) a dam — the decisive moment when water bursts free. A burst of decisive action = to decide!', radicals:[{k:'氵',m:'water'},{k:'夬',m:'break through'}], literal:'Water bursting through a dam = making a final decision! 💥', hook:'KI-ME-RU: "Key ME RU!" — use the KEY to open the door = decide and commit! きめる!', related:['選ぶ','判断','決断'] }},
-  { k:'丁寧', f:'ていねい', r:'teinei', m:'polite / careful', pos:'adj (na)',
-    origin:{ pictograph:'丁 shows a nail being hammered in carefully — precise, exact. 寧 shows a heart (心) content under a roof — peaceful and calm at home. Careful precision + peaceful heart = polite!', radicals:[{k:'丁',m:'exact/nail'},{k:'心',m:'heart'},{k:'宀',m:'roof'}], literal:'Precise nailing + peaceful heart = refined politeness 🎎', hook:'TEI-NEI: "They\'re NEAT" — polite people are always neat and careful! ていねい!', related:['礼儀','親切','マナー'] }},
   { k:'大切', f:'たいせつ', r:'taisetsu', m:'important', pos:'adj (na)',
     origin:{ pictograph:'大 shows a person with arms stretched wide — something BIG and grand. 切 shows a knife (刀) cutting — something that cuts to the core. Big + cutting to the core = truly important!', radicals:[{k:'大',m:'big/great'},{k:'切',m:'cut/sincere'}], literal:'Great + cutting to the heart = what truly matters ❤️', hook:'TAI-SE-TSU: "TIE it SETS U" — tie down what\'s important so it stays! たいせつ!', related:['重要','貴重','大事'] }},
   { k:'難しい', f:'むずかしい', r:'muzukashii', m:'difficult', pos:'adj (i)',
     origin:{ pictograph:'難 shows a bird (隹) being strangled or caught (𦰩) — a bird trapped, struggling to escape. 難 originally meant "calamity" — something hard to escape from. Struggling = difficult!', radicals:[{k:'隹',m:'bird'},{k:'𦰩',m:'catch/strangle'}], literal:'A trapped struggling bird = something hard to deal with 🐦', hook:'MU-ZU-KA-SHII: "Moo! Zoo! Got SHEEP!" — herding sheep at a zoo is VERY difficult! むずかしい!', related:['易しい','大変','複雑'] }},
   { k:'珍しい', f:'めずらしい', r:'mezurashii', m:'rare', pos:'adj (i)',
     origin:{ pictograph:'珍 shows a jade gem (王/玉) that is special (㐱) — a truly rare precious jewel. Rare gems are the model for rarity itself!', radicals:[{k:'王',m:'king/gem'},{k:'㐱',m:'strange/special'}], literal:'A rare precious gemstone = something you almost never see 💎', hook:'ME-ZU-RA-SHII: "May-ZOO-RA-SHE" — maybe the zoo has a rare she-creature! めずらしい!', related:['特別','希少','貴重'] }},
-  { k:'悲しい', f:'かなしい', r:'kanashii', m:'sad', pos:'adj (i)',
-    origin:{ pictograph:'悲 shows the heart (心) at the bottom and 非 (wrong/not) on top — a heart full of "wrongness." When your heart feels things are wrong and broken = sadness!', radicals:[{k:'心',m:'heart'},{k:'非',m:'wrong/not'}], literal:'A heart full of "wrongness" = sadness flooding in 💧', hook:'KA-NA-SHII: "Can a SHEEP be sad?" — even a sheep gets かなしい sometimes! かなしい!', related:['泣く','辛い','寂しい'] }},
   { k:'連絡', f:'れんらく', r:'renraku', m:'contact / communication', pos:'noun',
     origin:{ pictograph:'連 shows movement (辶) + a cart (車) — things following one another in a connected line. 絡 shows thread (糸) wrapping around (各) — binding things together. A connected chain of communication = contact!', radicals:[{k:'辶',m:'movement'},{k:'車',m:'cart/vehicle'},{k:'糸',m:'thread'}], literal:'A chain of carts connected by thread = keeping in touch 📲', hook:'REN-RA-KU: "WHEN? RACK UP" — rack up calls to keep in contact! れんらく!', related:['電話','メール','知らせる'] }},
 ];
@@ -4977,84 +4765,8 @@ extraN5more.forEach(w => vocab.N5.push(w));
 
 // ── Additional N4 words ──
 const extraN4more = [
-  { k:'文化', f:'ぶんか', r:'bunka', m:'culture', pos:'noun' ,
-      origin:{ pictograph:'文 (writing/pattern) + 化 (change/transform). Patterns that transform people — the accumulated written patterns of a society that shape how it thinks and acts = CULTURE.', radicals:[{k:'文',m:'writing/pattern'},{k:'化',m:'transform'}], literal:'Transforming patterns of a society — culture and civilization 🎭', hook:'BUNKA — "BUNK-a! The culture of BOOKS changed everything!" ぶんか!', related:['文明','伝統','社会'] }},
-  { k:'社会', f:'しゃかい', r:'shakai', m:'society', pos:'noun' ,
-      origin:{ pictograph:'社 (shrine/society) + 会 (meet). Meeting at the shrine — a place where the community gathers. A gathering society = SOCIETY, COMMUNITY.', radicals:[{k:'社',m:'shrine/group'},{k:'会',m:'meet/gather'}], literal:'People gathering together at a common place — society 🏛️', hook:'SHAKAI — "SHA-kai — the sha-king society!" しゃかい!', related:['文化','集団','国民'] }},
-  { k:'経済', f:'けいざい', r:'keizai', m:'economy', pos:'noun' ,
-      origin:{ pictograph:'経 (pass through/manage) + 済 (settle/complete). Managing the flow of goods to completion — the system that threads resources through society to settle needs = ECONOMY.', radicals:[{k:'経',m:'manage/thread'},{k:'済',m:'complete/settle'}], literal:'Threading resources through society to completion — the economy 💴', hook:'KEIZAI — "KAY-zai — the economy keys your ZAI (wealth)!" けいざい!', related:['社会','政治','財政'] }},
-  { k:'政治', f:'せいじ', r:'seiji', m:'politics', pos:'noun' ,
-      origin:{ pictograph:'政 (government/correct) + 治 (govern/cure). Correctly governing to make things right — using authority to cure the ills of society = POLITICS, GOVERNMENT.', radicals:[{k:'政',m:'government'},{k:'治',m:'govern/cure'}], literal:'Using authority to correct and cure society — politics 🏛️', hook:'SEIJI — "SAY-ji — politicians SAY things to govern!" せいじ!', related:['経済','社会','法律'] }},
-  { k:'自然', f:'しぜん', r:'shizen', m:'nature', pos:'noun' ,
-      origin:{ pictograph:'自 (self) + 然 (so it is). Being as it naturally is — by itself, without interference. That which exists by itself = NATURE.', radicals:[{k:'自',m:'self'},{k:'然',m:'so it is/natural'}], literal:'Things being exactly as they are by themselves — nature 🌿', hook:'SHIZEN — "she-ZEN — nature is zen by itself!" しぜん!', related:['環境','自然界','生態'] }},
-  { k:'技術', f:'ぎじゅつ', r:'gijutsu', m:'technology / skill', pos:'noun' ,
-      origin:{ pictograph:'技 (skill/technique) + 術 (art/method). The skill applied through method — practised skill expressed in a systematic way = TECHNOLOGY, TECHNIQUE.', radicals:[{k:'技',m:'skill'},{k:'術',m:'art/method'}], literal:'Skill expressed through systematic method — technology and craft ⚙️', hook:'GIJUTSU — "GEE-jut-su — technique takes GUTS to master!" ぎじゅつ!', related:['科学','工学','能力'] }},
-  { k:'建物', f:'たてもの', r:'tatemono', m:'building', pos:'noun' ,
-      origin:{ pictograph:'建 (build/establish) + 物 (thing). A thing that was built — an established structure. Something constructed = BUILDING.', radicals:[{k:'建',m:'build'},{k:'物',m:'thing'}], literal:'A thing that was constructed — a building or structure 🏢', hook:'TATEMONO — "ta-TE-mo-no — it takes MONEY to TATE (build)!" たてもの!', related:['建築','家','構造'] }},
-  { k:'橋', f:'はし', r:'hashi', m:'bridge', pos:'noun' ,
-      origin:{ pictograph:'橋 combines 木 (wood) + 喬 (tall/soaring). A tall wooden structure — originally a wooden bridge soaring high over a river. A lofty wooden crossing = BRIDGE.', radicals:[{k:'木',m:'wood'},{k:'喬',m:'tall/soaring'}], literal:'A tall wooden structure crossing water — a bridge 🌉', hook:'HASHI — "HA-she! Cross the BRIDGE — hashi!" はし!', related:['川','道','渡る'] }},
-  { k:'池', f:'いけ', r:'ike', m:'pond', pos:'noun' ,
-      origin:{ pictograph:'池 combines 氵(water) + 也 (snake/flowing). Water flowing like a snake — the winding, contained body of still water = POND.', radicals:[{k:'氵',m:'water'},{k:'也',m:'winding/snake'}], literal:'Water flowing in a winding contained shape — a pond 🏞️', hook:'IKE — "EE-ke! I\'ll PEEK at the POND (ike)!" いけ!', related:['湖','川','水'] }},
-  { k:'森', f:'もり', r:'mori', m:'forest', pos:'noun' ,
-      origin:{ pictograph:'森 is simply 木 (tree) × 3 — three trees together = a dense FOREST. The triple tree logically represents many trees gathered. Crystal clear pictographic logic.', radicals:[{k:'木',m:'tree'}], literal:'Three trees — a dense forest 🌲🌲🌲', hook:'MORI — "MORE-ee trees = FOREST (mori)!" もり!', related:['木','林','自然'] }},
-  { k:'海', f:'うみ', r:'umi', m:'sea / ocean', pos:'noun' ,
-      origin:{ pictograph:'海 combines 氵(water) + 每 (mother/every). The mother of all waters — the great body of water that mothers all rivers and life. Every water leads to the sea = SEA.', radicals:[{k:'氵',m:'water'},{k:'每',m:'mother/every'}], literal:'The mother of all waters — the vast ocean 🌊', hook:'UMI — "ooh-ME! The SEA (umi) goes ooh!" うみ!', related:['川','湖','水'] }},
-  { k:'空', f:'そら', r:'sora', m:'sky', pos:'noun' ,
-      origin:{ pictograph:'空 combines 穴 (cave/hole) + 工 (craft/hollow). A hollowed-out cave — empty space. The empty hollow above us = SKY, EMPTY.', radicals:[{k:'穴',m:'cave/hole'},{k:'工',m:'hollow'}], literal:'A great hollow emptiness above — the sky and empty space ☁️', hook:'SORA/KARA — "SO-ra! The SKY is empty (kara=empty)!" そら!', related:['天','雲','飛行機'] }},
-  { k:'星', f:'ほし', r:'hoshi', m:'star', pos:'noun' ,
-      origin:{ pictograph:'星 combines 日 (sun) + 生 (born/living). Little suns born in the sky — each star is a distant sun. Stars are born suns = STAR.', radicals:[{k:'日',m:'sun'},{k:'生',m:'born'}], literal:'Little suns born far away in the sky — a star ⭐', hook:'HOSHI — "HO-she! HO HO HO! Santa points to STARS!" ほし!', related:['月','太陽','宇宙'] }},
-  { k:'花', f:'はな', r:'hana', m:'flower', pos:'noun' ,
-      origin:{ pictograph:'花 combines 艹 (plant) + 化 (change/transform). A plant in transformation — flowers are the dramatic transformation of a plant into bloom. A plant changing into beauty = FLOWER.', radicals:[{k:'艹',m:'plant'},{k:'化',m:'transform'}], literal:'A plant undergoing beautiful transformation — a flower 🌸', hook:'HANA — "HA-na! HA! Look at those beautiful FLOWERS!" はな!', related:['桜','植物','庭'] }},
-  { k:'木', f:'き', r:'ki', m:'tree / wood', pos:'noun' ,
-      origin:{ pictograph:'木 is a perfect pictograph of a tree — the vertical stroke is the trunk, the horizontal stroke shows the branches spreading out, and the bottom strokes show the roots reaching down.', radicals:[{k:'木',m:'tree/wood'}], literal:'Trunk, branches, and roots — a complete tree 🌳', hook:'KI — "KEY the tree — the key to nature!" き!', related:['林','森','植物'] }},
-  { k:'葉', f:'は', r:'ha', m:'leaf', pos:'noun' ,
-      origin:{ pictograph:'葉 combines 艹 (plant) + 世 (world/generation) + 木 (tree). Leaves that span generations on a tree — the leaves of the world\'s trees. Leaves attached across time = LEAF.', radicals:[{k:'艹',m:'plant'},{k:'世',m:'generation'},{k:'木',m:'tree'}], literal:'Leaves spreading across generations of a tree — a leaf 🍃', hook:'HA — "HA! The LEAF falls — ha!" は!', related:['木','花','植物'] }},
-  { k:'草', f:'くさ', r:'kusa', m:'grass', pos:'noun' ,
-      origin:{ pictograph:'草 combines 艹 (plant radical) + 早 (early/fast). Plants that grow up fast and early — grasses spring up quickly. Fast-growing plants = GRASS.', radicals:[{k:'艹',m:'plant'},{k:'早',m:'early/fast'}], literal:'Plants that spring up quickly — grass and weeds 🌿', hook:'KUSA — "KOO-sa — cut the grass (kusa) with COOL scissors!" くさ!', related:['花','木','自然'] }},
-  { k:'体', f:'からだ', r:'karada', m:'body', pos:'noun' },
-  { k:'頭', f:'あたま', r:'atama', m:'head', pos:'noun' },
-  { k:'顔', f:'かお', r:'kao', m:'face', pos:'noun' },
-  { k:'目', f:'め', r:'me', m:'eye', pos:'noun' },
-  { k:'耳', f:'みみ', r:'mimi', m:'ear', pos:'noun' },
-  { k:'鼻', f:'はな', r:'hana', m:'nose', pos:'noun' },
-  { k:'口', f:'くち', r:'kuchi', m:'mouth', pos:'noun' },
-  { k:'手', f:'て', r:'te', m:'hand', pos:'noun' },
-  { k:'足', f:'あし', r:'ashi', m:'foot / leg', pos:'noun' },
-  { k:'心', f:'こころ', r:'kokoro', m:'heart / mind', pos:'noun' },
-  { k:'声', f:'こえ', r:'koe', m:'voice', pos:'noun' },
-  { k:'便利', f:'べんり', r:'benri', m:'convenient', pos:'adj (na)' },
-  { k:'不便', f:'ふべん', r:'fuben', m:'inconvenient', pos:'adj (na)' },
-  { k:'正直', f:'しょうじき', r:'shoujiki', m:'honest', pos:'adj (na)' },
-  { k:'丁寧', f:'ていねい', r:'teinei', m:'polite / careful', pos:'adj (na)' },
-  { k:'真剣', f:'しんけん', r:'shinken', m:'serious / earnest', pos:'adj (na)' },
-  { k:'急ぐ', f:'いそぐ', r:'isogu', m:'to hurry', pos:'verb (u)' },
-  { k:'走る', f:'はしる', r:'hashiru', m:'to run', pos:'verb (u)' },
-  { k:'泳ぐ', f:'およぐ', r:'oyogu', m:'to swim', pos:'verb (u)' },
-  { k:'登る', f:'のぼる', r:'noboru', m:'to climb', pos:'verb (u)' },
-  { k:'乗る', f:'のる', r:'noru', m:'to ride / get on', pos:'verb (u)' },
-  { k:'渡る', f:'わたる', r:'wataru', m:'to cross', pos:'verb (u)' },
-  { k:'選ぶ', f:'えらぶ', r:'erabu', m:'to choose / select', pos:'verb (u)' },
-  { k:'頼む', f:'たのむ', r:'tanomu', m:'to ask a favour', pos:'verb (u)' },
-  { k:'謝る', f:'あやまる', r:'ayamaru', m:'to apologise', pos:'verb (u)' },
-  { k:'答える', f:'こたえる', r:'kotaeru', m:'to answer', pos:'verb (ru)' },
-  { k:'教える', f:'おしえる', r:'oshieru', m:'to teach', pos:'verb (ru)' },
-  { k:'決める', f:'きめる', r:'kimeru', m:'to decide', pos:'verb (ru)' },
-  { k:'続ける', f:'つづける', r:'tsuzukeru', m:'to continue', pos:'verb (ru)' },
-  { k:'変える', f:'かえる', r:'kaeru', m:'to change something', pos:'verb (ru)' },
-  { k:'笑う', f:'わらう', r:'warau', m:'to laugh / smile', pos:'verb (u)' },
-  { k:'泣く', f:'なく', r:'naku', m:'to cry', pos:'verb (u)' },
-  { k:'怒る', f:'おこる', r:'okoru', m:'to get angry', pos:'verb (u)' },
-  { k:'驚く', f:'おどろく', r:'odoroku', m:'to be surprised', pos:'verb (u)' },
-  { k:'心配する', f:'しんぱいする', r:'shinpaisuru', m:'to worry', pos:'verb (suru)' },
-  { k:'喜ぶ', f:'よろこぶ', r:'yorokobu', m:'to be pleased', pos:'verb (u)' },
-  { k:'太陽', f:'たいよう', r:'taiyou', m:'sun', pos:'noun' ,
-      origin:{ pictograph:'太 (fat/great) + 陽 (sun/yang). The great, brilliant sun — 太 = 大 (great) with a dot for emphasis. 陽 = the hill (阝) where the sun rises, with a flag waving. The great bright rising sun = SUN.', radicals:[{k:'太',m:'great/fat'},{k:'陽',m:'sunlight/yang'}], literal:'The great brilliant light rising on the hillside — the sun ☀️', hook:'TAIYOU — "TI-you! THE great SUN is for YOU!" たいよう!', related:['月','星','光'] }},
   { k:'写真', f:'しゃしん', r:'shashin', m:'photograph', pos:'noun' ,
       origin:{ pictograph:'写 (copy/transcribe) + 真 (truth/real). A truthful copy — 写 shows something being emptied and transferred (writing a copy). 真 = the essence of reality. A true copy of reality = PHOTOGRAPH.', radicals:[{k:'写',m:'copy'},{k:'真',m:'truth'}], literal:'A true copy of reality — a photograph 📸', hook:'SHASHIN — "SHA-shin! SHA-SHIN! Click! PHOTO!" しゃしん!', related:['映画','カメラ','思い出'] }},
-  { k:'音楽', f:'おんがく', r:'ongaku', m:'music', pos:'noun' ,
-      origin:{ pictograph:'音 (sound) + 楽 (music/ease). The sounds of music — 音 shows a mouth/tongue producing sound. 楽 is a decorated instrument. Combined: the joyful organized sounds = MUSIC.', radicals:[{k:'音',m:'sound'},{k:'楽',m:'music/ease'}], literal:'Joyful organized sounds — music 🎵', hook:'ONGAKU — "ON-ga-koo! ON the music GAK! ONGAKU!" おんがく!', related:['歌','演奏','芸術'] }},
-  { k:'映画', f:'えいが', r:'eiga', m:'movie / film', pos:'noun' ,
-      origin:{ pictograph:'映 (reflect/project) + 画 (picture/draw). Projected pictures — 映 shows the sun (日) casting a reflection onto a surface (央 = centre). Moving pictures projected = MOVIE/FILM.', radicals:[{k:'映',m:'reflect/project'},{k:'画',m:'picture'}], literal:'Pictures projected onto a surface — a movie 🎬', hook:'EIGA — "AY-ga! EY, a great MOVIE (eiga)!" えいが!', related:['テレビ','音楽','芸術'] }},
   { k:'病院', f:'びょういん', r:'byouin', m:'hospital', pos:'noun' ,
       origin:{ pictograph:'病 (illness) + 院 (institution/hall). A hall for illness — 院 shows a mound/hill (阝) + complete enclosure (完). An enclosed institution for treating illness = HOSPITAL.', radicals:[{k:'病',m:'illness'},{k:'院',m:'institution'}], literal:'An institution enclosed for treating illness — a hospital 🏥', hook:'BYOUIN — "BYO-een! BYO-een = the hospital siren!" びょういん!', related:['医者','薬','診察'] }},
   { k:'薬', f:'くすり', r:'kusuri', m:'medicine', pos:'noun' ,
@@ -5077,6 +4789,194 @@ const extraN4more = [
   { k:'夢見る', f:'ゆめみる', r:'yumemiru', m:'to dream', pos:'verb (ru)' },
 ];
 extraN4more.forEach(w => vocab.N4.push(w));
+
+// ── N4 Vocabulary Expansion v3 — 75 words ──
+const extraN4v3 = [
+  // TIME & DATES
+  { k:'来週', f:'らいしゅう', r:'raishuu', m:'next week', pos:'noun',
+    origin:{ pictograph:'来 (come/next) + 週 (week). The week that is coming toward you = next week!', radicals:[{k:'来',m:'come'},{k:'週',m:'week'}], literal:'The coming week — next week 📅', hook:'RAI-SHUU: "RYE-shoe! Next week I\'ll buy new shoes!" らいしゅう!', related:['今週','先週','来月'] }},
+  { k:'先週', f:'せんしゅう', r:'senshuu', m:'last week', pos:'noun',
+    origin:{ pictograph:'先 (previous/ahead) + 週 (week). The week that went ahead and passed = last week!', radicals:[{k:'先',m:'previous'},{k:'週',m:'week'}], literal:'The week that already went ahead — last week ⏮', hook:'SEN-SHUU: "SEN-shoo! SENT the week away = last week!" せんしゅう!', related:['今週','来週','先月'] }},
+  { k:'今週', f:'こんしゅう', r:'konshuu', m:'this week', pos:'noun',
+    origin:{ pictograph:'今 (now/this) + 週 (week). The week we are in right now = this week!', radicals:[{k:'今',m:'now'},{k:'週',m:'week'}], literal:'The week that is now happening — this week 📆', hook:'KON-SHUU: "CON-shoe! THIS week I\'m wearing COOL shoes!" こんしゅう!', related:['先週','来週','今月'] }},
+  { k:'来月', f:'らいげつ', r:'raigetsu', m:'next month', pos:'noun',
+    origin:{ pictograph:'来 (come) + 月 (month). The month coming toward you = next month!', radicals:[{k:'来',m:'come'},{k:'月',m:'month'}], literal:'The arriving month — next month 🗓', hook:'RAI-GETSU: "RYE bread next MONTH!" らいげつ!', related:['今月','先月','来週'] }},
+  { k:'先月', f:'せんげつ', r:'sengetsu', m:'last month', pos:'noun',
+    origin:{ pictograph:'先 (previous) + 月 (month). The month that has already passed = last month!', radicals:[{k:'先',m:'previous'},{k:'月',m:'month'}], literal:'The month already passed — last month ⏪', hook:'SEN-GETSU: "SENT the month away — that was LAST month!" せんげつ!', related:['今月','来月','先週'] }},
+  { k:'来年', f:'らいねん', r:'rainen', m:'next year', pos:'noun',
+    origin:{ pictograph:'来 (come) + 年 (year). The year that is coming = next year!', radicals:[{k:'来',m:'come'},{k:'年',m:'year'}], literal:'The year approaching — next year 🎆', hook:'RAI-NEN: "RAIN next YEAR!" らいねん!', related:['今年','去年','来月'] }},
+  { k:'去年', f:'きょねん', r:'kyonen', m:'last year', pos:'noun',
+    origin:{ pictograph:'去 (depart/leave) + 年 (year). The year that departed = last year!', radicals:[{k:'去',m:'depart'},{k:'年',m:'year'}], literal:'The year that left and departed — last year ⏭', hook:'KYO-NEN: "GONE-en! Last year is GONE!" きょねん!', related:['今年','来年','去る'] }},
+  { k:'時間', f:'じかん', r:'jikan', m:'time / hour', pos:'noun',
+    origin:{ pictograph:'時 (time/hour) + 間 (interval/space). The space between hours — the passage of measured time!', radicals:[{k:'時',m:'time'},{k:'間',m:'interval'}], literal:'Intervals of measured time passing — time/duration ⏰', hook:'JI-KAN: "JEE! COME! Time has arrived — jikan!" じかん!', related:['時刻','分','秒'] }},
+  { k:'時刻', f:'じこく', r:'jikoku', m:'time (specific)', pos:'noun',
+    origin:{ pictograph:'時 (time) + 刻 (engrave/carve). Time engraved at a precise point — a specific moment carved in time!', radicals:[{k:'時',m:'time'},{k:'刻',m:'engrave'}], literal:'A moment precisely engraved — a specific time on the clock 🕐', hook:'JI-KOKU: "JEE! CLOCK! What time is it?" じこく!', related:['時間','時','何時'] }},
+
+  // TRANSPORT & DIRECTIONS
+  { k:'電車', f:'でんしゃ', r:'densha', m:'train (electric)', pos:'noun',
+    origin:{ pictograph:'電 (electricity) + 車 (vehicle/wheel). An electric vehicle — electricity powering a wheeled vehicle on rails!', radicals:[{k:'電',m:'electricity'},{k:'車',m:'vehicle'}], literal:'An electricity-powered vehicle on tracks — a train 🚃', hook:'DEN-SHA: "DEN-sha! The TRAIN goes DEN!" でんしゃ!', related:['駅','バス','地下鉄'] }},
+  { k:'地下鉄', f:'ちかてつ', r:'chikatetsu', m:'subway / underground', pos:'noun',
+    origin:{ pictograph:'地 (ground) + 下 (below) + 鉄 (iron). Iron tracks below the ground = subway!', radicals:[{k:'地',m:'ground'},{k:'下',m:'below'},{k:'鉄',m:'iron'}], literal:'Iron rails running underground — the subway 🚇', hook:'CHIKA-TETSU: "CHIKA-tetsu! It\'s a TEAPOT underground!" ちかてつ!', related:['電車','駅','バス'] }},
+  { k:'バス停', f:'バスてい', r:'basutei', m:'bus stop', pos:'noun',
+    origin:{ pictograph:'バス (bus, from English) + 停 (stop/halt). The place where the bus halts = bus stop!', radicals:[{k:'停',m:'stop/halt'}], literal:'Where the bus comes to a stop — bus stop 🚌', hook:'BASU-TEI: "BUS-tay! BUS, stay! Bus stop!" バスてい!', related:['バス','駅','乗り場'] }},
+  { k:'信号', f:'しんごう', r:'shingou', m:'traffic light / signal', pos:'noun',
+    origin:{ pictograph:'信 (trust/believe) + 号 (signal/number). A trusted signal — a signal you must believe and obey = traffic light!', radicals:[{k:'信',m:'trust'},{k:'号',m:'signal'}], literal:'A trusted signal you must obey — a traffic light 🚦', hook:'SHIN-GO: "SHIN-GO! When it\'s green, SHIN-GO = Go!" しんごう!', related:['交差点','道路','横断歩道'] }},
+  { k:'交差点', f:'こうさてん', r:'kousaten', m:'intersection / crossroads', pos:'noun',
+    origin:{ pictograph:'交 (cross/intersect) + 差 (difference/alternate) + 点 (point). The point where lines cross and alternate = intersection!', radicals:[{k:'交',m:'cross'},{k:'差',m:'alternate'},{k:'点',m:'point'}], literal:'The point where roads cross — an intersection 🛣', hook:'KOU-SA-TEN: "COW-sa-ten! The cow stops at the intersection!" こうさてん!', related:['信号','曲がる','道'] }},
+  { k:'まっすぐ', f:'まっすぐ', r:'massugu', m:'straight / directly', pos:'adv',
+    origin:{ pictograph:'真っ直ぐ — 真 (true/direct) + 直 (straight). The truly straight path — going directly without turning!', radicals:[{k:'真',m:'true'},{k:'直',m:'straight'}], literal:'The truly straight and direct direction — straight ahead ➡️', hook:'MASSUGU: "MASS-oo-goo! GO STRAIGHT like a MASSIVE line!" まっすぐ!', related:['右','左','曲がる'] }},
+  { k:'曲がる', f:'まがる', r:'magaru', m:'to turn / to bend', pos:'verb (u)',
+    origin:{ pictograph:'曲 (bend/curve) — shows a bent line, depicting something curved. Add 〜る = action of bending. To make a curve or turn!', radicals:[{k:'曲',m:'bend/curve'}], literal:'To make a bend or curve — to turn 🔄', hook:'MA-GA-RU: "MAGA-roo! Turn at the MAGAZINE store!" まがる!', related:['右','左','まっすぐ'] }},
+
+  // SHOPPING & MONEY
+  { k:'財布', f:'さいふ', r:'saifu', m:'wallet / purse', pos:'noun',
+    origin:{ pictograph:'財 (wealth/property) + 布 (cloth/fabric). A cloth pouch for your wealth = wallet!', radicals:[{k:'財',m:'wealth'},{k:'布',m:'cloth'}], literal:'A cloth holder for your wealth — a wallet 👛', hook:'SAI-FU: "SAY-foo! SAY something to get your WALLET!" さいふ!', related:['お金','支払う','買い物'] }},
+  { k:'値段', f:'ねだん', r:'nedan', m:'price', pos:'noun',
+    origin:{ pictograph:'値 (value/price) + 段 (step/grade). The stepped value — the graded price of something!', radicals:[{k:'値',m:'value'},{k:'段',m:'step/grade'}], literal:'The graded value of a thing — its price 💰', hook:'NE-DAN: "KNEE-dan! The price hurts my KNEE!" ねだん!', related:['いくら','高い','安い'] }},
+  { k:'支払う', f:'しはらう', r:'shiharau', m:'to pay', pos:'verb (u)',
+    origin:{ pictograph:'支 (branch/support) + 払う (to pay/sweep). Branching out your money to support a payment — to pay!', radicals:[{k:'支',m:'branch/support'},{k:'払',m:'pay/sweep'}], literal:'Handing over support (money) — to pay 💳', hook:'SHI-HA-RAU: "SHE-ha-RAO! She has to PAY!" しはらう!', related:['お金','値段','お釣り'] }},
+  { k:'お釣り', f:'おつり', r:'otsuri', m:'change (money)', pos:'noun',
+    origin:{ pictograph:'釣 (fishing/hang) — coins that "hang back" and return to you after payment, like a fish on a line returning. Your change returns like a fish!', radicals:[{k:'釣',m:'fish/hang back'}], literal:'Money that hangs back and returns to you — your change 🪙', hook:'O-TSURI: "Oh-TSOO-ree! Oh, you\'re getting CHANGE back!" おつり!', related:['支払う','財布','お金'] }},
+  { k:'割引', f:'わりびき', r:'waribiki', m:'discount', pos:'noun',
+    origin:{ pictograph:'割 (divide/split) + 引 (pull/reduce). Splitting and pulling down the price = a discount!', radicals:[{k:'割',m:'divide'},{k:'引',m:'pull/reduce'}], literal:'Splitting and pulling the price downward — a discount 🏷', hook:'WARI-BIKI: "WARY-beaky! The WARY bird BEAKS down the price!" わりびき!', related:['セール','値段','安い'] }},
+  { k:'売り場', f:'うりば', r:'uriba', m:'sales floor / counter', pos:'noun',
+    origin:{ pictograph:'売 (sell) + 場 (place). The place where selling happens = sales floor/counter!', radicals:[{k:'売',m:'sell'},{k:'場',m:'place'}], literal:'The place where things are sold — the sales counter 🏪', hook:'URI-BA: "OORI-ba! I WILL BUY at the sales floor (uriba)!" うりば!', related:['店','買う','レジ'] }},
+
+  // WEATHER & SEASONS
+  { k:'季節', f:'きせつ', r:'kisetsu', m:'season', pos:'noun',
+    origin:{ pictograph:'季 (season/end of season) + 節 (occasion/joint). The occasions that mark the joints of the year — the four turning points = seasons!', radicals:[{k:'季',m:'season'},{k:'節',m:'occasion/joint'}], literal:'The turning joints of the year — the four seasons 🍁', hook:'KI-SE-TSU: "KEY-SET-su! The KEY to a SETTING changes each season!" きせつ!', related:['春','夏','秋','冬'] }},
+  { k:'春', f:'はる', r:'haru', m:'spring', pos:'noun',
+    origin:{ pictograph:'春 shows the sun (日) with plants (艹) growing from the earth (土) — the sun warming plants out of the ground = spring!', radicals:[{k:'日',m:'sun'},{k:'艹',m:'plants'},{k:'土',m:'earth'}], literal:'The sun warming plants from the earth — spring blooms 🌸', hook:'HARU: "HA-roo! HA! The flowers BLOOM in spring!" はる!', related:['夏','秋','冬','桜'] }},
+  { k:'夏', f:'なつ', r:'natsu', m:'summer', pos:'noun',
+    origin:{ pictograph:'夏 originally showed a person dancing — summer festivals with energetic dances! The liveliest season when people celebrate!', radicals:[{k:'夏',m:'summer'}], literal:'The lively dancing season — summer ☀️', hook:'NATSU: "NAT-su! NUTS! It\'s so HOT this summer!" なつ!', related:['春','秋','冬','暑い'] }},
+  { k:'秋', f:'あき', r:'aki', m:'autumn / fall', pos:'noun',
+    origin:{ pictograph:'秋 combines 禾 (grain/rice) + 火 (fire). Grain being dried by fire — the harvest season when crops are dried under the hot autumn sun!', radicals:[{k:'禾',m:'grain'},{k:'火',m:'fire'}], literal:'Grain dried by fire — the harvest season, autumn 🍂', hook:'AKI: "AH-key! AH, the KEY to nature is autumn (aki)!" あき!', related:['春','夏','冬','紅葉'] }},
+  { k:'冬', f:'ふゆ', r:'fuyu', m:'winter', pos:'noun',
+    origin:{ pictograph:'冬 shows ice crystals (冫) at the bottom and something hanging/ending (夂) at the top — the icy end of the year. The frozen hanging end = winter!', radicals:[{k:'冫',m:'ice'},{k:'夂',m:'end/hang'}], literal:'The icy end of the year — winter ❄️', hook:'FUYU: "FOO-you! A ghost says FUYU-ooo in the cold winter!" ふゆ!', related:['春','夏','秋','寒い'] }},
+  { k:'雪', f:'ゆき', r:'yuki', m:'snow', pos:'noun',
+    origin:{ pictograph:'雪 combines 雨 (rain) + 彐 (a broom). Rain that needs sweeping — snow falling from the sky that you must sweep away!', radicals:[{k:'雨',m:'rain'},{k:'彐',m:'broom'}], literal:'Rain you have to sweep — snow ❄️', hook:'YUKI: "YOU-key! YUKI gives you the KEY to a snowy world!" ゆき!', related:['雨','冬','寒い'] }},
+  { k:'曇り', f:'くもり', r:'kumori', m:'cloudy', pos:'noun/adj',
+    origin:{ pictograph:'曇 combines 雲 (cloud) + 日 (sun). The sun covered by clouds — a sky full of clouds hiding the sun = cloudy!', radicals:[{k:'雲',m:'cloud'},{k:'日',m:'sun'}], literal:'The sun hidden behind clouds — cloudy weather ☁️', hook:'KUMORI: "KOO-MORE-ee! COOL clouds bring MORE clouds!" くもり!', related:['晴れ','雨','天気'] }},
+  { k:'晴れ', f:'はれ', r:'hare', m:'sunny / clear weather', pos:'noun/adj',
+    origin:{ pictograph:'晴 combines 日 (sun) + 青 (blue/clear). A clear blue-sky sun day — the sun shining in a blue sky = sunny weather!', radicals:[{k:'日',m:'sun'},{k:'青',m:'blue/clear'}], literal:'The sun in a clear blue sky — sunny weather ☀️', hook:'HARE: "HA-ray! HOORAY! It\'s sunny (hare)!" はれ!', related:['曇り','雨','天気'] }},
+  { k:'台風', f:'たいふう', r:'taifuu', m:'typhoon', pos:'noun',
+    origin:{ pictograph:'台 (platform/stand) + 風 (wind). A towering standing wind — a massive wind system standing over the sea = typhoon!', radicals:[{k:'台',m:'platform'},{k:'風',m:'wind'}], literal:'A great towering wind — a typhoon 🌀', hook:'TAI-FUU: "TIE-foo! TIE everything down, a TYPHOON (taifuu) is coming!" たいふう!', related:['風','雨','嵐'] }},
+
+  // SCHOOL & STUDY
+  { k:'授業', f:'じゅぎょう', r:'jugyou', m:'lesson / class', pos:'noun',
+    origin:{ pictograph:'授 (grant/teach) + 業 (work/practice). Granting knowledge through practice — the work of teaching and learning = a lesson!', radicals:[{k:'授',m:'grant/teach'},{k:'業',m:'work/practice'}], literal:'Granting knowledge through practice — a class lesson 📚', hook:'JU-GYO: "JEW-gyo! JUICE flows in every lesson!" じゅぎょう!', related:['勉強','先生','学校'] }},
+  { k:'試験', f:'しけん', r:'shiken', m:'exam / test', pos:'noun',
+    origin:{ pictograph:'試 (try/test) + 験 (effect/verify). Trying to verify knowledge — testing what you know = an exam!', radicals:[{k:'試',m:'try/test'},{k:'験',m:'verify/effect'}], literal:'Trying and verifying your knowledge — an exam ✏️', hook:'SHI-KEN: "SHE-KEN! She CAN pass the exam!" しけん!', related:['テスト','合格','成績'] }},
+  { k:'合格', f:'ごうかく', r:'goukaku', m:'passing (an exam)', pos:'noun',
+    origin:{ pictograph:'合 (combine/fit) + 格 (standard/rank). Fitting the required standard — meeting the required rank = passing!', radicals:[{k:'合',m:'fit/combine'},{k:'格',m:'standard/rank'}], literal:'Fitting the required standard — passing an exam 🎉', hook:'GO-KAKU: "GO! KAKOO! You passed — GO CELEBRATE!" ごうかく!', related:['試験','不合格','成績'] }},
+  { k:'成績', f:'せいせき', r:'seiseki', m:'results / grades', pos:'noun',
+    origin:{ pictograph:'成 (achieve/become) + 績 (spin/achievement). The woven record of achievements — the accumulated result of your efforts = grades!', radicals:[{k:'成',m:'achieve'},{k:'績',m:'achievement'}], literal:'The woven record of what you achieved — your grades 📊', hook:'SEI-SEKI: "SAY-seky! SAY your grades SEEK improvement!" せいせき!', related:['試験','合格','勉強'] }},
+  { k:'辞書', f:'じしょ', r:'jisho', m:'dictionary', pos:'noun',
+    origin:{ pictograph:'辞 (words/resignation) + 書 (write/book). A book of written words — a book explaining the meaning of words = dictionary!', radicals:[{k:'辞',m:'words'},{k:'書',m:'write/book'}], literal:'A book of all the written words — a dictionary 📖', hook:'JI-SHO: "JEE-show! JEE, SHOW me the word in the dictionary!" じしょ!', related:['本','単語','勉強'] }},
+  { k:'宿題', f:'しゅくだい', r:'shukudai', m:'homework', pos:'noun',
+    origin:{ pictograph:'宿 (lodge/stay) + 題 (topic/title). The topic that stays at home with you — study work that lodges in your home = homework!', radicals:[{k:'宿',m:'lodge/stay'},{k:'題',m:'topic'}], literal:'The study topic that lodges at home — homework 📝', hook:'SHUKU-DAI: "SHOOK-a-die! Homework makes you SHUDDER and DIE!" しゅくだい!', related:['勉強','授業','提出'] }},
+
+  // HOUSING & DAILY LIFE
+  { k:'引っ越す', f:'ひっこす', r:'hikkosu', m:'to move house', pos:'verb (u)',
+    origin:{ pictograph:'引 (pull) + 越 (cross over). Pulling everything across — dragging your belongings over to a new place = moving house!', radicals:[{k:'引',m:'pull'},{k:'越',m:'cross over'}], literal:'Pulling and crossing over to a new home — moving house 📦', hook:'HIKKO-SU: "HIT-co-sue! HIT the road, CROSS over, MOVE!" ひっこす!', related:['住む','アパート','引越し'] }},
+  { k:'家賃', f:'やちん', r:'yachin', m:'rent', pos:'noun',
+    origin:{ pictograph:'家 (house) + 賃 (wages/fee). The fee for a house — wages paid for the right to live somewhere = rent!', radicals:[{k:'家',m:'house'},{k:'賃',m:'fee/wages'}], literal:'The fee paid to use a house — rent 🏠💴', hook:'YA-CHIN: "YAH-chin! YA, CHIN up when paying RENT!" やちん!', related:['住む','家','払う'] }},
+  { k:'玄関', f:'げんかん', r:'genkan', m:'entrance / front door', pos:'noun',
+    origin:{ pictograph:'玄 (dark/profound) + 関 (barrier/gateway). The profound gateway — the deep entrance barrier between outside and inside a Japanese home!', radicals:[{k:'玄',m:'dark/profound'},{k:'関',m:'barrier/gate'}], literal:'The profound gateway into the home — the entrance hall 🚪', hook:'GEN-KAN: "GEN-can! A GENUINE CANAL leads to the front door!" げんかん!', related:['ドア','家','入口'] }},
+  { k:'廊下', f:'ろうか', r:'rouka', m:'hallway / corridor', pos:'noun',
+    origin:{ pictograph:'廊 (corridor/gallery) + 下 (below/under). The passage below the main rooms — a corridor running beneath/between rooms!', radicals:[{k:'廊',m:'corridor'},{k:'下',m:'below'}], literal:'The passage running between rooms — a hallway 🚶', hook:'RO-KA: "ROAR-ka! The hallway ROARS with footsteps!" ろうか!', related:['部屋','玄関','階段'] }},
+  { k:'階段', f:'かいだん', r:'kaidan', m:'stairs / staircase', pos:'noun',
+    origin:{ pictograph:'階 (floor/storey) + 段 (step/grade). The graded steps between floors — each step taking you up a grade = staircase!', radicals:[{k:'階',m:'floor/storey'},{k:'段',m:'step/grade'}], literal:'The graded steps connecting floors — a staircase 🪜', hook:'KAI-DAN: "KAI-DAN! The KAIDAN is a horror story about haunted STAIRS!" かいだん!', related:['上る','エレベーター','廊下'] }},
+  { k:'押し入れ', f:'おしいれ', r:'oshiire', m:'closet / storage', pos:'noun',
+    origin:{ pictograph:'押 (push) + 入れ (put in). You push things in to store them — a place where you push belongings inside for storage!', radicals:[{k:'押',m:'push'},{k:'入',m:'enter/put in'}], literal:'A place where you push things inside — a closet 🚪', hook:'OSHI-IRE: "OH-she-ee-reh! Oh, she PUT things in the closet!" おしいれ!', related:['部屋','収納','棚'] }},
+
+  // FOOD & DRINK
+  { k:'味噌', f:'みそ', r:'miso', m:'miso (fermented soybean paste)', pos:'noun',
+    origin:{ pictograph:'味 (taste) + 噌 (fermented paste). The tasting fermented paste — a complex flavoured ingredient used in Japanese cooking!', radicals:[{k:'味',m:'taste'},{k:'噌',m:'fermented'}], literal:'The tasty fermented paste of Japan — miso 🍜', hook:'MI-SO: "ME-so! Me SO want miso soup!" みそ!', related:['醤油','味','汁'] }},
+  { k:'醤油', f:'しょうゆ', r:'shouyu', m:'soy sauce', pos:'noun',
+    origin:{ pictograph:'醤 (sauce/paste) + 油 (oil). A sauce made with oil — the dark fermented sauce used throughout Japanese cooking!', radicals:[{k:'醤',m:'sauce/paste'},{k:'油',m:'oil'}], literal:'A fermented oil-based sauce — soy sauce 🫙', hook:'SHOYU: "SHOW-you! Let me SHOW YOU how soy sauce changes everything!" しょうゆ!', related:['味噌','塩','味'] }},
+  { k:'箸', f:'はし', r:'hashi', m:'chopsticks', pos:'noun',
+    origin:{ pictograph:'箸 combines 竹 (bamboo) + 者 (person). Bamboo used by a person — bamboo sticks wielded by a person to eat with = chopsticks!', radicals:[{k:'竹',m:'bamboo'},{k:'者',m:'person'}], literal:'Bamboo sticks used by a person for eating — chopsticks 🥢', hook:'HASHI: "HA-she! HA, she uses CHOPSTICKS (hashi) not a fork!" はし!', related:['食べる','茶碗','料理'] }},
+  { k:'茶碗', f:'ちゃわん', r:'chawan', m:'rice bowl / teacup', pos:'noun',
+    origin:{ pictograph:'茶 (tea) + 碗 (bowl/cup). A bowl for tea — the traditional bowl used for both tea and rice in Japan!', radicals:[{k:'茶',m:'tea'},{k:'碗',m:'bowl'}], literal:'A bowl for tea and rice — a Japanese bowl 🍚', hook:'CHA-WAN: "CHA-wan! CHA-WAN-na eat from my rice bowl?" ちゃわん!', related:['箸','ご飯','お茶'] }},
+  { k:'お腹', f:'おなか', r:'onaka', m:'stomach / belly', pos:'noun',
+    origin:{ pictograph:'腹 (belly) — shows the body part (月=flesh) with a character for "repeat/restore" — the stomach that repeatedly empties and refills. お is an honorific prefix!', radicals:[{k:'月',m:'flesh/body'},{k:'复',m:'repeat'}], literal:'The body part that repeatedly needs filling — the stomach 🤰', hook:'O-NAKA: "OH-NAH-kah! Oh, my stomach (onaka) needs ramen!" おなか!', related:['食べる','空腹','満腹'] }},
+  { k:'空腹', f:'くうふく', r:'kuufuku', m:'hunger / empty stomach', pos:'noun',
+    origin:{ pictograph:'空 (empty) + 腹 (stomach/belly). An empty stomach — the feeling when your belly has nothing in it = hunger!', radicals:[{k:'空',m:'empty'},{k:'腹',m:'stomach'}], literal:'An empty stomach — hunger 🍽', hook:'KUU-FUKU: "KOO-foo-koo! My stomach COOS when I\'m hungry!" くうふく!', related:['お腹','食べる','満腹'] }},
+  { k:'満腹', f:'まんぷく', r:'manpuku', m:'full stomach / satisfied', pos:'noun',
+    origin:{ pictograph:'満 (full/filled) + 腹 (stomach). A full, filled stomach — the satisfied feeling after a good meal!', radicals:[{k:'満',m:'full/filled'},{k:'腹',m:'stomach'}], literal:'A stomach completely filled — satisfied fullness 😊', hook:'MAN-PUKU: "MAN-PUKU! I\'m full — a MAGNIFICENT stomach!" まんぷく!', related:['空腹','食べる','お腹'] }},
+
+  // HEALTH & BODY
+  { k:'体温', f:'たいおん', r:'taion', m:'body temperature', pos:'noun',
+    origin:{ pictograph:'体 (body) + 温 (warm/temperature). The warmth of the body — the temperature your body maintains = body temperature!', radicals:[{k:'体',m:'body'},{k:'温',m:'warm'}], literal:'The warmth maintained by the body — body temperature 🌡', hook:'TAI-ON: "TIE-on! TIE ON the thermometer to check taion!" たいおん!', related:['熱','病気','体'] }},
+  { k:'熱', f:'ねつ', r:'netsu', m:'fever / heat', pos:'noun',
+    origin:{ pictograph:'熱 combines 執 (grasp/hold) + 火 (fire). Fire held tightly — the burning held inside the body = fever and heat!', radicals:[{k:'執',m:'grasp'},{k:'火',m:'fire'}], literal:'Fire held inside the body — a fever 🔥', hook:'NETSU: "NETS-oo! A NET of FIRE = fever (netsu)!" ねつ!', related:['体温','病気','風邪'] }},
+  { k:'風邪', f:'かぜ', r:'kaze', m:'cold (illness)', pos:'noun',
+    origin:{ pictograph:'風 (wind) + 邪 (evil/wrong). Evil wind — the wicked wind that blows and makes you sick = catching a cold!', radicals:[{k:'風',m:'wind'},{k:'邪',m:'evil'}], literal:'The evil wind that makes you sick — a cold 🤧', hook:'KAZE: "KAH-zeh! CAUSE of sneezing = kaze (cold)!" かぜ!', related:['熱','病気','薬'] }},
+  { k:'怪我', f:'けが', r:'kega', m:'injury / wound', pos:'noun',
+    origin:{ pictograph:'怪 (strange/suspicious) + 我 (self/I). Something strange happening to oneself — an unexpected thing that happens to your body = an injury!', radicals:[{k:'怪',m:'strange'},{k:'我',m:'self/I'}], literal:'Something strange happening to your body — an injury 🩹', hook:'KE-GA: "KAY-ga! A KEY-gah sound when you get hurt!" けが!', related:['痛い','病院','血'] }},
+  { k:'痛い', f:'いたい', r:'itai', m:'painful / it hurts', pos:'adj (i)',
+    origin:{ pictograph:'痛 combines 疒 (illness/pain radical) + 甬 (surging). Surging illness — pain that surges through the body like a wave!', radicals:[{k:'疒',m:'illness'},{k:'甬',m:'surging'}], literal:'Surging pain through the body — ouch, it hurts! 😖', hook:'I-TAI: "EE-tie! EE, TIE that wound — it hurts (itai)!" いたい!', related:['怪我','病気','苦しい'] }},
+
+  // CLOTHING
+  { k:'着る', f:'きる', r:'kiru', m:'to wear (upper body)', pos:'verb (ru)',
+    origin:{ pictograph:'着 (wear/arrive) — shows a sheep (羊) whose fleece is used for clothing, over a person (人) wearing it. To arrive in clothing = to wear!', radicals:[{k:'羊',m:'sheep/fleece'},{k:'人',m:'person'}], literal:'Arriving dressed in clothing — to put on and wear 👕', hook:'KI-RU: "KEY-roo! KEY change — clothes TRANSFORM you!" きる!', related:['脱ぐ','服','ズボン'] }},
+  { k:'脱ぐ', f:'ぬぐ', r:'nugu', m:'to take off (clothes)', pos:'verb (u)',
+    origin:{ pictograph:'脱 combines 月 (flesh/body) + 兌 (shed/exchange). Shedding from the body — peeling clothing away from the body = to take off!', radicals:[{k:'月',m:'body'},{k:'兌',m:'shed/exchange'}], literal:'Shedding clothes from the body — to take off 👗', hook:'NU-GU: "NEW-goo! NEW look — TAKE OFF old clothes!" ぬぐ!', related:['着る','服','裸'] }},
+  { k:'洋服', f:'ようふく', r:'youfuku', m:'Western-style clothes', pos:'noun',
+    origin:{ pictograph:'洋 (Western/ocean) + 服 (clothes/serve). Western clothes — clothing from across the ocean = Western-style fashion!', radicals:[{k:'洋',m:'Western/ocean'},{k:'服',m:'clothes'}], literal:'Clothes from the Western ocean — Western-style fashion 👔', hook:'YOU-FUKU: "YOU-foo-koo! YOU look GOOD in Western clothes!" ようふく!', related:['着物','着る','ファッション'] }},
+  { k:'着物', f:'きもの', r:'kimono', m:'kimono / traditional Japanese clothing', pos:'noun',
+    origin:{ pictograph:'着 (wear) + 物 (thing). The thing you wear — the essential wearable thing in Japanese culture = kimono!', radicals:[{k:'着',m:'wear'},{k:'物',m:'thing'}], literal:'The thing you wear — the traditional Japanese garment 👘', hook:'KI-MONO: "KEY-mono! The key MOANING is to fold a kimono right!" きもの!', related:['洋服','帯','和服'] }},
+  { k:'伝える', f:'つたえる', r:'tsutaeru', m:'to convey / to tell', pos:'verb (ru)',
+    origin:{ pictograph:'伝 (transmit/convey) + 〜える (verb ending). A person (亻) spinning a thread (专) — spinning out and passing along a message like thread!', radicals:[{k:'亻',m:'person'},{k:'专',m:'spin/transmit'}], literal:'Spinning out a message like thread — to convey and pass along 💬', hook:'TSUTAE-RU: "tsoo-TIE-roo! You TIE a message and pass it on!" つたえる!', related:['話す','連絡','伝言'] }},
+  { k:'伝言', f:'でんごん', r:'dengon', m:'message / word (passed on)', pos:'noun',
+    origin:{ pictograph:'伝 (transmit/pass on) + 言 (words/say). Transmitted words — words that are passed on from one person to another = a message!', radicals:[{k:'伝',m:'transmit'},{k:'言',m:'words'}], literal:'Words that are transmitted and passed along — a message 📨', hook:'DEN-GON: "DEN-gon! DEN (electric) + GON (words) = telegram!" でんごん!', related:['伝える','連絡','メモ'] }},
+  { k:'確認', f:'かくにん', r:'kakunin', m:'confirmation / verification', pos:'noun',
+    origin:{ pictograph:'確 (certain/solid) + 認 (recognize/acknowledge). Certain recognition — making sure something is solid and recognized = confirmation!', radicals:[{k:'確',m:'certain/solid'},{k:'認',m:'recognize'}], literal:'Making something certain through recognition — confirming ✅', hook:'KAKU-NIN: "CRACK-NIN! CRACK the code to CONFIRM it!" かくにん!', related:['確かめる','チェック','承認'] }},
+  { k:'相談', f:'そうだん', r:'soudan', m:'consultation / discussion', pos:'noun',
+    origin:{ pictograph:'相 (mutual/each other) + 談 (talk/discuss). Mutual talking — two people exchanging views together = consultation!', radicals:[{k:'相',m:'mutual'},{k:'談',m:'talk/discuss'}], literal:'Mutual exchange of talk — a consultation or discussion 🤝', hook:'SO-DAN: "SO-dan! SO let\'s DAN-ce through this discussion!" そうだん!', related:['話す','相談する','アドバイス'] }},
+  { k:'約束', f:'やくそく', r:'yakusoku', m:'promise / appointment', pos:'noun',
+    origin:{ pictograph:'約 (approximately/promise) + 束 (bundle/bind). Binding together approximately — tying yourself to do something = a promise!', radicals:[{k:'約',m:'bind/promise'},{k:'束',m:'bundle/bind'}], literal:'Tying yourself in a binding agreement — a promise 🤞', hook:'YAKU-SOKU: "YACK-sock-oo! YACK a PROMISE into your SOCK!" やくそく!', related:['守る','誓う','約束を守る'] }},
+  { k:'断る', f:'ことわる', r:'kotowaru', m:'to refuse / to decline', pos:'verb (u)',
+    origin:{ pictograph:'断 (sever/cut off) + 〜る. Severing a connection — cutting off a request by refusing it = to decline!', radicals:[{k:'断',m:'sever/cut off'}], literal:'Severing and cutting off a request — to refuse 🙅', hook:'KOTO-WARU: "COCO-WARU! No coco — I REFUSE!" ことわる!', related:['お断り','拒否','諦める'] }},
+  { k:'褒める', f:'ほめる', r:'homeru', m:'to praise / to compliment', pos:'verb (ru)',
+    origin:{ pictograph:'褒 (praise/esteem) — shows clothing (衣) wrapped around something valuable (保). Wrapping someone in the clothing of praise = to compliment them!', radicals:[{k:'衣',m:'clothing'},{k:'保',m:'protect/value'}], literal:'Wrapping someone in the cloth of words — to praise 🌟', hook:'HO-MERU: "HO-MERU! HOME-roo, say HOME to praise!" ほめる!', related:['叱る','誉め言葉','評価'] }},
+  { k:'叱る', f:'しかる', r:'shikaru', m:'to scold / to reprimand', pos:'verb (u)',
+    origin:{ pictograph:'叱 combines 口 (mouth) + 七 (seven — originally a bent shape suggesting wrongness). A mouth pointing out something wrong — calling out bad behavior = to scold!', radicals:[{k:'口',m:'mouth'},{k:'七',m:'wrongness'}], literal:'A mouth calling out wrongdoing — to scold someone 😤', hook:'SHI-KA-RU: "SHE-CA-roo! SHE CARES enough to SCOLD!" しかる!', related:['褒める','怒る','注意'] }},
+
+  // KEY ADJECTIVES
+  { k:'細かい', f:'こまかい', r:'komakai', m:'detailed / fine / small', pos:'adj (i)',
+    origin:{ pictograph:'細 (thin/fine) + かい (adjective). Thin and refined — something detailed to the point of being very fine = detailed, precise!', radicals:[{k:'糸',m:'thread'},{k:'田',m:'field'}], literal:'Thread-thin and field-fine — detailed and intricate 🔍', hook:'KO-MA-KAI: "COME-ah-KAI! Come carefully, it\'s very DETAILED!" こまかい!', related:['詳しい','細い','丁寧'] }},
+  { k:'厳しい', f:'きびしい', r:'kibishii', m:'strict / severe', pos:'adj (i)',
+    origin:{ pictograph:'厳 (strict/solemn) — shows a cliff with a person being observed — being watched strictly from above. Under strict observation = severe!', radicals:[{k:'厂',m:'cliff'},{k:'敢',m:'dare/bold'}], literal:'Being watched strictly from above — strict and severe 😠', hook:'KIBI-SHII: "KEY-be-she! The KEY KEEPS being STRICT!" きびしい!', related:['厳格','ルール','規律'] }},
+  { k:'穏やか', f:'おだやか', r:'odayaka', m:'calm / gentle / mild', pos:'adj (na)',
+    origin:{ pictograph:'穏 (calm/composed) — shows grain (禾) under a roof (宀) being discussed (言) in a warm sun (日). Grain safely sheltered and discussed peacefully = calm!', radicals:[{k:'禾',m:'grain'},{k:'宀',m:'roof'}], literal:'Grain peacefully sheltered under a roof — calm and gentle 🕊', hook:'ODA-YAKA: "OH-dah-YAH-kah! OH, dah, yak calmly — so gentle!" おだやか!', related:['静か','優しい','平和'] }},
+  { k:'複雑', f:'ふくざつ', r:'fukuzatsu', m:'complicated / complex', pos:'adj (na)',
+    origin:{ pictograph:'複 (double/complex) + 雑 (miscellaneous/mixed). Doubly mixed — layers of miscellaneous things tangled together = complicated!', radicals:[{k:'複',m:'double'},{k:'雑',m:'mixed/miscellaneous'}], literal:'Doubly mixed and tangled layers — complicated and complex 🕸', hook:'FUKU-ZATSU: "FOOK-za-tsoo! So COMPLEX it makes you say FOO!" ふくざつ!', related:['難しい','簡単','シンプル'] }},
+  { k:'簡単', f:'かんたん', r:'kantan', m:'easy / simple', pos:'adj (na)',
+    origin:{ pictograph:'簡 (simple/brief) + 単 (single/simple). Simply single — just one uncomplicated thing. Double simplicity = easy!', radicals:[{k:'簡',m:'simple/brief'},{k:'単',m:'single/simple'}], literal:'Simply and singly uncomplicated — easy! 😊', hook:'KAN-TAN: "CANT-tan! You CANNOT TAN without SPF — that\'s EASY advice!" かんたん!', related:['難しい','複雑','楽'] }},
+  { k:'急に', f:'きゅうに', r:'kyuuni', m:'suddenly / all of a sudden', pos:'adv',
+    origin:{ pictograph:'急 (sudden/urgent) + に (particle/adverb marker). Suddenly and urgently — happening with unexpected speed = all of a sudden!', radicals:[{k:'急',m:'sudden/urgent'},{k:'心',m:'heart'}], literal:'The heart suddenly rushing — suddenly, all at once ⚡', hook:'KYUU-NI: "Q-knee! Your Q (queue/concern) suddenly hit your KNEE!" きゅうに!', related:['突然','急ぐ','すぐ'] }},
+  { k:'丁度', f:'ちょうど', r:'choudo', m:'exactly / just right', pos:'adv',
+    origin:{ pictograph:'丁 (exactly/precisely) + 度 (degree/time). The exact degree — precisely the right measure = exactly right!', radicals:[{k:'丁',m:'exactly'},{k:'度',m:'degree/measure'}], literal:'The exact measured degree — exactly right ⚖️', hook:'CHODO: "CHOH-doh! CHO-DOUGH — exactly the right amount of dough!" ちょうど!', related:['ちょうどいい','正確に','ぴったり'] }},
+
+  // IMPORTANT GRAMMAR WORDS
+  { k:'場合', f:'ばあい', r:'baai', m:'case / situation / occasion', pos:'noun',
+    origin:{ pictograph:'場 (place/situation) + 合 (fit/combine). When situations combine and fit together — the case or occasion when something happens!', radicals:[{k:'場',m:'place/situation'},{k:'合',m:'combine/fit'}], literal:'When situations combine and fit — a case or occasion 📋', hook:'BA-AI: "BAH-eye! BAH — in that CASE, bye-bye!" ばあい!', related:['時','状況','もし'] }},
+  { k:'目的', f:'もくてき', r:'mokuteki', m:'purpose / goal / objective', pos:'noun',
+    origin:{ pictograph:'目 (eye/see) + 的 (target/mark). Targeting with your eye — the mark you have your eye on = a goal or objective!', radicals:[{k:'目',m:'eye'},{k:'的',m:'target/mark'}], literal:'Fixing your eye on a target — a purpose or goal 🎯', hook:'MOKU-TEKI: "MOCK-tek-ee! MOCK-up of your TARGET = your goal!" もくてき!', related:['目標','理由','計画'] }},
+  { k:'理由', f:'りゆう', r:'riyuu', m:'reason / cause', pos:'noun',
+    origin:{ pictograph:'理 (logic/reason) + 由 (reason/origin). The logical origin — the rational source of why something happened = the reason!', radicals:[{k:'理',m:'logic'},{k:'由',m:'origin/reason'}], literal:'The logical origin of something — a reason or cause 🤔', hook:'RI-YUU: "REE-yoo! The REASON is REE-yoo!" りゆう!', related:['わけ','目的','説明'] }},
+  { k:'原因', f:'げんいん', r:'gen\'in', m:'cause / root cause', pos:'noun',
+    origin:{ pictograph:'原 (original/source) + 因 (cause/due to). The original cause — going back to the source of why something happened = root cause!', radicals:[{k:'原',m:'original/source'},{k:'因',m:'cause'}], literal:'The original source of what caused something — root cause 🌱', hook:'GEN-IN: "GEN-in! GENuine INsight into the CAUSE!" げんいん!', related:['理由','結果','問題'] }},
+  { k:'結果', f:'けっか', r:'kekka', m:'result / outcome', pos:'noun',
+    origin:{ pictograph:'結 (tie/conclude) + 果 (result/fruit). The fruit of tying things together — the conclusion that ripens at the end = a result!', radicals:[{k:'結',m:'tie/conclude'},{k:'果',m:'fruit/result'}], literal:'The fruit that ripens at the end — the result or outcome 🍎', hook:'KEKKA: "KECK-ah! KECK — the OUTCOME shocked me!" けっか!', related:['原因','理由','成果'] }},
+  { k:'影響', f:'えいきょう', r:'eikyou', m:'influence / effect', pos:'noun',
+    origin:{ pictograph:'影 (shadow/image) + 響 (echo/resound). A shadow that echoes — something that casts a shadow and continues to reverberate = influence!', radicals:[{k:'影',m:'shadow'},{k:'響',m:'echo/resound'}], literal:'A shadow that echoes and reverberates — influence and effect 🌊', hook:'EI-KYO: "AY-cyo! AY, your ECHO has great INFLUENCE!" えいきょう!', related:['効果','結果','変える'] }},
+  { k:'関係', f:'かんけい', r:'kankei', m:'relationship / connection', pos:'noun',
+    origin:{ pictograph:'関 (barrier/gate/connection) + 係 (person tied/connected). A person tied to a gate — connected through a barrier = a relationship or tie!', radicals:[{k:'関',m:'gate/connection'},{k:'係',m:'tied/connected'}], literal:'Connected through a gateway — a relationship or connection 🔗', hook:'KAN-KEI: "CAN-KAY! CAN you KAY (okay) our RELATIONSHIP?" かんけい!', related:['つながり','関わる','人間関係'] }},
+];
+extraN4v3.forEach(w => vocab.N4.push(w));
 
 // ── Additional N3 words ──
 const extraN3more = [
@@ -10793,267 +10693,6 @@ setTimeout(initOnboarding, 400);
     </div>
   </div>
 </div>
-<!-- ══════════════════════════════════════════
-     COOKIE CONSENT BANNER
-══════════════════════════════════════════ -->
-<div class="cookie-banner" id="cookieBanner" style="display:none">
-  <div class="cookie-text">
-    <strong>🍪 We use cookies</strong> to personalise content, show relevant ads, and remember your study progress.
-    By clicking <strong>Accept</strong> you consent to our use of cookies and Google AdSense ads.
-    <a onclick="openLegal('cookies')">Cookie Policy</a> · <a onclick="openLegal('privacy')">Privacy Policy</a>
-  </div>
-  <div class="cookie-btns">
-    <button class="cookie-btn-decline" onclick="declineCookies()">Decline</button>
-    <button class="cookie-btn-accept" onclick="acceptCookies()">Accept All</button>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     PRIVACY / TERMS / COOKIES MODAL
-══════════════════════════════════════════ -->
-<div class="legal-overlay" id="legalOverlay" onclick="if(event.target===this)closeLegal()">
-  <div class="legal-box">
-    <div class="legal-header">
-      <div>
-        <div class="legal-header-title" id="legalTitle">Privacy Policy</div>
-        <div class="legal-header-sub" id="legalSub">Last updated June 2025</div>
-      </div>
-      <button class="legal-close-btn" onclick="closeLegal()">✕ Close</button>
-    </div>
-    <div class="legal-tabs" id="legalTabs">
-      <button class="legal-tab active" onclick="switchLegalTab('privacy',this)">Privacy</button>
-      <button class="legal-tab" onclick="switchLegalTab('terms',this)">Terms</button>
-      <button class="legal-tab" onclick="switchLegalTab('cookies',this)">Cookies</button>
-    </div>
-    <div class="legal-body" id="legalBody"></div>
-  </div>
-</div>
-
-<script>
-// ══════════════════════════════════════════
-// LEGAL CONTENT
-// ══════════════════════════════════════════
-const LEGAL_CONTENT = {
-  privacy: {
-    title: 'Privacy Policy',
-    sub: 'Last updated June 2025',
-    html: `
-      <h3>1. Who We Are</h3>
-      <p>JLPT Vocab Master ("we", "us", "our") is a free Japanese vocabulary learning tool available at <strong>jlptvocabmaster.github.io</strong>. We are committed to protecting your privacy.</p>
-
-      <h3>2. Information We Collect</h3>
-      <p>We collect the following types of information:</p>
-      <ul>
-        <li><strong>Local storage data</strong> — Your study progress, XP, streaks, and preferences are stored entirely in your browser's localStorage. This data never leaves your device and is not transmitted to us.</li>
-        <li><strong>Usage data via Google AdSense</strong> — Our advertising partner Google may collect information about your visits, including IP address, browser type, pages visited, and time spent. This helps serve relevant advertisements.</li>
-        <li><strong>Analytics</strong> — We may use anonymised analytics to understand how the app is used (e.g. page views, session duration). No personally identifiable information is collected.</li>
-      </ul>
-
-      <h3>3. How We Use Your Information</h3>
-      <ul>
-        <li>To display personalised or contextual advertisements via Google AdSense</li>
-        <li>To improve the app's features and user experience</li>
-        <li>To maintain your study progress locally on your device</li>
-      </ul>
-
-      <h3>4. Google AdSense & Third-Party Advertising</h3>
-      <p>We use <strong>Google AdSense</strong> (publisher ID: ca-pub-6025762973104448) to display ads. Google and its partners may use cookies and web beacons to serve ads based on your prior visits to this website or other websites. You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</p>
-      <p>Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site. For more details, see <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google's Advertising Policies</a>.</p>
-
-      <h3>5. Cookies</h3>
-      <p>We use cookies as described in our Cookie Policy. You can manage cookie preferences using our consent banner or your browser settings.</p>
-
-      <h3>6. Data Retention</h3>
-      <p>All study progress data is stored locally in your browser. You can clear it at any time by clearing your browser's localStorage or site data. We do not store personal data on our servers.</p>
-
-      <h3>7. Your Rights</h3>
-      <p>Depending on your location, you may have rights including access, correction, deletion, and data portability. Since we don't collect personal data on our servers, most requests can be fulfilled by clearing your browser data. For advertising data, contact <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google</a>.</p>
-
-      <h3>8. Children's Privacy</h3>
-      <p>This app is designed for language learners of all ages. We do not knowingly collect personal information from children under 13. If you believe a child has provided personal information, please contact us.</p>
-
-      <h3>9. Changes to This Policy</h3>
-      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date.</p>
-
-      <h3>10. Contact</h3>
-      <p>For privacy questions, please use the feedback option within the app or contact us via our GitHub page.</p>
-      <div class="legal-updated">Last updated: June 2025 · Version 1.0</div>
-    `
-  },
-  terms: {
-    title: 'Terms of Use',
-    sub: 'Please read before using the app',
-    html: `
-      <h3>1. Acceptance of Terms</h3>
-      <p>By using JLPT Vocab Master, you agree to these Terms of Use. If you do not agree, please do not use the app.</p>
-
-      <h3>2. Use of the App</h3>
-      <p>JLPT Vocab Master is provided <strong>free of charge</strong> for personal, non-commercial educational use. You may:</p>
-      <ul>
-        <li>Use the app to study Japanese vocabulary for personal learning</li>
-        <li>Share the app link with friends and fellow learners</li>
-      </ul>
-      <p>You may not:</p>
-      <ul>
-        <li>Reproduce, distribute, or sell the app's content commercially</li>
-        <li>Attempt to reverse-engineer, scrape, or copy the vocabulary data at scale</li>
-        <li>Use automated tools to interact with the app</li>
-        <li>Remove or obscure any copyright notices</li>
-      </ul>
-
-      <h3>3. Intellectual Property</h3>
-      <p>The app's design, code, and original content are owned by JLPT Vocab Master. Vocabulary definitions and JLPT level classifications are based on publicly available Japanese language learning standards. Anime quotes are used for educational and motivational purposes under fair use principles.</p>
-
-      <h3>4. Advertisements</h3>
-      <p>This app displays advertisements via Google AdSense to remain free. By using the app you acknowledge and agree to the presence of advertisements. Ad preferences can be managed via your Google account or our Cookie/Ad Preferences settings.</p>
-
-      <h3>5. Disclaimers</h3>
-      <p>JLPT Vocab Master is an <strong>unofficial study aid</strong> and is not affiliated with, endorsed by, or connected to the Japan Foundation or any official JLPT body. Passing the JLPT requires comprehensive study beyond vocabulary alone.</p>
-      <p>The app is provided "as is" without any warranty. We do not guarantee the accuracy of all vocabulary entries or that use of the app will result in passing any examination.</p>
-
-      <h3>6. Limitation of Liability</h3>
-      <p>To the extent permitted by law, we shall not be liable for any indirect, incidental, or consequential damages arising from your use of the app.</p>
-
-      <h3>7. Changes to Terms</h3>
-      <p>We reserve the right to update these terms at any time. Continued use of the app after changes constitutes acceptance of the new terms.</p>
-
-      <div class="legal-updated">Last updated: June 2025 · Version 1.0</div>
-    `
-  },
-  cookies: {
-    title: 'Cookie Policy',
-    sub: 'How we use cookies and similar technologies',
-    html: `
-      <h3>1. What Are Cookies?</h3>
-      <p>Cookies are small text files stored on your device by your browser. They help websites remember your preferences and enable certain features. We also use localStorage, which is similar but stored differently.</p>
-
-      <h3>2. Cookies We Use</h3>
-      <p><strong>Essential (localStorage):</strong> These are required for the app to function. They store your study progress, XP, streaks, level preferences, and settings. These are never sent to any server.</p>
-      <ul>
-        <li><code>jlpt_progress</code> — Your XP, streak, and level progress</li>
-        <li><code>jlpt_onboard_done</code> — Whether you've completed onboarding</li>
-        <li><code>jlpt_chosen_level</code> — Your preferred study level</li>
-        <li><code>jlpt_beginner_mode</code> — Beginner mode state</li>
-        <li><code>jlpt_hide_romaji</code> — Romaji display preference</li>
-        <li><code>jlpt_dark_mode</code> — Dark mode preference</li>
-        <li><code>jlpt_word_accuracy</code> — Per-word accuracy tracking</li>
-        <li><code>jlpt_weekly</code> — Weekly activity data</li>
-        <li><code>jlpt_daily_challenge</code> — Daily challenge progress</li>
-        <li><code>jlpt_cookie_consent</code> — Your cookie consent choice</li>
-      </ul>
-      <p><strong>Advertising Cookies (Google AdSense):</strong> Google AdSense sets cookies to serve relevant ads. These may include:</p>
-      <ul>
-        <li>Cookies to measure ad performance and prevent fraud</li>
-        <li>Cookies for personalised advertising based on your interests (if consented)</li>
-        <li>Third-party cookies from Google's advertising partners</li>
-      </ul>
-
-      <h3>3. Managing Cookies</h3>
-      <p>You can manage your preferences at any time:</p>
-      <ul>
-        <li><strong>Browser settings</strong> — Most browsers allow you to block or delete cookies</li>
-        <li><strong>Google Ad Settings</strong> — <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Opt out of personalised ads</a></li>
-        <li><strong>NAI opt-out</strong> — <a href="https://optout.networkadvertising.org" target="_blank" rel="noopener">Network Advertising Initiative</a></li>
-        <li><strong>Study data</strong> — Clear your progress by clearing this site's localStorage in your browser settings</li>
-      </ul>
-      <p>Declining cookies will hide personalised ads but the app will still show non-personalised ads to support free access.</p>
-
-      <h3>4. Third-Party Links</h3>
-      <p>Our app contains links to external sites (e.g. JLPT exam centers). We are not responsible for the cookie practices of third-party websites.</p>
-
-      <h3>5. Updates</h3>
-      <p>We may update this Cookie Policy as our use of cookies changes. The latest version is always available in the app footer.</p>
-
-      <div class="legal-updated">Last updated: June 2025 · Version 1.0</div>
-    `
-  }
-};
-
-// ══════════════════════════════════════════
-// COOKIE CONSENT LOGIC
-// ══════════════════════════════════════════
-function initCookieConsent() {
-  const consent = localStorage.getItem('jlpt_cookie_consent');
-  if (!consent) {
-    // Show banner after a short delay so it doesn't fight page load
-    setTimeout(() => {
-      const banner = document.getElementById('cookieBanner');
-      if (banner) banner.style.display = 'flex';
-    }, 1200);
-  } else if (consent === 'accepted') {
-    pushAdSense();
-  }
-}
-
-function acceptCookies() {
-  localStorage.setItem('jlpt_cookie_consent', 'accepted');
-  hideCookieBanner();
-  pushAdSense();
-}
-
-function declineCookies() {
-  localStorage.setItem('jlpt_cookie_consent', 'declined');
-  hideCookieBanner();
-  // Hide ad unit if declined
-  const adUnit = document.getElementById('homeAdUnit');
-  if (adUnit) adUnit.style.display = 'none';
-}
-
-function hideCookieBanner() {
-  const banner = document.getElementById('cookieBanner');
-  if (!banner) return;
-  banner.classList.add('hide');
-  setTimeout(() => { banner.style.display = 'none'; banner.classList.remove('hide'); }, 320);
-}
-
-function pushAdSense() {
-  // Push AdSense ad after consent
-  try {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  } catch(e) {}
-}
-
-function openCookieSettings() {
-  // Re-show the cookie banner to let user change preference
-  localStorage.removeItem('jlpt_cookie_consent');
-  const banner = document.getElementById('cookieBanner');
-  if (banner) { banner.style.display = 'flex'; }
-}
-
-// ══════════════════════════════════════════
-// LEGAL MODAL LOGIC
-// ══════════════════════════════════════════
-function openLegal(tab) {
-  tab = tab || 'privacy';
-  renderLegalTab(tab);
-  // Highlight correct tab button
-  document.querySelectorAll('.legal-tab').forEach(t => {
-    t.classList.toggle('active', t.getAttribute('onclick').includes("'" + tab + "'"));
-  });
-  document.getElementById('legalOverlay').classList.add('open');
-}
-
-function closeLegal() {
-  document.getElementById('legalOverlay').classList.remove('open');
-}
-
-function switchLegalTab(tab, btn) {
-  document.querySelectorAll('.legal-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  renderLegalTab(tab);
-}
-
-function renderLegalTab(tab) {
-  const content = LEGAL_CONTENT[tab];
-  if (!content) return;
-  document.getElementById('legalTitle').textContent = content.title;
-  document.getElementById('legalSub').textContent   = content.sub;
-  document.getElementById('legalBody').innerHTML    = content.html;
-}
-
-// Init on page load
-initCookieConsent();
-</script>
 
 </body>
 </html>
