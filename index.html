@@ -80,6 +80,554 @@ body.dark .welcome-back { background: linear-gradient(135deg, #0d0d1a, #1a2035);
 .settings-bar-sep { width: 1px; height: 16px; background: var(--border); flex-shrink: 0; }
 .dm-toggle { display: none; } /* legacy — replaced by settings-bar */
 
+/* ══════════════════════════════════════════
+   ABSOLUTE BEGINNER — EXPLAINER CARDS
+══════════════════════════════════════════ */
+.ob-explainer-wrap {
+  display: none; /* shown via JS */
+}
+.ob-explainer-cards {
+  display: flex; gap: 0; width: 100%;
+  flex-wrap: nowrap;
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+.ob-explainer-card {
+  min-width: 100%; flex-shrink: 0; padding: 4px 0 8px; box-sizing: border-box;
+  text-align: center;
+}
+.ob-exp-icon {
+  font-size: 3rem; margin-bottom: 10px; line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.12));
+}
+.ob-exp-title {
+  font-family: 'DM Serif Display', serif; font-size: 1.25rem;
+  color: var(--ink); margin-bottom: 8px; line-height: 1.3;
+}
+.ob-exp-body {
+  font-size: 0.82rem; color: var(--stone); line-height: 1.75;
+  margin-bottom: 14px; text-align: left;
+}
+.ob-exp-body strong { color: var(--ink); }
+.ob-exp-body .kana-row {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin: 10px 0;
+}
+.ob-exp-body .kana-pill {
+  background: linear-gradient(135deg,#f0f9ff,#e8f4fd);
+  border: 1px solid rgba(41,128,185,0.2);
+  border-radius: 10px; padding: 6px 12px;
+  font-family: 'Noto Serif JP', serif; font-size: 1.1rem;
+  color: var(--ink); text-align: center; min-width: 54px;
+}
+.ob-exp-body .kana-pill span {
+  display: block; font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.58rem; color: var(--stone); margin-top: 2px;
+}
+.ob-exp-body .phrase-row {
+  background: var(--white); border-radius: 12px;
+  border: 1px solid var(--border); padding: 10px 14px;
+  margin: 8px 0; display: flex; align-items: center; gap: 12px;
+}
+.ob-exp-body .phrase-jp {
+  font-family: 'Noto Serif JP', serif; font-size: 1.05rem;
+  color: var(--ink); min-width: 100px;
+}
+.ob-exp-body .phrase-en {
+  font-size: 0.78rem; color: var(--stone); line-height: 1.4;
+}
+.ob-exp-body .grammar-box {
+  background: linear-gradient(135deg,#fef9ec,#fff8e7);
+  border: 1px solid rgba(240,192,64,0.35); border-radius: 12px;
+  padding: 12px 14px; margin: 10px 0;
+}
+.ob-exp-body .grammar-box .gb-row {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; margin-bottom: 4px;
+}
+.ob-exp-body .grammar-box .gb-row:last-child { margin-bottom: 0; }
+.ob-exp-body .grammar-box .gb-tag {
+  font-family: 'DM Serif Display', serif; font-size: 0.72rem;
+  padding: 2px 8px; border-radius: 6px; font-weight: 700;
+  white-space: nowrap;
+}
+.gb-tag.subj  { background:#e8f5e9; color:#27ae60; }
+.gb-tag.part  { background:#fff3e0; color:#e67e22; }
+.gb-tag.obj   { background:#e3f2fd; color:#2980b9; }
+.gb-tag.verb  { background:#fce4ec; color:#c0392b; }
+.ob-exp-dots {
+  display: flex; justify-content: center; gap: 7px; margin: 10px 0;
+}
+.ob-exp-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border); transition: background .2s, transform .2s;
+}
+.ob-exp-dot.active { background: var(--crimson); transform: scale(1.3); }
+.ob-exp-nav {
+  display: flex; gap: 8px; margin-top: 4px;
+}
+.ob-exp-back {
+  flex: 0 0 auto; padding: 11px 16px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 12px; font-size: 0.82rem; color: var(--stone);
+  cursor: pointer; font-family: 'DM Serif Display', serif;
+  transition: border-color .18s;
+}
+.ob-exp-back:hover { border-color: var(--ink); color: var(--ink); }
+.ob-exp-next {
+  flex: 1; padding: 12px;
+  background: linear-gradient(135deg, var(--crimson), #a93226);
+  border: none; border-radius: 12px; color: white; cursor: pointer;
+  font-family: 'DM Serif Display', serif; font-size: 0.95rem;
+  font-weight: 700; transition: transform .18s, box-shadow .18s;
+  box-shadow: 0 4px 14px rgba(192,57,43,0.3);
+}
+.ob-exp-next:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(192,57,43,0.4); }
+
+/* Absolute Beginner onboarding button */
+.ob-level-btn.ab-level {
+  border: 2px solid rgba(39,174,96,0.4);
+  background: linear-gradient(135deg, #f0faf4, #e8f8ef);
+  position: relative; overflow: hidden;
+}
+.ob-level-btn.ab-level::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(39,174,96,0.06), transparent);
+  pointer-events: none;
+}
+.ob-level-btn.ab-level.sel {
+  border-color: #27ae60;
+  background: linear-gradient(135deg, #e0f5e8, #d5f0dd);
+}
+.ab-new-badge {
+  display: inline-block; background: #27ae60; color: white;
+  font-size: 0.58rem; font-weight: 700; padding: 2px 7px;
+  border-radius: 99px; margin-left: 6px; letter-spacing: 0.5px;
+  vertical-align: middle; text-transform: uppercase;
+}
+
+/* Absolute Beginner home banner */
+.ab-path-banner {
+  display: none;
+  background: linear-gradient(135deg, #e8f8ef 0%, #f0fdf4 100%);
+  border: 1.5px solid rgba(39,174,96,0.3); border-radius: 18px;
+  padding: 18px 20px 16px; margin: 0 0 18px; position: relative;
+  overflow: hidden;
+}
+.ab-path-banner::before {
+  content: '道'; position: absolute; right: -8px; top: -14px;
+  font-family: 'Noto Serif JP', serif; font-size: 6.5rem;
+  color: rgba(39,174,96,0.07); pointer-events: none; line-height: 1;
+}
+body.absolute-beginner .ab-path-banner { display: block; }
+body.dark .ab-path-banner {
+  background: linear-gradient(135deg, #0a1f12 0%, #091a10 100%);
+  border-color: rgba(39,174,96,0.25);
+}
+/* Dark mode for explainer card internals */
+body.dark .ob-exp-title { color: var(--ink); }
+body.dark .ob-exp-body  { color: #94a3b8; }
+body.dark .ob-exp-body strong { color: var(--ink); }
+body.dark .kana-pill {
+  background: linear-gradient(135deg, #0f2233, #0a1929);
+  border-color: rgba(41,128,185,0.3);
+  color: var(--ink);
+}
+body.dark .kana-pill span { color: #64748b; }
+body.dark .phrase-row {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+body.dark .phrase-jp { color: var(--ink); }
+body.dark .phrase-en { color: #94a3b8; }
+body.dark .grammar-box {
+  background: linear-gradient(135deg, #1a1400, #150f00);
+  border-color: rgba(240,192,64,0.2);
+}
+body.dark .ob-exp-back {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.15);
+  color: #94a3b8;
+}
+body.dark .ob-exp-back:hover { border-color: var(--ink); color: var(--ink); }
+body.dark .ob-exp-dot { background: rgba(255,255,255,0.2); }
+.ab-path-title {
+  font-family: 'DM Serif Display', serif; font-size: 1.05rem;
+  color: #1e7e34; margin-bottom: 4px;
+}
+body.dark .ab-path-title { color: #4cd97b; }
+.ab-path-sub {
+  font-size: 0.76rem; color: #3d9e50; margin-bottom: 14px; line-height: 1.6;
+}
+body.dark .ab-path-sub { color: #69c97a; }
+.ab-path-steps {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.ab-step {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.7); border-radius: 12px;
+  padding: 10px 14px; border: 1px solid rgba(39,174,96,0.15);
+  cursor: pointer; transition: all .18s;
+}
+body.dark .ab-step { background: rgba(255,255,255,0.06); }
+.ab-step:hover { transform: translateX(3px); border-color: rgba(39,174,96,0.4); }
+.ab-step.done {
+  opacity: 0.55; cursor: default;
+}
+.ab-step.done:hover { transform: none; }
+.ab-step-icon { font-size: 1.4rem; flex-shrink: 0; }
+.ab-step-text { flex: 1; }
+.ab-step-name {
+  font-size: 0.82rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 1px;
+}
+.ab-step-desc { font-size: 0.72rem; color: var(--stone); }
+.ab-step-check {
+  font-size: 1.1rem; flex-shrink: 0;
+  color: #27ae60; display: none;
+}
+.ab-step.done .ab-step-check { display: block; }
+.ab-path-exit {
+  font-size: 0.7rem; color: var(--stone); text-align: center;
+  margin-top: 12px; cursor: pointer; text-decoration: underline;
+}
+.ab-path-exit:hover { color: var(--crimson); }
+
+/* Hide AB banner in non-absolute-beginner mode */
+body:not(.absolute-beginner) .ab-path-banner { display: none !important; }
+
+/* ── GRAMMAR QUIZ ── */
+.gq-launch-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin: 12px 18px 0; padding: 9px 16px;
+  background: linear-gradient(135deg, var(--crimson), #a93226);
+  color: white; border: none; border-radius: 12px;
+  font-family: 'DM Serif Display', serif; font-size: 0.85rem;
+  font-weight: 700; cursor: pointer; transition: all .18s;
+  box-shadow: 0 3px 10px rgba(192,57,43,0.25);
+}
+.gq-launch-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(192,57,43,0.35); }
+
+/* Quiz panel — slides in below the intro banner */
+.gq-panel {
+  margin: 16px 18px 8px;
+  border: 2px solid var(--crimson);
+  border-radius: 18px; overflow: hidden;
+  animation: fadeUp .25s ease;
+}
+.gq-panel-header {
+  background: linear-gradient(135deg, var(--crimson), #a93226);
+  padding: 12px 16px; display: flex; align-items: center;
+  justify-content: space-between;
+}
+.gq-panel-title {
+  font-family: 'DM Serif Display', serif; font-size: 0.95rem;
+  color: white; font-weight: 700;
+}
+.gq-panel-close {
+  background: rgba(255,255,255,0.18); border: none; border-radius: 8px;
+  color: white; padding: 4px 10px; cursor: pointer; font-size: 0.8rem;
+  font-weight: 700; transition: background .18s;
+}
+.gq-panel-close:hover { background: rgba(255,255,255,0.32); }
+.gq-panel-body { background: var(--white); padding: 16px; }
+body.dark .gq-panel-body { background: #1a1a2e; }
+
+/* Progress bar */
+.gq-progress-wrap { height: 4px; background: var(--border); border-radius: 99px; margin-bottom: 16px; }
+.gq-progress-fill { height: 100%; background: var(--crimson); border-radius: 99px; transition: width .3s ease; }
+
+/* Question */
+.gq-question {
+  font-family: 'Noto Serif JP', serif; font-size: 1.05rem;
+  color: var(--ink); line-height: 1.8; margin-bottom: 6px;
+  text-align: center;
+}
+.gq-question-sub {
+  font-size: 0.72rem; color: var(--stone); text-align: center;
+  margin-bottom: 14px; font-weight: 600;
+}
+/* Options grid */
+.gq-opts {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px; margin-bottom: 12px;
+}
+.gq-opt {
+  padding: 11px 10px; border-radius: 12px; border: 2px solid var(--border);
+  background: var(--white); font-family: 'Noto Serif JP', serif;
+  font-size: 0.92rem; color: var(--ink); cursor: pointer;
+  transition: all .15s; text-align: center; line-height: 1.4;
+}
+body.dark .gq-opt { background: rgba(255,255,255,0.05); }
+.gq-opt:hover:not(:disabled) { border-color: var(--crimson); background: var(--crimson-lt); }
+.gq-opt.correct { border-color: #27ae60; background: #e8f8f0; color: #1a5e2a; }
+.gq-opt.wrong   { border-color: var(--crimson); background: var(--crimson-lt); color: var(--crimson); }
+.gq-opt:disabled { cursor: default; }
+
+/* Feedback line */
+.gq-feedback {
+  font-size: 0.78rem; text-align: center; min-height: 20px;
+  margin-bottom: 10px; font-weight: 600; line-height: 1.5;
+}
+.gq-feedback.ok  { color: #27ae60; }
+.gq-feedback.bad { color: var(--crimson); }
+
+/* Next btn */
+.gq-next-btn {
+  width: 100%; padding: 11px; border-radius: 12px; border: none;
+  background: var(--ink); color: white;
+  font-family: 'DM Serif Display', serif; font-size: 0.9rem;
+  cursor: pointer; transition: all .18s; display: none;
+}
+.gq-next-btn.show { display: block; }
+.gq-next-btn:hover { background: var(--crimson); }
+
+/* Score summary */
+.gq-score-wrap { text-align: center; padding: 8px 0 4px; }
+.gq-score-num {
+  font-family: 'DM Serif Display', serif; font-size: 2.2rem;
+  color: var(--crimson); font-weight: 700; margin-bottom: 4px;
+}
+.gq-score-msg { font-size: 0.82rem; color: var(--stone); margin-bottom: 14px; }
+.gq-retry-btn {
+  padding: 10px 22px; background: var(--crimson); color: white;
+  border: none; border-radius: 12px; font-family: 'DM Serif Display', serif;
+  font-size: 0.88rem; cursor: pointer; transition: all .18s;
+  margin-right: 8px;
+}
+.gq-retry-btn:hover { background: #a93226; }
+.gq-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+.gq-dot { width: 10px; height: 10px; border-radius: 50%; }
+.gq-dot.ok  { background: #27ae60; }
+.gq-dot.bad { background: var(--crimson); }
+
+/* ── RECALL MODE (English → Japanese production) ── */
+.recall-prompt-box {
+  background: linear-gradient(135deg, var(--crimson-lt), rgba(192,57,43,0.04));
+  border: 2px solid var(--crimson);
+  border-radius: 18px; padding: 20px 18px 16px;
+  text-align: center; margin-bottom: 18px;
+}
+.recall-en {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.55rem; color: var(--ink); font-weight: 700; margin-bottom: 6px;
+}
+.recall-pos {
+  font-size: 0.72rem; color: var(--stone); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px;
+}
+.recall-hint-row {
+  display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+}
+.recall-hint-chip {
+  font-size: 0.75rem; background: var(--white);
+  border: 1.5px solid var(--border); border-radius: 99px;
+  padding: 3px 11px; color: var(--stone); cursor: pointer;
+  transition: all .18s; font-weight: 600;
+}
+.recall-hint-chip:hover { border-color: var(--gold); color: var(--gold); }
+.recall-hint-chip.revealed { border-color: var(--gold); color: var(--gold); background: var(--gold-lt); }
+body.dark .recall-prompt-box { background: rgba(192,57,43,0.08); }
+body.dark .recall-hint-chip { background: rgba(255,255,255,0.06); }
+
+/* ── DICTATION MODE (hear → type romaji) ── */
+.dict-listen-card {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 20px; padding: 32px 20px 24px;
+  text-align: center; margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+body.dark .dict-listen-card { background: #1a1a2e; }
+.dict-headphone-icon {
+  font-size: 3.2rem; margin-bottom: 10px; display: block;
+  animation: dictPulse 2s ease-in-out infinite;
+}
+@keyframes dictPulse {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+.dict-listen-card.played .dict-headphone-icon { animation: none; }
+.dict-prompt {
+  font-size: 0.9rem; color: var(--stone); font-weight: 700;
+  margin-bottom: 14px;
+}
+.dict-reveal-area {
+  background: var(--bg); border-radius: 14px; padding: 14px;
+  margin-top: 14px; border: 1.5px solid var(--border);
+}
+.dict-reveal-kanji {
+  font-family: 'Noto Serif JP', serif; font-size: 2rem;
+  color: var(--ink); margin-bottom: 4px;
+}
+.dict-reveal-reading { font-size: 0.85rem; color: var(--stone); margin-bottom: 2px; }
+.dict-reveal-meaning { font-size: 0.82rem; color: var(--ink); font-weight: 600; }
+
+/* ── PRONUNCIATION SPEAK BUTTON ── */
+.speak-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 5px; padding: 5px 12px; border-radius: 99px;
+  border: 1.5px solid var(--border); background: var(--white);
+  cursor: pointer; font-size: 0.75rem; font-weight: 700;
+  color: var(--stone); transition: all .18s;
+  font-family: 'DM Serif Display', serif;
+  white-space: nowrap; flex-shrink: 0;
+}
+.speak-btn:hover { border-color: var(--crimson); color: var(--crimson); background: var(--crimson-lt); }
+.speak-btn.speaking {
+  border-color: var(--crimson); color: var(--crimson);
+  background: var(--crimson-lt);
+  animation: speakPulse .6s ease-in-out infinite;
+}
+@keyframes speakPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,0); }
+  50% { box-shadow: 0 0 0 5px rgba(192,57,43,0.15); }
+}
+body.dark .speak-btn { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); }
+body.dark .speak-btn:hover { border-color: var(--crimson); background: rgba(192,57,43,0.15); color: #e87161; }
+
+/* Shadow mode speak button */
+.shadow-speak-row {
+  display: flex; justify-content: center; margin-bottom: 12px;
+}
+
+/* Origin panel word row with speak */
+.op-word-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap;
+}
+
+/* ── STROKE ORDER ANIMATION ── */
+.stroke-order-section {
+  margin-bottom: 4px;
+}
+.stroke-order-wrap {
+  display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap;
+}
+.stroke-svg-container {
+  position: relative; width: 120px; height: 120px; flex-shrink: 0;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+}
+body.dark .stroke-svg-container { background: rgba(255,255,255,0.04); }
+.stroke-svg-container svg {
+  width: 100%; height: 100%;
+}
+/* Grid lines inside SVG box */
+.stroke-grid-line { stroke: var(--border); stroke-width: 0.5; opacity: 0.5; }
+/* Strokes — drawn progressively */
+.stroke-path {
+  fill: none; stroke: var(--ink);
+  stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 300; stroke-dashoffset: 300;
+  opacity: 0;
+}
+.stroke-path.drawn { opacity: 1; }
+.stroke-path.animating {
+  animation: drawStroke .45s ease forwards;
+}
+@keyframes drawStroke {
+  from { stroke-dashoffset: 300; opacity: 1; }
+  to   { stroke-dashoffset: 0;   opacity: 1; }
+}
+.stroke-path.faded { opacity: 0.18; }
+.stroke-counter {
+  position: absolute; bottom: 5px; right: 7px;
+  font-size: 0.58rem; font-weight: 700; color: var(--stone);
+  font-family: 'DM Serif Display', serif;
+}
+.stroke-controls {
+  display: flex; flex-direction: column; gap: 8px; justify-content: center;
+}
+.stroke-ctrl-btn {
+  padding: 7px 14px; border-radius: 10px; font-size: 0.78rem;
+  font-family: 'DM Serif Display', serif; font-weight: 700;
+  border: 1.5px solid var(--border); background: var(--white);
+  color: var(--ink); cursor: pointer; transition: all .18s;
+  white-space: nowrap;
+}
+.stroke-ctrl-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+.stroke-ctrl-btn.primary {
+  background: linear-gradient(135deg, var(--crimson), #a93226);
+  color: white; border-color: transparent;
+  box-shadow: 0 3px 10px rgba(192,57,43,0.25);
+}
+.stroke-ctrl-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(192,57,43,0.35); }
+body.dark .stroke-ctrl-btn { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); }
+.stroke-info {
+  font-size: 0.72rem; color: var(--stone); line-height: 1.6; flex: 1; min-width: 100px;
+}
+.stroke-info strong { color: var(--ink); }
+.stroke-unavail {
+  font-size: 0.75rem; color: var(--stone); font-style: italic;
+  padding: 10px 0;
+}
+
+/* ── GRAMMAR CARD ANIMATION ── */
+.grammar-box .gb-row {
+  transition: all .25s ease;
+  border-radius: 8px;
+  padding: 3px 6px;
+  margin: 2px 0;
+}
+.grammar-box .gb-row.gb-active {
+  background: rgba(255,255,255,0.55);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+body.dark .grammar-box .gb-row.gb-active {
+  background: rgba(255,255,255,0.1);
+}
+.gb-tag {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.gb-row.gb-active .gb-tag {
+  transform: scale(1.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.gb-row-label {
+  font-size: 0.72rem; color: var(--stone); flex: 1;
+  transition: color .25s;
+}
+.gb-row.gb-active .gb-row-label { color: var(--ink); font-weight: 600; }
+
+/* ── AB PATH PROGRESS RING ── */
+.ab-ring-wrap {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+}
+.ab-ring-svg {
+  flex-shrink: 0; transform: rotate(-90deg);
+}
+.ab-ring-track {
+  fill: none; stroke: rgba(39,174,96,0.15); stroke-width: 5;
+}
+.ab-ring-fill {
+  fill: none; stroke: #27ae60; stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .6s cubic-bezier(.4,0,.2,1);
+}
+body.dark .ab-ring-track { stroke: rgba(39,174,96,0.12); }
+body.dark .ab-ring-fill  { stroke: #4cd97b; }
+.ab-ring-inner {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.ab-ring-count {
+  font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+  color: #1e7e34; line-height: 1;
+}
+body.dark .ab-ring-count { color: #4cd97b; }
+.ab-ring-label {
+  font-size: 0.55rem; color: #3d9e50; letter-spacing: 0.3px;
+  text-transform: uppercase; font-weight: 700;
+}
+.ab-ring-container { position: relative; width: 54px; height: 54px; flex-shrink: 0; }
+.ab-ring-text { flex: 1; }
+.ab-ring-headline {
+  font-family: 'DM Serif Display', serif; font-size: 1.05rem;
+  color: #1e7e34; line-height: 1.2; margin-bottom: 3px;
+}
+body.dark .ab-ring-headline { color: #4cd97b; }
+.ab-ring-subline { font-size: 0.75rem; color: #3d9e50; line-height: 1.5; }
+body.dark .ab-ring-subline { color: #69c97a; }
+
 /* ── PROGRESSIVE DISCLOSURE — beginner mode ── */
 body.beginner-mode .daily-challenge-card { display: none !important; }
 body.beginner-mode .home-pill { display: none !important; }
@@ -1398,14 +1946,16 @@ body { background: #fdf4e8; }
 .onboard-overlay.show { display: flex; }
 .onboard-box {
   background: var(--white); border-radius: 24px; max-width: 380px;
-  width: 100%; overflow: hidden;
+  width: 100%; overflow: hidden; max-height: 90vh;
+  display: flex; flex-direction: column;
   box-shadow: 0 24px 80px rgba(0,0,0,.5);
   animation: fadeUp .4s ease both;
 }
-.onboard-slides { display: flex; transition: transform .4s cubic-bezier(.4,0,.2,1); }
+.onboard-slides { display: flex; flex: 1; overflow: hidden; transition: none; }
 .onboard-slide {
   min-width: 100%; padding: 36px 28px 28px;
   display: flex; flex-direction: column; align-items: center; text-align: center;
+  overflow-y: auto;
 }
 .onboard-emoji { font-size: 3.5rem; margin-bottom: 16px; }
 .onboard-title {
@@ -2428,6 +2978,10 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
         <div class="onboard-title">What's your level?</div>
         <div class="onboard-body" style="margin-bottom:14px">Pick the level that matches you — you can always change it later.</div>
         <div id="obLevelPicker" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;text-align:left">
+          <button class="ob-level-btn ab-level" onclick="obSelectLevel('AB', this)" data-level="AB">
+            <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#27ae60;margin-right:8px">🌱</span>
+            <span><strong>Zero experience</strong> <span class="ab-new-badge">START HERE</span><br><span style="color:#94a3b8;font-size:0.78rem">— I've never studied Japanese before</span></span>
+          </button>
           <button class="ob-level-btn" onclick="obSelectLevel('N5', this)" data-level="N5">
             <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--n5);margin-right:8px">N5</span>
             <span><strong>Complete beginner</strong> <span style="color:#94a3b8;font-size:0.78rem">— I'm just starting out</span></span>
@@ -2453,6 +3007,123 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
           <button class="onboard-next" id="obStartBtn" onclick="closeOnboardingWithLevel()" style="width:100%;opacity:0.4;pointer-events:none">Start Learning →</button>
         </div>
       </div>
+
+      <!-- Slide 3: Absolute Beginner Explainer Cards (shown only when AB selected) -->
+      <div class="onboard-slide ob-explainer-wrap" id="obSlide3" style="display:none">
+        <!-- Progress dots -->
+        <div class="ob-exp-dots" id="obExpDots">
+          <div class="ob-exp-dot active" id="obDot0"></div>
+          <div class="ob-exp-dot" id="obDot1"></div>
+          <div class="ob-exp-dot" id="obDot2"></div>
+          <div class="ob-exp-dot" id="obDot3"></div>
+        </div>
+
+        <!-- Card viewport -->
+        <div style="overflow:hidden;width:100%">
+          <div class="ob-explainer-cards" id="obExpCards">
+
+            <!-- Card 1: Hiragana & Katakana -->
+            <div class="ob-explainer-card">
+              <div class="ob-exp-icon">あ</div>
+              <div class="ob-exp-title">Japanese has 3 writing systems</div>
+              <div class="ob-exp-body">
+                Don't panic — two of them are simple alphabets you can learn in a week! 😊
+                <div class="kana-row">
+                  <div class="kana-pill">あ<span>a</span></div>
+                  <div class="kana-pill">い<span>i</span></div>
+                  <div class="kana-pill">う<span>u</span></div>
+                  <div class="kana-pill">え<span>e</span></div>
+                  <div class="kana-pill">お<span>o</span></div>
+                </div>
+                <strong>Hiragana (ひらがな)</strong> — 46 soft, rounded characters. Used for grammar and Japanese words.<br><br>
+                <strong>Katakana (カタカナ)</strong> — 46 sharper characters. Used for foreign words like コーヒー (<em>coffee</em>).<br><br>
+                <strong>Kanji (漢字)</strong> — Chinese-origin characters. N5 needs ~100. This app teaches them with <em>origin stories</em> so they actually stick. 🧠
+              </div>
+            </div>
+
+            <!-- Card 2: Survival Phrases -->
+            <div class="ob-explainer-card">
+              <div class="ob-exp-icon">🗣️</div>
+              <div class="ob-exp-title">5 phrases that work everywhere</div>
+              <div class="ob-exp-body">
+                Memorise these and you can survive your first day in Japan:
+                <div class="phrase-row">
+                  <div class="phrase-jp">ありがとう</div>
+                  <div class="phrase-en"><strong>Arigatou</strong> — Thank you<br><span style="font-size:0.68rem;color:#94a3b8">The most-used phrase in Japan 🙏</span></div>
+                </div>
+                <div class="phrase-row">
+                  <div class="phrase-jp">すみません</div>
+                  <div class="phrase-en"><strong>Sumimasen</strong> — Excuse me / Sorry<br><span style="font-size:0.68rem;color:#94a3b8">Works for getting attention too</span></div>
+                </div>
+                <div class="phrase-row">
+                  <div class="phrase-jp">わかりません</div>
+                  <div class="phrase-en"><strong>Wakarimasen</strong> — I don't understand<br><span style="font-size:0.68rem;color:#94a3b8">More useful than you'd think!</span></div>
+                </div>
+                <div class="phrase-row">
+                  <div class="phrase-jp">はい / いいえ</div>
+                  <div class="phrase-en"><strong>Hai / Iie</strong> — Yes / No</div>
+                </div>
+                <div class="phrase-row">
+                  <div class="phrase-jp">〜はどこですか</div>
+                  <div class="phrase-en"><strong>〜wa doko desu ka</strong> — Where is 〜?<br><span style="font-size:0.68rem;color:#94a3b8">Insert any place name for 〜</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Grammar concept -->
+            <div class="ob-explainer-card" id="obCard2">
+              <div class="ob-exp-icon">🧩</div>
+              <div class="ob-exp-title">Japanese grammar in 30 seconds</div>
+              <div class="ob-exp-body">
+                The biggest difference from English: <strong>the verb goes at the END</strong>.
+                <div class="grammar-box" id="gbAnimBox">
+                  <div class="gb-row" id="gbRow0"><span class="gb-tag subj">わたし は</span><span class="gb-row-label">I (topic marker)</span></div>
+                  <div class="gb-row" id="gbRow1"><span class="gb-tag obj">ラーメン を</span><span class="gb-row-label">ramen (object marker)</span></div>
+                  <div class="gb-row" id="gbRow2"><span class="gb-tag verb">食べます。</span><span class="gb-row-label">eat ← verb always LAST</span></div>
+                </div>
+                <strong>Particles</strong> are tiny words after nouns that show their role:<br>
+                <span style="background:#fff3e0;padding:1px 6px;border-radius:5px;font-size:0.8rem">は</span> marks the topic &nbsp;
+                <span style="background:#e3f2fd;padding:1px 6px;border-radius:5px;font-size:0.8rem">を</span> marks the object &nbsp;
+                <span style="background:#f3e5f5;padding:1px 6px;border-radius:5px;font-size:0.8rem">に</span> marks direction/time<br><br>
+                Don't worry — the Grammar Cheatsheet inside the app explains all of these! 📖
+              </div>
+            </div>
+
+            <!-- Card 4: How the app works for them -->
+            <div class="ob-explainer-card">
+              <div class="ob-exp-icon">🗺️</div>
+              <div class="ob-exp-title">Your learning path</div>
+              <div class="ob-exp-body">
+                We've built a guided path just for you:
+                <div class="phrase-row" style="cursor:default">
+                  <div style="font-size:1.3rem">1️⃣</div>
+                  <div class="phrase-en"><strong>Start with N5 vocab</strong> — the 100 most essential words, taught with kanji origin stories and memory hooks.</div>
+                </div>
+                <div class="phrase-row" style="cursor:default">
+                  <div style="font-size:1.3rem">2️⃣</div>
+                  <div class="phrase-en"><strong>Use Meaning Quiz</strong> — see a kanji, pick the meaning. Easiest mode to build confidence fast.</div>
+                </div>
+                <div class="phrase-row" style="cursor:default">
+                  <div style="font-size:1.3rem">3️⃣</div>
+                  <div class="phrase-en"><strong>Check Grammar Cheatsheet</strong> — a simple guide to N5 grammar patterns, inside the app.</div>
+                </div>
+                <div class="phrase-row" style="cursor:default">
+                  <div style="font-size:1.3rem">4️⃣</div>
+                  <div class="phrase-en"><strong>Unlock more modes</strong> — as you complete sessions, Type It, Shadowing, and more will unlock.</div>
+                </div>
+                <strong>You'll be placed in N5.</strong> Once you're comfortable, you can move up to N4 anytime. 🎌
+              </div>
+            </div>
+
+          </div><!-- /.ob-explainer-cards -->
+        </div>
+
+        <!-- Navigation -->
+        <div class="ob-exp-nav" id="obExpNav">
+          <button class="ob-exp-back" id="obExpBackBtn" onclick="obExpPrev()">← Back</button>
+          <button class="ob-exp-next" id="obExpNextBtn" onclick="obExpNext()">Next →</button>
+        </div>
+      </div><!-- /#obSlide3 -->
 
     </div>
   </div>
@@ -2637,6 +3308,62 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <span id="hpStreak">🔥 0 days</span>
     <span class="home-pill-sep">·</span>
     <span id="hpRank">🥋 Genin</span>
+  </div>
+
+  <!-- Absolute Beginner guided path (shown when absolute-beginner class is on body) -->
+  <div class="ab-path-banner" id="abPathBanner">
+    <div class="ab-ring-wrap">
+      <div class="ab-ring-container">
+        <svg class="ab-ring-svg" width="54" height="54" viewBox="0 0 54 54">
+          <circle class="ab-ring-track" cx="27" cy="27" r="22"/>
+          <circle class="ab-ring-fill" id="abRingFill" cx="27" cy="27" r="22"
+            stroke-dasharray="138.2" stroke-dashoffset="138.2"/>
+        </svg>
+        <div class="ab-ring-inner">
+          <div class="ab-ring-count" id="abRingCount">0</div>
+          <div class="ab-ring-label">/ 4</div>
+        </div>
+      </div>
+      <div class="ab-ring-text">
+        <div class="ab-ring-headline" id="abRingHeadline">🌱 Your Beginner Path</div>
+        <div class="ab-ring-subline" id="abRingSub">Complete the steps below to get started.</div>
+      </div>
+    </div>
+    <div class="ab-path-steps" id="abPathSteps">
+      <div class="ab-step" id="abStep0" onclick="openGrammar()">
+        <div class="ab-step-icon">📖</div>
+        <div class="ab-step-text">
+          <div class="ab-step-name">Read the Grammar Cheatsheet</div>
+          <div class="ab-step-desc">5 min · Understand particles は を に and basic sentence order</div>
+        </div>
+        <div class="ab-step-check">✓</div>
+      </div>
+      <div class="ab-step" id="abStep1" onclick="pickLevel('N5')">
+        <div class="ab-step-icon">🎯</div>
+        <div class="ab-step-text">
+          <div class="ab-step-name">Do your first N5 Quiz</div>
+          <div class="ab-step-desc">10 words · Meaning Quiz mode · See kanji origin stories</div>
+        </div>
+        <div class="ab-step-check">✓</div>
+      </div>
+      <div class="ab-step" id="abStep2" onclick="pickLevel('N5')">
+        <div class="ab-step-icon">🔁</div>
+        <div class="ab-step-text">
+          <div class="ab-step-name">Complete 3 sessions</div>
+          <div class="ab-step-desc">Unlock Flashcard and Type It modes as you go</div>
+        </div>
+        <div class="ab-step-check">✓</div>
+      </div>
+      <div class="ab-step" id="abStep3" onclick="pickLevel('N5')">
+        <div class="ab-step-icon">🏆</div>
+        <div class="ab-step-text">
+          <div class="ab-step-name">Learn 50 N5 words</div>
+          <div class="ab-step-desc">Then you're ready to try N4 — true beginner level!</div>
+        </div>
+        <div class="ab-step-check">✓</div>
+      </div>
+    </div>
+    <div class="ab-path-exit" onclick="exitAbsoluteBeginner()">I'm comfortable — exit beginner path</div>
   </div>
 
   <!-- Beginner welcome banner (shown in beginner-mode) -->
@@ -3136,7 +3863,7 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
     <div class="ms-topbar">
       <button class="gt-back" onclick="goHome()">← Back</button>
       <div class="ms-topbar-badge" id="msBadge" style="color:var(--n5)">N5</div>
-      <button onclick="openGrammar()" title="Grammar cheatsheet" style="background:none;border:1.5px solid var(--border);border-radius:10px;padding:5px 10px;font-size:0.72rem;font-weight:700;color:var(--stone);cursor:pointer;transition:all .18s;white-space:nowrap" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--stone)'">📖 Grammar</button>
+      <button onclick="openGrammar()" title="Grammar cheatsheet" style="background:none;border:1.5px solid var(--border);border-radius:10px;padding:5px 10px;font-size:0.72rem;font-weight:700;color:var(--stone);cursor:pointer;transition:all .18s;white-space:nowrap" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--stone)'">📖 Grammar <span id="grammarBtnLevel" style="opacity:0.7"></span></button>
     </div>
 
     <div class="ms-title" id="msTitle">🥋 GENIN — Complete Beginner</div>
@@ -3207,6 +3934,20 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
         <div>
           <div class="ms-mode-name">会話 Kaiwa</div>
           <div class="ms-mode-hint">Conversational replies · N5 &amp; N4 grammar</div>
+        </div>
+      </div>
+      <div class="ms-mode-card pp-card" data-mode="recall" onclick="handleModeCardClick(this,'recall')" id="modeCardRecall">
+        <div class="ms-mode-icon">🧠</div>
+        <div>
+          <div class="ms-mode-name">Recall</div>
+          <div class="ms-mode-hint">English → type the Japanese</div>
+        </div>
+      </div>
+      <div class="ms-mode-card pp-card" data-mode="dictation" onclick="handleModeCardClick(this,'dictation')" id="modeCardDictation">
+        <div class="ms-mode-icon">👂</div>
+        <div>
+          <div class="ms-mode-name">Dictation</div>
+          <div class="ms-mode-hint">Hear it → type the reading</div>
         </div>
       </div>
     </div>
@@ -3477,6 +4218,7 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
       <button class="kana-type-pill active" onclick="setKanaType(this,'both')">あ＋ア Both</button>
       <button class="kana-type-pill" onclick="setKanaType(this,'hira')">あ Hiragana</button>
       <button class="kana-type-pill" onclick="setKanaType(this,'kata')">ア Katakana</button>
+      <button class="kana-type-pill" id="kanaWrdPill" onclick="startWrdDrill()" style="display:none">⚡ Word Blitz</button>
     </div>
     <div class="kana-score-row">
       <div class="kana-score-item"><div class="kana-score-num" id="kanaCorrect">0</div><div class="kana-score-lbl">Correct</div></div>
@@ -3585,8 +4327,27 @@ body.hide-romaji .furigana-display { opacity: 0; pointer-events: none; height: 0
   <div class="origin-panel" id="originPanel" style="position:relative">
     <div class="panel-handle"></div>
     <button class="panel-close" onclick="closeOriginBtn()">✕</button>
-    <div class="panel-word" id="opWord"></div>
+    <div class="op-word-row">
+      <div class="panel-word" id="opWord"></div>
+      <button class="speak-btn" id="opSpeakBtn" onclick="speakOriginWord()">🔊 Hear it</button>
+    </div>
     <div class="panel-reading" id="opReading"></div>
+
+    <!-- Stroke Order Section -->
+    <div class="origin-section stroke-order-section" id="opStrokeSection" style="display:none">
+      <div class="origin-section-title">✍️ Stroke Order</div>
+      <div class="stroke-order-wrap">
+        <div class="stroke-svg-container" id="opStrokeSvg">
+          <div class="stroke-counter" id="opStrokeCounter"></div>
+        </div>
+        <div class="stroke-controls">
+          <button class="stroke-ctrl-btn primary" id="opStrokePlayBtn" onclick="strokeOrderPlay()">▶ Animate</button>
+          <button class="stroke-ctrl-btn" onclick="strokeOrderStep()">+1 Stroke</button>
+          <button class="stroke-ctrl-btn" onclick="strokeOrderReset()">↺ Reset</button>
+        </div>
+        <div class="stroke-info" id="opStrokeInfo"></div>
+      </div>
+    </div>
 
     <!-- Story Chain Navigator (Strategy 1) -->
     <div class="origin-section" id="opChainSection" style="display:none">
@@ -5258,11 +6019,13 @@ function applyBeginnerModeLocks() {
   const sessions = p.totalSessions || 0;
   // Lock rules: unlock thresholds
   const locks = {
-    'modeCardFill':   { after: 2, label: 'Unlocks after 2 sessions' },
-    'modeCardPP':     { after: 3, label: 'Unlocks after 3 sessions' },
-    'dokkaiModeTile': { after: 3, label: 'Unlocks after 3 sessions' },
-    'shadowModeTile': { after: 2, label: 'Unlocks after 2 sessions' },
-    'kaiwaModeTile':  { after: 2, label: 'Unlocks after 2 sessions' },
+    'modeCardFill':      { after: 2, label: 'Unlocks after 2 sessions' },
+    'modeCardPP':        { after: 3, label: 'Unlocks after 3 sessions' },
+    'dokkaiModeTile':    { after: 3, label: 'Unlocks after 3 sessions' },
+    'shadowModeTile':    { after: 2, label: 'Unlocks after 2 sessions' },
+    'kaiwaModeTile':     { after: 2, label: 'Unlocks after 2 sessions' },
+    'modeCardRecall':    { after: 3, label: 'Unlocks after 3 sessions' },
+    'modeCardDictation': { after: 3, label: 'Unlocks after 3 sessions' },
   };
   Object.entries(locks).forEach(([id, cfg]) => {
     const el = document.getElementById(id);
@@ -5352,14 +6115,16 @@ function closeBackConfirm() {
 // ─────────────────────────────────────────────
 let _isPaused = false;
 const MODE_LABELS = {
-  meaning: '🎯 Meaning Mode',
-  reading: '📖 Reading Mode',
-  fill:    '✏️ Type-It Mode',
-  flash:   '🃏 Flashcard Mode',
+  meaning:   '🎯 Meaning Mode',
+  reading:   '📖 Reading Mode',
+  fill:      '✏️ Type-It Mode',
+  flash:     '🃏 Flashcard Mode',
   pastpaper: '📜 Past Paper Mode',
   kaiwa:     '💬 Kaiwa Mode',
   kana:      '🗾 Kana Drill',
-  shadow:    '🔊 Shadowing'
+  shadow:    '🔊 Shadowing',
+  recall:    '🧠 Recall Mode',
+  dictation: '👂 Dictation Mode',
 };
 
 function updateGameModePill() {
@@ -5412,6 +6177,8 @@ function startGame() {
   if (currentMode === 'kana')   { startKana();   return; }
   if (currentMode === 'shadow') { startShadow(); return; }
   if (currentMode === 'kaiwa')  { startKaiwa();  return; }
+  if (currentMode === 'recall') { startRecall(); return; }
+  if (currentMode === 'dictation') { startDictation(); return; }
 
   isDailyChallengeMode = false;
   _currentSensei = SENSEIS[Math.floor(Math.random() * SENSEIS.length)];
@@ -5497,6 +6264,8 @@ function renderQ() {
   if (currentMode === 'meaning') renderMeaning(currentEntry);
   else if (currentMode === 'reading') renderReading(currentEntry);
   else if (currentMode === 'fill') renderFill(currentEntry);
+  else if (currentMode === 'recall') renderRecall(currentEntry);
+  else if (currentMode === 'dictation') renderDictation(currentEntry);
   else renderFlash(currentEntry);
 }
 
@@ -5623,6 +6392,225 @@ function checkFill() {
   document.getElementById('nextBtn').className = 'next-btn show';
 }
 
+// ═══════════════════════════════════════════════════════
+// RECALL MODE — English prompt → type Japanese
+// ═══════════════════════════════════════════════════════
+function startRecall() {
+  isDailyChallengeMode = false;
+  _currentSensei = SENSEIS[Math.floor(Math.random() * SENSEIS.length)];
+  _streakCount = 0;
+  qIdx = 0; score = 0; lives = 3; results = []; answered = false; _sessionXP = 0;
+
+  const dcHeader = document.getElementById('dcGameHeader');
+  if (dcHeader) dcHeader.style.display = 'none';
+
+  const allWords = [...(vocab[currentLevel] || [])];
+  if (!allWords.length) { alert('No vocabulary available for this level.'); return; }
+  const p = getProgress();
+  const seen = p.seenWords?.[currentLevel] || [];
+  const seenWords = allWords.filter(w => seen.includes(w.k));
+  pool = shuffle(seenWords.length >= 10 ? seenWords : allWords).slice(0, SESSION_SIZE);
+
+  updateGameModePill();
+  updateHUD();
+  updateXpHUD();
+  showScreen('gameScreen');
+  renderQ();
+}
+
+function renderRecall(entry) {
+  document.getElementById('qTag').textContent = '🧠 Type the Japanese';
+  const kbHints = document.getElementById('kbHints');
+  if (kbHints) kbHints.innerHTML = `
+    <span class="kb-hint"><span class="kb-key">↵</span> check</span>
+    <span class="kb-hint"><span class="kb-key">O</span> origin</span>
+    <span class="kb-hint"><span class="kb-key">P</span> pause</span>
+  `;
+  document.getElementById('answerArea').innerHTML = `
+    <div class="recall-prompt-box">
+      <div class="recall-en">${entry.m}</div>
+      <div class="recall-pos">${entry.pos}</div>
+      <div class="recall-hint-row">
+        <button class="recall-hint-chip" id="recallHintBtn" onclick="revealRecallHint()">💡 Show romaji hint</button>
+      </div>
+      <div id="recallHintText" style="margin-top:8px;font-size:0.82rem;color:var(--stone);display:none">${entry.r}</div>
+    </div>
+    <div class="fill-wrap">
+      <input class="fill-inp" id="recallInp" placeholder="Type furigana or kanji…" autocomplete="off" autocapitalize="off">
+      <button class="fill-sub" onclick="checkRecall()">Check ✓</button>
+    </div>`;
+  window._recallEntry = entry;
+  const inp = document.getElementById('recallInp');
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkRecall(); });
+  setTimeout(() => inp.focus(), 100);
+}
+
+function revealRecallHint() {
+  const btn = document.getElementById('recallHintBtn');
+  const txt = document.getElementById('recallHintText');
+  if (btn) btn.classList.add('revealed');
+  if (txt) txt.style.display = '';
+}
+
+function checkRecall() {
+  if (answered) return;
+  const entry = window._recallEntry;
+  const raw = document.getElementById('recallInp').value.trim();
+  if (!raw) { document.getElementById('recallInp').focus(); return; }
+  const val = raw.toLowerCase();
+
+  // Accept: exact furigana, kanji, or romaji (normalise long vowels)
+  const normalise = s => s.toLowerCase().replace(/ō/g,'ou').replace(/ū/g,'uu').replace(/\s/g,'');
+  const targets = [
+    normalise(entry.f),
+    normalise(entry.k),
+    normalise(entry.r),
+  ];
+  // Also accept partial furigana match for compound words (each mora)
+  const correct = targets.some(t => t === normalise(val)) ||
+    (val.length >= 2 && (entry.f.includes(raw) || entry.k.includes(raw)));
+
+  answered = true;
+  document.getElementById('recallInp').disabled = true;
+  document.querySelector('.fill-sub').disabled = true;
+  const hintBtn = document.getElementById('recallHintBtn');
+  if (hintBtn) hintBtn.disabled = true;
+
+  if (correct) {
+    document.getElementById('recallInp').classList.add('correct');
+    const pts = getPoints();
+    score += pts; results.push(true);
+    soundCorrect();
+    showXpPop(pts * 0.5);
+    showFeedback(true, `✅ ${entry.k} (${entry.f} · ${entry.r})`);
+  } else {
+    document.getElementById('recallInp').classList.add('wrong');
+    lives--; results.push(false);
+    soundWrong();
+    showFeedback(false, `❌ Answer: <b>${entry.k}</b> (${entry.f} · ${entry.r}) = ${entry.m}`);
+    showSenseiQuote();
+    saveMistake({ type:'recall', q:`${entry.m} [${entry.pos}]`, opts:[entry.k, entry.f, entry.r], ans:0, exp:`${entry.k} · ${entry.f} · ${entry.r}` });
+  }
+  updateHUD();
+  updateXpHUD();
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+// ═══════════════════════════════════════════════════════
+// DICTATION MODE — hear TTS → type the romaji reading
+// ═══════════════════════════════════════════════════════
+function startDictation() {
+  if (!window.speechSynthesis) {
+    alert('Dictation mode requires text-to-speech support. Please use Chrome, Edge or Safari.');
+    return;
+  }
+  isDailyChallengeMode = false;
+  _currentSensei = SENSEIS[Math.floor(Math.random() * SENSEIS.length)];
+  _streakCount = 0;
+  qIdx = 0; score = 0; lives = 3; results = []; answered = false; _sessionXP = 0;
+
+  const dcHeader = document.getElementById('dcGameHeader');
+  if (dcHeader) dcHeader.style.display = 'none';
+
+  const allWords = [...(vocab[currentLevel] || [])];
+  if (!allWords.length) { alert('No vocabulary available for this level.'); return; }
+  const p = getProgress();
+  const seen = p.seenWords?.[currentLevel] || [];
+  const seenWords = allWords.filter(w => seen.includes(w.k));
+  pool = shuffle(seenWords.length >= 10 ? seenWords : allWords).slice(0, SESSION_SIZE);
+
+  updateGameModePill();
+  updateHUD();
+  updateXpHUD();
+  showScreen('gameScreen');
+  renderQ();
+}
+
+function renderDictation(entry) {
+  document.getElementById('qTag').textContent = '👂 What did you hear?';
+  const kbHints = document.getElementById('kbHints');
+  if (kbHints) kbHints.innerHTML = `
+    <span class="kb-hint"><span class="kb-key">↵</span> check</span>
+    <span class="kb-hint"><span class="kb-key">Space</span> replay</span>
+    <span class="kb-hint"><span class="kb-key">P</span> pause</span>
+  `;
+  document.getElementById('answerArea').innerHTML = `
+    <div class="dict-listen-card" id="dictCard">
+      <span class="dict-headphone-icon">🎧</span>
+      <div class="dict-prompt">Listen carefully, then type the reading (romaji or furigana)</div>
+      <button class="speak-btn" id="dictSpeakBtn" onclick="dictSpeak()" style="margin:0 auto">🔊 Play again</button>
+    </div>
+    <div class="fill-wrap">
+      <input class="fill-inp" id="dictInp" placeholder="Type romaji or furigana…" autocomplete="off" autocapitalize="off">
+      <button class="fill-sub" onclick="checkDictation()">Check ✓</button>
+    </div>`;
+  window._dictEntry = entry;
+  const inp = document.getElementById('dictInp');
+  inp.addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkDictation();
+    if (e.key === ' ' && !e.target.value) { e.preventDefault(); dictSpeak(); }
+  });
+  // Auto-speak after short delay
+  setTimeout(() => {
+    dictSpeak();
+    document.getElementById('dictCard')?.classList.add('played');
+    setTimeout(() => inp.focus(), 800);
+  }, 400);
+}
+
+function dictSpeak() {
+  const entry = window._dictEntry;
+  if (!entry) return;
+  speakText(entry.f || entry.k, document.getElementById('dictSpeakBtn'));
+}
+
+function checkDictation() {
+  if (answered) return;
+  const entry = window._dictEntry;
+  const raw = document.getElementById('dictInp').value.trim();
+  if (!raw) { document.getElementById('dictInp').focus(); return; }
+  const val = raw.toLowerCase();
+
+  const normalise = s => s.toLowerCase().replace(/ō/g,'ou').replace(/ū/g,'uu').replace(/\s/g,'');
+  const correct =
+    normalise(val) === normalise(entry.r) ||
+    normalise(val) === normalise(entry.f) ||
+    entry.f.includes(raw);
+
+  answered = true;
+  document.getElementById('dictInp').disabled = true;
+  document.querySelector('.fill-sub').disabled = true;
+
+  if (correct) {
+    document.getElementById('dictInp').classList.add('correct');
+    const pts = getPoints();
+    score += pts; results.push(true);
+    soundCorrect();
+    showXpPop(pts * 0.5);
+    showFeedback(true, `✅ ${entry.k} (${entry.f}) = ${entry.m}`);
+  } else {
+    document.getElementById('dictInp').classList.add('wrong');
+    lives--; results.push(false);
+    soundWrong();
+    // Show the full word so they can see what they missed
+    showFeedback(false, `❌ <b>${entry.k}</b> (${entry.f} · ${entry.r}) = ${entry.m}`);
+    showSenseiQuote();
+    saveMistake({ type:'dictation', q:`🎧 ${entry.f}`, opts:[entry.r, entry.f, entry.k], ans:0, exp:`${entry.k} · ${entry.f} · ${entry.r} = ${entry.m}` });
+  }
+  // Reveal the answer visually in the card
+  const card = document.getElementById('dictCard');
+  if (card) {
+    card.innerHTML += `<div class="dict-reveal-area">
+      <div class="dict-reveal-kanji">${entry.k}</div>
+      <div class="dict-reveal-reading">${entry.f} · ${entry.r}</div>
+      <div class="dict-reveal-meaning">${entry.m}</div>
+    </div>`;
+  }
+  updateHUD();
+  updateXpHUD();
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
 function renderFlash(entry) {
   document.getElementById('qTag').textContent = '🃏 Tap the card to flip';
   // Update keyboard hints for flash mode
@@ -5696,7 +6684,251 @@ function showSenseiQuote() {
 // ─────────────────────────────────────────────
 // ORIGIN PANEL
 // ─────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════
+// PRONUNCIATION — Web Speech API
+// ═══════════════════════════════════════════════════════
+let _currentUtterance = null;
+
+function speakText(text, btnEl) {
+  if (!text || !window.speechSynthesis) return;
+  // Stop any current speech
+  window.speechSynthesis.cancel();
+  // Remove speaking class from all speak buttons
+  document.querySelectorAll('.speak-btn.speaking').forEach(b => b.classList.remove('speaking'));
+
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'ja-JP';
+  utt.rate = 0.85;
+  utt.pitch = 1.0;
+
+  // Pick Japanese voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const jaVoice = voices.find(v => v.lang.startsWith('ja'));
+  if (jaVoice) utt.voice = jaVoice;
+
+  // Visual feedback on button
+  // btnEl=null means "no button" (suppress pulse); btnEl=undefined means "auto-detect"
+  const btn = (btnEl === undefined)
+    ? (document.getElementById('opSpeakBtn') || document.getElementById('shadowSpeakBtn'))
+    : btnEl;
+  if (btn) {
+    btn.classList.add('speaking');
+    utt.onend = () => btn.classList.remove('speaking');
+    utt.onerror = () => btn.classList.remove('speaking');
+  }
+
+  _currentUtterance = utt;
+  window.speechSynthesis.speak(utt);
+}
+
+function speakOriginWord() {
+  const entry = currentEntry;
+  if (!entry) return;
+  // Speak furigana (more reliable than kanji for TTS)
+  speakText(entry.f || entry.k, document.getElementById('opSpeakBtn'));
+}
+
+// Ensure voices are loaded (Chrome lazy-loads)
+if (window.speechSynthesis) {
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+}
+
+// ═══════════════════════════════════════════════════════
+// STROKE ORDER — KanjiVG via jsDelivr CDN
+// ═══════════════════════════════════════════════════════
+let _strokePaths = [];
+let _strokeIdx = 0;
+let _strokeTimer = null;
+let _strokeKanji = null;
+
+function loadStrokeOrder(kanji) {
+  const section = document.getElementById('opStrokeSection');
+  const container = document.getElementById('opStrokeSvg');
+  const info = document.getElementById('opStrokeInfo');
+  if (!section || !container) return;
+
+  // Only single kanji supported (not compounds)
+  if (!kanji || kanji.length !== 1) {
+    section.style.display = 'none';
+    return;
+  }
+
+  // Get Unicode codepoint → KanjiVG filename e.g. 06c34.svg for 水
+  const cp = kanji.codePointAt(0).toString(16).padStart(5, '0');
+
+  // Check if it's actually a CJK Unified Ideograph (U+4E00–U+9FFF range)
+  // 0x3000–0x4DFF = CJK symbols, hiragana, katakana — NOT valid KanjiVG targets
+  const code = kanji.codePointAt(0);
+  if (code < 0x4E00 || code > 0x9FFF) { section.style.display = 'none'; return; }
+
+  const url = `https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg@master/kanji/${cp}.svg`;
+
+  // Show loading state
+  section.style.display = '';
+  container.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--stone);font-size:0.7rem">Loading…</div>`;
+  if (info) info.innerHTML = '';
+  _strokePaths = []; _strokeIdx = 0; _strokeKanji = kanji;
+  clearStrokeTimer();
+
+  const controller = new AbortController();
+  const fetchTimeout = setTimeout(() => controller.abort(), 5000);
+
+  fetch(url, { signal: controller.signal })
+    .then(r => { clearTimeout(fetchTimeout); if (!r.ok) throw new Error('not found'); return r.text(); })
+    .then(svgText => {
+      if (_strokeKanji !== kanji) return; // stale response
+      renderStrokeSvg(svgText, kanji, container, info);
+    })
+    .catch(() => {
+      clearTimeout(fetchTimeout);
+      if (_strokeKanji !== kanji) return;
+      container.innerHTML = `<div class="stroke-unavail" style="padding:14px;text-align:center">${kanji}<br><span style="font-size:0.65rem">Stroke data<br>unavailable</span></div>`;
+      if (info) info.innerHTML = '';
+      section.style.display = '';
+    });
+}
+
+function renderStrokeSvg(svgText, kanji, container, info) {
+  // Parse the KanjiVG SVG
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(svgText, 'image/svg+xml');
+  const origSvg = doc.querySelector('svg');
+  if (!origSvg) { container.innerHTML = '<div class="stroke-unavail">Parse error</div>'; return; }
+
+  // Extract all stroke paths from KanjiVG groups
+  const pathEls = Array.from(doc.querySelectorAll('path[id*="kvg:"]'));
+  if (pathEls.length === 0) { container.innerHTML = '<div class="stroke-unavail">No strokes found</div>'; return; }
+
+  // Build our own SVG with grid + strokes
+  const vb = origSvg.getAttribute('viewBox') || '0 0 109 109';
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', vb);
+  svg.setAttribute('width', '120');
+  svg.setAttribute('height', '120');
+
+  // Grid lines
+  const mid = vb.split(' ')[2] / 2 || 54.5;
+  const size = parseFloat(vb.split(' ')[2]) || 109;
+  for (const [x1,y1,x2,y2] of [[mid,0,mid,size],[0,mid,size,mid]]) {
+    const line = document.createElementNS(ns, 'line');
+    Object.assign(line, {});
+    line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+    line.setAttribute('class', 'stroke-grid-line');
+    svg.appendChild(line);
+  }
+
+  // Add strokes as animated paths
+  _strokePaths = [];
+  pathEls.forEach((p, i) => {
+    const path = document.createElementNS(ns, 'path');
+    path.setAttribute('d', p.getAttribute('d'));
+    path.setAttribute('class', 'stroke-path');
+    path.setAttribute('data-idx', i);
+    // Compute path length for proper dash animation
+    svg.appendChild(path);
+    _strokePaths.push(path);
+  });
+
+  container.innerHTML = '';
+  container.appendChild(svg);
+
+  // Set actual path lengths after appending to DOM
+  _strokePaths.forEach(p => {
+    try {
+      const len = Math.ceil(p.getTotalLength()) + 10;
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+    } catch(e) {
+      p.style.strokeDasharray = 300;
+      p.style.strokeDashoffset = 300;
+    }
+  });
+
+  // Stroke counter
+  const counter = document.createElement('div');
+  counter.className = 'stroke-counter';
+  counter.id = 'opStrokeCounter';
+  container.appendChild(counter);
+
+  _strokeIdx = 0;
+  updateStrokeCounter();
+
+  if (info) {
+    info.innerHTML = `<strong>${kanji}</strong> has <strong>${pathEls.length} stroke${pathEls.length !== 1 ? 's' : ''}</strong>.<br>
+    Press <em>Animate</em> to watch the stroke order, or step through one at a time.<br><br>
+    <span style="font-size:0.68rem;color:var(--stone)">Source: KanjiVG · Ulrich Apel (CC BY-SA 3.0)</span>`;
+  }
+}
+
+function updateStrokeCounter() {
+  const el = document.getElementById('opStrokeCounter');
+  if (el) el.textContent = _strokeIdx > 0 ? `${_strokeIdx}/${_strokePaths.length}` : '';
+}
+
+function clearStrokeTimer() {
+  if (_strokeTimer) { clearInterval(_strokeTimer); _strokeTimer = null; }
+}
+
+function strokeOrderReset() {
+  clearStrokeTimer();
+  _strokeIdx = 0;
+  _strokePaths.forEach(p => {
+    p.classList.remove('drawn','animating','faded');
+    p.style.strokeDashoffset = p.style.strokeDasharray || 300;
+  });
+  updateStrokeCounter();
+  const btn = document.getElementById('opStrokePlayBtn');
+  if (btn) { btn.textContent = '▶ Animate'; btn.classList.add('primary'); }
+}
+
+function strokeOrderStep() {
+  clearStrokeTimer();
+  if (_strokeIdx >= _strokePaths.length) { strokeOrderReset(); return; }
+  // Fade all previous strokes
+  _strokePaths.forEach((p, i) => {
+    if (i < _strokeIdx) { p.classList.remove('animating'); p.classList.add('drawn','faded'); }
+  });
+  // Animate current stroke
+  const p = _strokePaths[_strokeIdx];
+  p.classList.remove('faded');
+  p.classList.add('drawn','animating');
+  // Unfade after delay
+  setTimeout(() => {
+    _strokePaths.forEach((pp, i) => { if (i <= _strokeIdx) pp.classList.remove('faded'); });
+  }, 500);
+  _strokeIdx++;
+  updateStrokeCounter();
+}
+
+function strokeOrderPlay() {
+  const btn = document.getElementById('opStrokePlayBtn');
+  if (_strokeTimer) {
+    clearStrokeTimer();
+    if (btn) { btn.textContent = '▶ Animate'; btn.classList.add('primary'); }
+    return;
+  }
+  strokeOrderReset();
+  if (btn) { btn.textContent = '⏸ Pause'; btn.classList.add('primary'); }
+
+  _strokeTimer = setInterval(() => {
+    if (_strokeIdx >= _strokePaths.length) {
+      clearStrokeTimer();
+      if (btn) { btn.textContent = '▶ Replay'; btn.classList.add('primary'); }
+      // Show all strokes clearly at end
+      _strokePaths.forEach(p => { p.classList.remove('faded'); p.classList.add('drawn'); });
+      return;
+    }
+    strokeOrderStep();
+  }, 600);
+}
+
 function openOrigin(jumpToKanji) {
+  // Stop any in-progress speech before showing new word
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+
   // Allow jumping directly to a specific kanji from story chain nav
   if (jumpToKanji) {
     const allWords = [].concat(vocab.N5 || [], vocab.N4 || []);
@@ -5722,6 +6954,9 @@ function openOrigin(jumpToKanji) {
     document.getElementById('opChainSection').style.display = 'none';
     document.getElementById('opSceneSection').style.display = 'none';
     document.getElementById('opPitchSection').style.display = 'none';
+    // Load stroke order for single kanji even when no origin data
+    clearStrokeTimer();
+    loadStrokeOrder(entry.k.length === 1 ? entry.k : null);
     document.getElementById('originOverlay').classList.add('show');
     return;
   }
@@ -5854,6 +7089,10 @@ function openOrigin(jumpToKanji) {
     chainSection.style.display = 'none';
   }
 
+  // ── STROKE ORDER ──
+  clearStrokeTimer();
+  loadStrokeOrder(entry.k.length === 1 ? entry.k : null);
+
   document.getElementById('originOverlay').classList.add('show');
 }
 
@@ -5862,6 +7101,9 @@ function closeOrigin(e) {
 }
 function closeOriginBtn() {
   document.getElementById('originOverlay').classList.remove('show');
+  clearStrokeTimer();
+  _strokeKanji = null;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
 }
 
 // ─────────────────────────────────────────────
@@ -5909,6 +7151,9 @@ function endGame() {
 
   // Record weekly data
   recordWeeklySession(earned, correct, total);
+
+  // Update AB path progress if applicable
+  if (localStorage.getItem('jlpt_absolute_beginner')) updateAbPathSteps();
 
   // Check if player has now seen ALL words in this level
   const p = getProgress();
@@ -7017,21 +8262,20 @@ let kanaCorrectCount = 0, kanaWrongCount = 0, kanaStreakCount = 0, kanaBestStrea
 let kanaAnswered = false;
 
 function startKana() {
-  // N5 → original kana drill; N4+ → word reading drill
-  if (currentLevel === 'N5') {
-    kanaCorrectCount = 0; kanaWrongCount = 0; kanaStreakCount = 0;
-    document.getElementById('kanaCorrect').textContent = '0';
-    document.getElementById('kanaWrong').textContent = '0';
-    document.getElementById('kanaStreak').textContent = '0';
-    document.getElementById('kanaStreakMsg').textContent = '';
-    document.getElementById('kanaSubScreen').style.display = '';
-    document.getElementById('wrdSubScreen').style.display = 'none';
-    buildKanaPool();
-    showScreen('kanaScreen');
-    renderKana();
-  } else {
-    startWrdDrill();
-  }
+  // Always show the kana drill — word reading blitz is a separate pill within kana screen
+  kanaCorrectCount = 0; kanaWrongCount = 0; kanaStreakCount = 0;
+  document.getElementById('kanaCorrect').textContent = '0';
+  document.getElementById('kanaWrong').textContent = '0';
+  document.getElementById('kanaStreak').textContent = '0';
+  document.getElementById('kanaStreakMsg').textContent = '';
+  document.getElementById('kanaSubScreen').style.display = '';
+  document.getElementById('wrdSubScreen').style.display = 'none';
+  // Show word drill pill only for N4+
+  const wrdPill = document.getElementById('kanaWrdPill');
+  if (wrdPill) wrdPill.style.display = currentLevel === 'N5' ? 'none' : '';
+  buildKanaPool();
+  showScreen('kanaScreen');
+  renderKana();
 }
 
 // ═══════════════════════════════════════════════
@@ -7375,12 +8619,18 @@ function renderShadow() {
   document.getElementById('shadowProgFill').style.width = pct + '%';
   document.getElementById('shadowProgress').textContent = `${shadowIdx+1} / ${shadowTotal}`;
 
+  // Strip ruby tags to get plain Japanese for TTS
+  const plainJp = item.jp.replace(/<rt>[^<]*<\/rt>/g, '').replace(/<[^>]+>/g, '');
+
   document.getElementById('shadowContent').innerHTML = `
     <div class="shadow-card">
       <span class="shadow-level-badge" style="background:${currentLevel==='N5'?'#e8f8f0':'#eaf2fb'};color:${currentLevel==='N5'?'#1a7a4a':'#1a5276'}">
         JLPT ${currentLevel} · Sentence ${shadowIdx+1}
       </span>
       <div class="shadow-jp">${item.jp}</div>
+      <div class="shadow-speak-row">
+        <button class="speak-btn" id="shadowSpeakBtn" onclick="speakText('${plainJp.replace(/'/g,"\\'")}')">🔊 Hear it</button>
+      </div>
       <button class="shadow-reveal-btn" onclick="revealShadow()" id="shadowRevealBtn">
         👁️ Tap to reveal reading &amp; meaning
       </button>
@@ -7397,6 +8647,11 @@ function renderShadow() {
       </div>
     </div>
     <div class="shadow-prog">Read aloud → then reveal to check yourself</div>`;
+
+  // Auto-speak after a short delay so the card is visible first
+  // Pass null for btnEl — the shadow speak btn isn't in DOM yet at this point,
+  // and we don't want the pulse appearing on the origin panel's opSpeakBtn
+  setTimeout(() => speakText(plainJp, null), 600);
 }
 
 function revealShadow() {
@@ -7405,6 +8660,7 @@ function revealShadow() {
 }
 
 function gradeShadow(gotIt) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
   if (gotIt) { shadowCorrect++; soundCorrect(); }
   else { soundWrong(); }
   shadowIdx++;
@@ -7443,6 +8699,7 @@ function endShadow() {
 }
 
 function confirmShadowBack() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
   const o = document.getElementById('backConfirmOverlay');
   if (o) o.style.display = 'flex';
 }
@@ -9159,21 +10416,201 @@ function obSelectLevel(level, btn) {
   const startBtn = document.getElementById('obStartBtn');
   startBtn.style.opacity = '1';
   startBtn.style.pointerEvents = 'auto';
-  startBtn.textContent = `Start ${level} →`;
+  if (level === 'AB') {
+    startBtn.textContent = 'Learn what to expect →';
+    startBtn.onclick = () => obShowExplainerCards();
+  } else {
+    startBtn.textContent = `Start ${level} →`;
+    startBtn.onclick = () => closeOnboardingWithLevel();
+  }
+}
+
+// ── ABSOLUTE BEGINNER EXPLAINER CARDS ──
+let _obExpIdx = 0;
+const OB_EXP_TOTAL = 4;
+
+function obShowExplainerCards() {
+  document.getElementById('obSlide2').style.display = 'none';
+  const s3 = document.getElementById('obSlide3');
+  s3.style.display = 'block';
+  _obExpIdx = 0;
+  obExpRender();
+}
+
+function obExpRender() {
+  // Slide cards
+  const cards = document.getElementById('obExpCards');
+  if (!cards) return;
+  cards.style.transform = `translateX(-${_obExpIdx * 100}%)`;
+  // Dots
+  for (let i = 0; i < OB_EXP_TOTAL; i++) {
+    const dot = document.getElementById('obDot' + i);
+    if (dot) dot.classList.toggle('active', i === _obExpIdx);
+  }
+  // Back button
+  const backBtn = document.getElementById('obExpBackBtn');
+  backBtn.style.display = _obExpIdx === 0 ? 'none' : '';
+  // Next button
+  const nextBtn = document.getElementById('obExpNextBtn');
+  if (_obExpIdx === OB_EXP_TOTAL - 1) {
+    nextBtn.textContent = "🎌 Start Learning!";
+    nextBtn.style.background = 'linear-gradient(135deg,#27ae60,#1e8449)';
+    nextBtn.style.boxShadow = '0 4px 14px rgba(39,174,96,0.35)';
+  } else {
+    nextBtn.textContent = 'Next →';
+    nextBtn.style.background = 'linear-gradient(135deg, var(--crimson), #a93226)';
+    nextBtn.style.boxShadow = '0 4px 14px rgba(192,57,43,0.3)';
+  }
+  // Start/stop grammar animation when card 3 (index 2) is active
+  if (_obExpIdx === 2) {
+    startGrammarAnim();
+  } else {
+    stopGrammarAnim();
+  }
+}
+
+function obExpNext() {
+  if (_obExpIdx < OB_EXP_TOTAL - 1) {
+    _obExpIdx++;
+    obExpRender();
+  } else {
+    // Final card — close and start as AB
+    closeOnboardingWithLevel();
+  }
+}
+
+function obExpPrev() {
+  if (_obExpIdx > 0) {
+    _obExpIdx--;
+    obExpRender();
+  } else {
+    // Go back to level picker
+    document.getElementById('obSlide3').style.display = 'none';
+    document.getElementById('obSlide2').style.display = 'block';
+  }
 }
 
 function closeOnboardingWithLevel() {
   const level = _obSelectedLevel || 'N5';
   document.getElementById('onboardOverlay').classList.remove('show');
+  stopGrammarAnim();
   localStorage.setItem('jlpt_onboard_done', '1');
-  localStorage.setItem('jlpt_chosen_level', level);
-  // Activate beginner mode for N5 and N4 users, or any first-time user
-  const isBeginnerLevel = level === 'N5' || level === 'N4';
-  if (isBeginnerLevel) {
+
+  if (level === 'AB') {
+    // Absolute beginner → maps to N5 + special flag
+    localStorage.setItem('jlpt_chosen_level', 'N5');
     localStorage.setItem('jlpt_beginner_mode', '1');
-    document.body.classList.add('beginner-mode');
+    localStorage.setItem('jlpt_absolute_beginner', '1');
+    localStorage.setItem('jlpt_ab_steps', JSON.stringify([false,false,false,false]));
+    document.body.classList.add('beginner-mode', 'absolute-beginner');
+    applyBeginnerBanner('N5');
+    updateAbPathSteps();
+  } else {
+    localStorage.setItem('jlpt_chosen_level', level);
+    const isBeginnerLevel = level === 'N5' || level === 'N4';
+    if (isBeginnerLevel) {
+      localStorage.setItem('jlpt_beginner_mode', '1');
+      document.body.classList.add('beginner-mode');
+    }
+    applyBeginnerBanner(level);
   }
-  applyBeginnerBanner(level);
+}
+
+// ── GRAMMAR CARD ANIMATION ──
+let _gbAnimTimer = null;
+let _gbActiveRow = -1;
+
+function startGrammarAnim() {
+  stopGrammarAnim(); // clear any running
+  _gbActiveRow = -1;
+  // Small delay so the slide transition finishes first
+  setTimeout(() => {
+    _gbStep();
+    _gbAnimTimer = setInterval(_gbStep, 1100);
+  }, 400);
+}
+
+function _gbStep() {
+  const total = 3;
+  // Clear previous
+  for (let i = 0; i < total; i++) {
+    const r = document.getElementById('gbRow' + i);
+    if (r) r.classList.remove('gb-active');
+  }
+  _gbActiveRow = (_gbActiveRow + 1) % total;
+  const row = document.getElementById('gbRow' + _gbActiveRow);
+  if (row) row.classList.add('gb-active');
+}
+
+function stopGrammarAnim() {
+  if (_gbAnimTimer) { clearInterval(_gbAnimTimer); _gbAnimTimer = null; }
+  for (let i = 0; i < 3; i++) {
+    const r = document.getElementById('gbRow' + i);
+    if (r) r.classList.remove('gb-active');
+  }
+  _gbActiveRow = -1;
+}
+
+// ── AB PROGRESS RING ──
+function updateAbRing(doneCount) {
+  const circumference = 2 * Math.PI * 22; // r=22 → 138.23
+  const fill = document.getElementById('abRingFill');
+  const count = document.getElementById('abRingCount');
+  const headline = document.getElementById('abRingHeadline');
+  const sub = document.getElementById('abRingSub');
+  if (!fill) return;
+  const offset = circumference * (1 - doneCount / 4);
+  fill.style.strokeDashoffset = offset.toFixed(2);
+  if (count) count.textContent = doneCount;
+  if (headline && sub) {
+    if (doneCount === 0) {
+      headline.textContent = '🌱 Your Beginner Path';
+      sub.textContent = 'Complete the steps below to get started.';
+    } else if (doneCount < 4) {
+      headline.textContent = `${doneCount === 1 ? '🔥' : doneCount === 2 ? '⚡' : '🚀'} Keep going!`;
+      sub.textContent = `${4 - doneCount} step${4 - doneCount !== 1 ? 's' : ''} left — you're making great progress.`;
+    } else {
+      headline.textContent = '🎌 Path complete!';
+      sub.textContent = 'You\'re ready to explore the full app. Amazing work!';
+    }
+  }
+}
+function updateAbPathSteps() {
+  let steps = [];
+  try { steps = JSON.parse(localStorage.getItem('jlpt_ab_steps') || '[false,false,false,false]'); } catch(e) { steps = [false,false,false,false]; }
+  const p = getProgress();
+  const seenN5 = (p.seenWords && p.seenWords.N5) ? p.seenWords.N5.length : 0;
+  const sessions = p.totalSessions || 0;
+  // Step 0 (grammar): persisted via markAbStep0Done() — never auto-reset it
+  // Auto-complete step 1 if any session done
+  if (sessions >= 1) steps[1] = true;
+  // Auto-complete step 2 if 3+ sessions
+  if (sessions >= 3) steps[2] = true;
+  // Auto-complete step 3 if 50+ N5 words seen
+  if (seenN5 >= 50) steps[3] = true;
+  localStorage.setItem('jlpt_ab_steps', JSON.stringify(steps));
+  const doneCount = steps.filter(Boolean).length;
+  for (let i = 0; i < 4; i++) {
+    const el = document.getElementById('abStep' + i);
+    if (el) el.classList.toggle('done', !!steps[i]);
+  }
+  updateAbRing(doneCount);
+}
+
+function markAbStep0Done() {
+  let steps = [];
+  try { steps = JSON.parse(localStorage.getItem('jlpt_ab_steps') || '[false,false,false,false]'); } catch(e) { steps = [false,false,false,false]; }
+  steps[0] = true;
+  localStorage.setItem('jlpt_ab_steps', JSON.stringify(steps));
+  updateAbPathSteps();
+}
+
+function exitAbsoluteBeginner() {
+  localStorage.removeItem('jlpt_absolute_beginner');
+  localStorage.removeItem('jlpt_ab_steps');
+  document.body.classList.remove('absolute-beginner');
+  exitBeginnerMode();
+  showAchievementToast({ icon: '🎌', name: 'Beginner path complete!', desc: 'Full app unlocked. Keep up the great work!' });
 }
 
 function applyBeginnerBanner(level) {
@@ -9210,17 +10647,28 @@ function initOnboarding() {
   }
   // Returning user — check if they should still be in beginner mode
   const beMode = localStorage.getItem('jlpt_beginner_mode');
+  const abMode = localStorage.getItem('jlpt_absolute_beginner');
   if (beMode) {
     const p = getProgress();
     if ((p.totalSessions || 0) >= 1) {
-      // Graduated — silently exit beginner mode, don't apply it at all
+      // Graduated from beginner mode — but keep AB path if still set
       exitBeginnerMode();
+      if (abMode) {
+        document.body.classList.add('absolute-beginner');
+        updateAbPathSteps();
+      }
     } else {
       // Still a beginner — apply the mode and banner
       document.body.classList.add('beginner-mode');
+      if (abMode) document.body.classList.add('absolute-beginner');
       const chosenLevel = localStorage.getItem('jlpt_chosen_level') || 'N5';
       applyBeginnerBanner(chosenLevel);
+      if (abMode) updateAbPathSteps();
     }
+  } else if (abMode) {
+    // Had beginner mode exit but still on AB path
+    document.body.classList.add('absolute-beginner');
+    updateAbPathSteps();
   }
 }
 
@@ -9697,6 +11145,8 @@ function endDailyChallenge() {
   else if (p.lastVisit !== today) p.streak = 1;
   p.lastVisit = today;
   saveProgress(p);
+  // Update AB path progress if applicable
+  if (localStorage.getItem('jlpt_absolute_beginner')) updateAbPathSteps();
   setTimeout(() => checkRankUp(oldXp, p.totalXP), 800);
 
   showScreen('scoreScreen');
@@ -10453,6 +11903,8 @@ function openGrammar() {
   renderGrammarSheet();
   document.getElementById('grammarOverlay').classList.add('open');
   document.getElementById('grammarOverlay').scrollTop = 0;
+  // Mark AB step 0 done when grammar is opened
+  if (localStorage.getItem('jlpt_absolute_beginner')) markAbStep0Done();
 }
 
 function openGrammarFromScore() {
@@ -10515,18 +11967,215 @@ function renderGrammarSheet() {
         </table>
       </div>
       ${c.tip ? `<div class="gs-tip"><span class="gs-tip-icon">💡</span><div class="gs-tip-text"><strong>Sensei's Tip:</strong> ${c.tip}</div></div>` : ''}
+      ${c.rows && c.rows.length >= 3 ? `<button class="gq-launch-btn" onclick="openGrammarQuiz(${JSON.stringify(_grammarLevel)},${i})">🎯 Practice this →</button>` : ''}
+      <div class="gq-panel" id="gqpanel-${i}" style="display:none"></div>
     </div>
   `).join('');
 }
 
 function switchGrammarCat(idx) {
   _grammarCatIdx = idx;
-  // Update tabs
   document.querySelectorAll('.gs-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
-  // Update categories
   document.querySelectorAll('.gs-category').forEach((c, i) => c.classList.toggle('active', i === idx));
-  // Scroll tab into view
   document.querySelectorAll('.gs-tab')[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+
+// ═══════════════════════════════════════════════════════
+// GRAMMAR QUIZ ENGINE
+// ═══════════════════════════════════════════════════════
+const GQ_SIZE = 5; // questions per quiz session
+let _gqLevel = 'N5', _gqCatIdx = 0;
+let _gqQuestions = [], _gqIdx = 0, _gqResults = [], _gqAnswered = false;
+
+function openGrammarQuiz(level, catIdx) {
+  _gqLevel = level;
+  _gqCatIdx = catIdx;
+  const cat = GRAMMAR[level]?.[catIdx];
+  if (!cat || cat.rows.length < 3) return;
+
+  // Build questions from the rows
+  _gqQuestions = buildGrammarQuestions(cat);
+  _gqIdx = 0; _gqResults = []; _gqAnswered = false;
+
+  const panel = document.getElementById(`gqpanel-${catIdx}`);
+  if (!panel) return;
+  panel.style.display = '';
+  // Scroll panel into view smoothly
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+  renderGrammarQuestion();
+}
+
+function closeGrammarQuiz(catIdx) {
+  const panel = document.getElementById(`gqpanel-${catIdx}`);
+  if (panel) { panel.style.display = 'none'; panel.innerHTML = ''; }
+}
+
+function buildGrammarQuestions(cat) {
+  const rows = cat.rows;
+  const qs = [];
+
+  // Shuffle rows and take up to GQ_SIZE
+  const shuffled = shuffle([...rows]);
+  const target = shuffled.slice(0, GQ_SIZE);
+
+  target.forEach(row => {
+    const [form, japanese, romaji, meaning] = row;
+
+    // Decide question type based on category content
+    // Type A: "What is the [form] of [base]?" — show meaning/form label, pick correct Japanese
+    // Type B: "What does [japanese] mean?" — show Japanese form, pick correct meaning
+    // Alternate types to keep variety
+    const useTypeA = qs.length % 2 === 0;
+
+    // Build 4 options: 1 correct + 3 wrong from other rows
+    const others = rows.filter(r => r !== row);
+    const wrongOpts = shuffle(others).slice(0, 3);
+
+    if (useTypeA) {
+      // Show form label + meaning → pick correct Japanese form
+      const opts = shuffle([
+        { text: japanese, romaji: romaji, correct: true },
+        ...wrongOpts.map(r => ({ text: r[1], romaji: r[2], correct: false }))
+      ]);
+      qs.push({
+        type: 'A',
+        question: meaning,
+        sub: `Which is the correct "${form}" form?`,
+        opts,
+        correctAnswer: japanese,
+        explanation: `${form}: ${japanese} (${romaji}) = ${meaning}`
+      });
+    } else {
+      // Show Japanese → pick correct meaning/form label
+      const opts = shuffle([
+        { text: meaning, sub: form, correct: true },
+        ...wrongOpts.map(r => ({ text: r[3], sub: r[0], correct: false }))
+      ]);
+      qs.push({
+        type: 'B',
+        question: japanese,
+        sub: `${romaji} — What does this mean / what form is this?`,
+        opts,
+        correctAnswer: meaning,
+        explanation: `${japanese} (${romaji}) = ${meaning} [${form}]`
+      });
+    }
+  });
+
+  return qs;
+}
+
+function renderGrammarQuestion() {
+  const panel = document.getElementById(`gqpanel-${_gqCatIdx}`);
+  if (!panel) return;
+
+  if (_gqIdx >= _gqQuestions.length) {
+    renderGrammarScore(panel);
+    return;
+  }
+
+  const q = _gqQuestions[_gqIdx];
+  _gqAnswered = false;
+  const pct = Math.round(_gqIdx / _gqQuestions.length * 100);
+
+  panel.innerHTML = `
+    <div class="gq-panel-header">
+      <div class="gq-panel-title">🎯 Grammar Practice · Q${_gqIdx + 1}/${_gqQuestions.length}</div>
+      <button class="gq-panel-close" onclick="closeGrammarQuiz(${_gqCatIdx})">✕</button>
+    </div>
+    <div class="gq-panel-body">
+      <div class="gq-progress-wrap"><div class="gq-progress-fill" id="gqProg" style="width:${pct}%"></div></div>
+      <div class="gq-question">${q.question}</div>
+      <div class="gq-question-sub">${q.sub}</div>
+      <div class="gq-opts" id="gqOpts">
+        ${q.opts.map((o, i) => `
+          <button class="gq-opt" id="gqopt-${i}"
+            onclick="answerGrammarQuiz(${i}, ${o.correct})"
+            title="${o.romaji || o.sub || ''}">
+            ${o.text}
+            ${o.romaji ? `<br><span style="font-size:0.62rem;color:var(--stone)">${o.romaji}</span>` : ''}
+            ${o.sub && !o.romaji ? `<br><span style="font-size:0.62rem;color:var(--stone)">${o.sub}</span>` : ''}
+          </button>`).join('')}
+      </div>
+      <div class="gq-feedback" id="gqFeedback"></div>
+      <button class="gq-next-btn" id="gqNextBtn" data-last="${_gqIdx + 1 >= _gqQuestions.length ? '1' : '0'}" onclick="gqNextClick()">
+        ${_gqIdx + 1 < _gqQuestions.length ? 'Next →' : 'See Results 🏆'}
+      </button>
+    </div>`;
+}
+
+function answerGrammarQuiz(optIdx, isCorrect) {
+  if (_gqAnswered) return;
+  _gqAnswered = true;
+
+  const q = _gqQuestions[_gqIdx];
+  _gqResults.push(isCorrect);
+
+  // Colour all buttons
+  document.querySelectorAll('.gq-opt').forEach((btn, i) => {
+    btn.disabled = true;
+    if (q.opts[i].correct) btn.classList.add('correct');
+    else if (i === optIdx && !isCorrect) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('gqFeedback');
+  if (isCorrect) {
+    soundCorrect();
+    fb.textContent = '✅ Correct!';
+    fb.className = 'gq-feedback ok';
+    // Small XP reward
+    try { const p = getProgress(); p.totalXP = (p.totalXP||0) + 2; saveProgress(p); updateXpHUD(); } catch(e){}
+  } else {
+    soundWrong();
+    fb.innerHTML = `❌ ${q.explanation}`;
+    fb.className = 'gq-feedback bad';
+  }
+
+  const nb = document.getElementById('gqNextBtn');
+  if (nb) nb.classList.add('show');
+}
+
+function nextGrammarQuestion() {
+  _gqIdx++;
+  renderGrammarQuestion();
+}
+
+function gqNextClick() {
+  const btn = document.getElementById('gqNextBtn');
+  if (btn && btn.dataset.last === '1') {
+    renderGrammarScore(document.getElementById('gqpanel-' + _gqCatIdx));
+  } else {
+    nextGrammarQuestion();
+  }
+}
+
+function renderGrammarScore(panel) {
+  if (!panel) return;
+  const correct = _gqResults.filter(Boolean).length;
+  const total = _gqResults.length;
+  const pct = Math.round(correct / total * 100);
+  const emoji = pct === 100 ? '🏆' : pct >= 80 ? '⭐' : pct >= 60 ? '👍' : '📚';
+  const msg = pct === 100 ? '完璧！Perfect score!' :
+              pct >= 80  ? 'Great work — almost perfect!' :
+              pct >= 60  ? 'Good effort — review and retry!' :
+                           'Keep studying — you\'ll get it!';
+
+  const dots = _gqResults.map(r => `<div class="gq-dot ${r ? 'ok' : 'bad'}"></div>`).join('');
+
+  panel.innerHTML = `
+    <div class="gq-panel-header">
+      <div class="gq-panel-title">🎯 Grammar Practice · Results</div>
+      <button class="gq-panel-close" onclick="closeGrammarQuiz(${_gqCatIdx})">✕</button>
+    </div>
+    <div class="gq-panel-body">
+      <div class="gq-score-wrap">
+        <div class="gq-score-num">${emoji} ${correct}/${total}</div>
+        <div class="gq-score-msg">${msg}</div>
+        <div class="gq-dots">${dots}</div>
+        <button class="gq-retry-btn" onclick="openGrammarQuiz('${_gqLevel}', ${_gqCatIdx})">🔁 Retry</button>
+        <button class="gq-retry-btn" style="background:var(--stone)" onclick="closeGrammarQuiz(${_gqCatIdx})">Done</button>
+      </div>
+    </div>`;
 }
 
 // ─────────────────────────────────────────────
